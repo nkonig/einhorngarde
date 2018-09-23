@@ -1,0 +1,40 @@
+{{> nav}}
+<div class="container">
+  <form action="/treasury/eq/save" method="post" accept-charset="utf-8">
+    <input type="hidden" name="seasonid" value="{{seasonid}}">
+    <input type="hidden" name="eqid" value="{{data._id}}">
+    <input type="hidden" name="exists" value="{{options.exists}}">
+    <table id="mytable" class="table table-bordred table-striped">
+      <tbody>
+        <tr>
+          <td>Name:</td>
+          <td><input class="form-control" type="text" name="name" value="{{data.name}}"></td>
+        </tr>
+        <tr>
+          <td>Seltenheit:</td>
+          <td>
+            <select name="rarity" class="form-control" id="sel1">
+                <option {{#ifEquals data.rarity 'common' }}selected="selected"{{/ifEquals}} name="rarity" value="common">common</option>
+                <option {{#ifEquals data.rarity 'rare' }}selected="selected"{{/ifEquals}} name="rarity" value="rare">rare</option>
+                <option {{#ifEquals data.rarity 'epic' }}selected="selected"{{/ifEquals}} name="rarity" value="epic">epic</option>
+                <option {{#ifEquals data.rarity 'legendary' }}selected="selected"{{/ifEquals}} name="rarity" value="legendary">legendary</option>
+            </select>
+          </td>
+        </tr>
+        <tr>
+          <td>Level:</td>
+          <td><input class="form-control" type="text" name="level" value="{{data.level}}"></td>
+        </tr>
+        <tr>
+          <td>Effect:</td>
+          <td><input class="form-control input-lg" type="text" name="ability" value="{{data.ability}}"></td>
+        </tr>  
+        <tr>
+          <td colspan="2">
+            <input type="submit" name="submit" value="Speichern" id="submit" class="btn btn-primary btn-block btn-flat">            </div>
+          </td>
+        </tr>
+      </tbody>     
+    </table>
+  </form>
+</div>

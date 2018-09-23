@@ -1,0 +1,47 @@
+{{> nav}}
+<h3>Hallo! {{data.hcplayer.username}}</h3>
+<p>
+    Eine neue Saison wurde aktiviert. Bitte übermittle deinen erhaltenen Ruhm und dein Thronsaal.
+</p>
+<form method="post" action="/register">
+    <table id="mytable" class="table table-bordred table-striped">
+      <tbody>
+        <tr>
+          <td><label>Ruhm:</label></td>
+          <td><input class="form-control" type="text" name="glory" value="{{data.hcplayer.glory}}"></td>
+        </tr>
+        <tr>
+            <div class="form-group">
+            <td><label for="sel1">Trohnsaal: </label></td>
+            <td>
+                <select name="throneroom" class="form-control" id="sel1">
+                    <option {{#ifEquals data.hcplayer.throneroom '5' }}selected="selected"{{/ifEquals}} name="throneroom" value="5">5</option>
+                    <option {{#ifEquals data.hcplayer.throneroom '6' }}selected="selected"{{/ifEquals}} name="throneroom" value="6">6</option>
+                    <option {{#ifEquals data.hcplayer.throneroom '7' }}selected="selected"{{/ifEquals}} name="throneroom" value="7">7</option>
+                    <option {{#ifEquals data.hcplayer.throneroom '8' }}selected="selected"{{/ifEquals}} name="throneroom" value="8">8</option>
+                    <option {{#ifEquals data.hcplayer.throneroom '9' }}selected="selected"{{/ifEquals}} name="throneroom" value="9">9</option>
+                    <option {{#ifEquals data.hcplayer.throneroom '10'}}selected="selected"{{/ifEquals}} name="throneroom" value="10">10</option>
+                </select>
+            </td>
+            </div>
+        </tr>
+        <!-- {{options.password}} -->
+        {{#if options.password}}
+        <tr>
+            <td><label>Passwort:</label></td>
+            <td>
+                <div class="form-group has-feedback">
+                    <input type="password" name="password" value="" class="form-control" id="password" size="30">            <span class="glyphicon glyphicon-lock form-control-feedback"></span>
+                    <span><font color="red"></font></span>
+                </div>
+            </td>
+        </tr>
+        {{/if}}
+        <tr>
+          <td colspan="2">
+            <input type="submit" name="submit" value="Speichern" id="submit" class="btn btn-primary btn-block btn-flat">            </div>
+          </td>
+        </tr>
+        </tbody>
+    </div>
+</form>

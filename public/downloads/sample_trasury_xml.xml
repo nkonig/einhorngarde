@@ -1,0 +1,229 @@
+<treasury>
+	<meta>
+		<!-- z.b. 18.09.2018 -->
+		<start>18.09.2018</start>
+		<end>02.10.2018</end>
+	</meta>
+	<usable>
+		<name>Gesundheit Edelstein</name>
+		<ability></ability>
+		<!-- common, rare, epic, legendary -->
+		<rarity>rare</rarity>
+	</usable>
+	<usable>
+		<name>Zauberkraft Edelstein</name>
+		<ability></ability>
+		<!-- common, rare, epic, legendary -->
+		<rarity>rare</rarity>
+	</usable>
+	<usable count="3">
+		<name>Violetter Splitter</name>
+		<rarity>epic</rarity>
+		<ability>2 Stück</ability>
+	</usable>
+	<usable count="4">
+		<name>Blauer Splitter</name>
+		<rarity>rare</rarity>
+		<ability>3 Stück</ability>
+	</usable>
+	<usable count="5">
+		<name>Grüner Splitter</name>
+		<ability>4 Stück</ability>
+	</usable>
+	<usable count="3">
+		<name>Diamanten</name>
+		<ability>70 Stück</ability>
+	</usable>
+	<usable count="2">
+		<name>Grüner Staub</name>
+		<ability>500 Stück</ability>
+	</usable>
+	<usable>
+		<name>Blauer Staub</name>
+		<ability>80 Stück</ability>
+	</usable>
+	<usable count="3">
+		<name>Tickets</name>
+		<ability>6 Stück</ability>
+	</usable>
+	<equitment>
+		<!-- item name -->
+		<name>Amulet des Abgrundfeuers</name>
+		<!-- common, rare, epic, legendary -->
+		<rarity>legendary</rarity>
+		<!-- item level -->
+		<level>68</level>
+		<!-- item ability as text -->
+		<ability></ability>	
+	</equitment>
+	<equitment>
+		<!-- item name -->
+		<name>Keidung des Schatzmeisters</name>
+		<!-- common, rare, epic, legendary -->
+		<rarity>legendary</rarity>
+		<!-- item level -->
+		<level>84</level>
+		<!-- item ability as text -->
+		<ability>Verringert, wenn Schaden erlitten wird, mit einer Chance von 35% die magische Rüstung des Gegners um 70%. Hält 10 Sek. lang an.</ability>	
+	</equitment>
+	<equitment>
+		<!-- item name -->
+		<name>Amulet des astrahlen Leuchtens</name>
+		<!-- common, rare, epic, legendary -->
+		<rarity>legendary</rarity>
+		<!-- item level -->
+		<level>44</level>
+		<!-- item ability as text -->
+		<ability>Rüstung: +862, Magische Rüstung: +1057, Gesundheit: +6612</ability>	
+	</equitment>
+	<equitment>
+		<!-- item name -->
+		<name>Stab der Macht der See</name>
+		<!-- common, rare, epic, legendary -->
+		<rarity>epic</rarity>
+		<!-- item level -->
+		<level>43</level>
+		<!-- item ability as text -->
+		<ability>Verursacht hin und wieder 2261(+0 der Zauberkraft) Schaden bei dem Gegner, der 4 Sekunden lang die meiste Gesundheit hat.</ability>	
+	</equitment>
+	<equitment>
+		<!-- item name -->
+		<name>Mächtiger Mammut-Plattenharnisch</name>
+		<!-- common, rare, epic, legendary -->
+		<rarity>epic</rarity>
+		<!-- item level -->
+		<level>34</level>
+		<!-- item ability as text -->
+		<ability>Erhöht, wenn Schaden ertlitten wird, mit einer Chance von 28% die eigene Rüstung um 35%. Hält 10 Sek. lang an.</ability>	
+	</equitment>
+	<equitment>
+		<!-- item name -->
+		<name>Ausrüstung des gnadenlosen Meuchlers</name>
+		<!-- common, rare, epic, legendary -->
+		<rarity>epic</rarity>
+		<!-- item level -->
+		<level>34</level>
+		<!-- item ability as text -->
+		<ability>Verringert, wenn Schaden erlitten wird, mit einer Chance von 31% der durch den Gegner verursachten Schaden um 45%. Hält 10 Sek. lang an.</ability>	
+	</equitment>
+	<equitment>
+		<!-- item name -->
+		<name>Ausrüstung des legendären Pfadfinders</name>
+		<!-- common, rare, epic, legendary -->
+		<rarity>epic</rarity>
+		<!-- item level -->
+		<level>58</level>
+		<!-- item ability as text -->
+		<ability>Erhöht beim Angriff mit einer Chance von 31% das eigene Ausweichen um 40%. Hält 10 Sek. an</ability>	
+	</equitment>
+	<equitment>
+		<!-- item name -->
+		<name>Hand-der-Dunkelheit-Bogen</name>
+		<!-- common, rare, epic, legendary -->
+		<rarity>epic</rarity>
+		<!-- item level -->
+		<level>66</level>
+		<!-- item ability as text -->
+		<ability>Verursacht beim Angriff mit einer Chancevon 17% 85% Schaden bei einer Gruppe von Gegnern. Betäubt beim Angriff einen Gegner mit einer Chance von 26% für 2 Sek.</ability>	
+	</equitment>
+	<equitment>
+		<!-- item name -->
+		<name>Bogen des Todesflüsterns</name>
+		<!-- common, rare, epic, legendary -->
+		<rarity>epic</rarity>
+		<!-- item level -->
+		<level>74</level>
+		<!-- item ability as text -->
+		<ability>Verursacht beim Angriff mit einer Chancevon 18% 90% Schaden bei einer Gruppe von Gegnern. Erhöht beim Angriff mit einer Chance von 25% den eigenen Krit um 45%. Hält 10 Sek. an.</ability>	
+	</equitment>
+	<equitment>
+		<!-- item name -->
+		<name>Machtkristall-Anhänger</name>
+		<!-- common, rare, epic, legendary -->
+		<rarity>epic</rarity>
+		<!-- item level -->
+		<level>58</level>
+		<!-- item ability as text -->
+		<ability>Zauberkraft: +924, Gesundheit: +6750</ability>	
+	</equitment>
+	<equitment>
+		<!-- item name -->
+		<name>Kleidung des Erzmagiers</name>
+		<!-- common, rare, epic, legendary -->
+		<rarity>rare</rarity>
+		<!-- item level -->
+		<level>54</level>
+		<!-- item ability as text -->
+		<ability>Erhöht, wenn Schaden ertlitten wird, mit einer Chance von 24% den eigenen magischen Schaden um 35%. Hält 10 Sek. lang an.</ability>	
+	</equitment>
+	<equitment>
+		<!-- item name -->
+		<name>Amulett der Blutrubine</name>
+		<!-- common, rare, epic, legendary -->
+		<rarity>rare</rarity>
+		<!-- item level -->
+		<level>32</level>
+		<!-- item ability as text -->
+		<ability>Rüstung: +559, Gesundheit: +2467</ability>	
+	</equitment>
+	<equitment>
+		<!-- item name -->
+		<name>Halskette der Magiemacht</name>
+		<!-- common, rare, epic, legendary -->
+		<rarity>rare</rarity>
+		<!-- item level -->
+		<level>84</level>
+		<!-- item ability as text -->
+		<ability>Zauberkraft: +799, Rüstung: +1289</ability>	
+	</equitment>
+	<equitment>
+		<!-- item name -->
+		<name>Amulett des astralen Leuchtens</name>
+		<!-- common, rare, epic, legendary -->
+		<rarity>rare</rarity>
+		<!-- item level -->
+		<level>39</level>
+		<!-- item ability as text -->
+		<ability>Rüstung: +571, Magische Rüstung: +712</ability>	
+	</equitment>
+	<equitment>
+		<!-- item name -->
+		<name>Siegelring des bösen Rubins</name>
+		<!-- common, rare, epic, legendary -->
+		<rarity>rare</rarity>
+		<!-- item level -->
+		<level>55</level>
+		<!-- item ability as text -->
+		<ability>Magischer Schaden: 125-171, Krit: +659</ability>	
+	</equitment>
+	<equitment>
+		<!-- item name -->
+		<name>Ausrüstung des berühmten Pfadfinders</name>
+		<!-- common, rare, epic, legendary -->
+		<rarity>rare</rarity>
+		<!-- item level -->
+		<level>49</level>
+		<!-- item ability as text -->
+		<ability>Stellt, wenn Schaden erlitten wird, mit einer Chance von 23% 5% der eigenen Gesundheit wiederher.</ability>	
+	</equitment>
+	<equitment>
+		<!-- item name -->
+		<name>Amulett des astralen Leuchtens</name>
+		<!-- common, rare, epic, legendary -->
+		<rarity>rare</rarity>
+		<!-- item level -->
+		<level>39</level>
+		<!-- item ability as text -->
+		<ability>Magische Rüstung: +615, Gesundheit: +3081</ability>	
+	</equitment>
+	<equitment>
+		<!-- item name -->
+		<name>Hand-der-Dunkelheit-Bogen</name>
+		<!-- common, rare, epic, legendary -->
+		<rarity>rare</rarity>
+		<!-- item level -->
+		<level>62</level>
+		<!-- item ability as text -->
+		<ability>Verursacht beim Angriff mit einer Chancevon 16% 70% Schaden bei einer Gruppe von Gegnern. Erhöht beim Angriff mit einer Chance von 24% den verursachten Schaden um 45%. Hält 10 Sek. an.</ability>	
+	</equitment>
+</treasury>

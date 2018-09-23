@@ -1,0 +1,27 @@
+<treasury>
+	<meta>
+		<!-- z.b. 18.09.2018 -->
+		<start>30.10.2018</start>
+		<end>13.11.2018</end>
+	</meta>
+	<equitment>
+		<!-- item name -->
+		<name>Habus Humunkulus</name>
+		<!-- common, rare, epic, legendary -->
+		<rarity>legendary</rarity>
+		<!-- item level -->
+		<level>100</level>
+		<!-- item ability as text -->
+		<ability>Kills Mage</ability>	
+	</equitment>
+	<equitment>
+		<!-- item name -->
+		<name>Ultra Schläger</name>
+		<!-- common, rare, epic, legendary -->
+		<rarity>rare</rarity>
+		<!-- item level -->
+		<level>35</level>
+		<!-- item ability as text -->
+		<ability>Kills Rats</ability>	
+	</equitment>
+</treasury>

@@ -1,0 +1,43 @@
+<nav class="navbar navbar-icon-top navbar-expand-lg navbar-dark bg-dark">
+  <!--
+  <a class="navbar-brand" href="#">Navbar</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+-->
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item {{#if origin.selection }}active{{/if}}"> 
+        <a class="nav-link" href="/selection">
+          <i class="fa fa-cube"></i>
+          Auswahl
+          <span class="sr-only">(current)</span>
+          </a>
+      </li>
+      <li class="nav-item {{#if origin.users }}active{{/if}}"> 
+        <a class="nav-link" href="/users">
+          <i class="fa fa fa-group"></i>
+          Benutzer
+          </a>
+      </li>
+      {{#if treasurer }}
+      <li class="nav-item {{#if origin.treasury }}active{{/if}}"> 
+        <a class="nav-link" href="/treasury">
+          <i class="fa fa-diamond">
+            <!-- <span class="badge badge-danger">11</span> -->
+          </i>
+          Schatzkammer
+        </a>
+      </li>
+      {{/if}}
+      <li class="nav-item">
+        <a class="nav-link" href="/logout">
+          <i class="fa 	fa fa-close">
+            <!-- <span class="badge badge-danger">11</span> -->
+          </i> 	
+          Logout
+        </a>
+      </li>
+    </ul>
+  </div>
+</nav>

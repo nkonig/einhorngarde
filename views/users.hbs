@@ -1,0 +1,73 @@
+{{> nav}}
+<h3>Hallo {{user.username}}</h3>
+<table class="table">
+    <tbody>
+    <tr>
+        <td><label>Ruhm:</label></td>
+        <td>{{user.glory}}</td>
+    </tr>
+    <tr>
+        <td><label>Rang:</label></td>
+        <td>{{user.rank}}</td>
+    </tr>
+    <tr>
+        <td><label>Thronsaal:</label></td>
+        <td>{{user.throneroom}}</td>
+    </tr>
+    <tr>
+        <td><label>Auswahl:</label></td>
+        <td>
+            {{user.selection.first.rarity}} {{user.selection.first.name}}<br>
+            {{user.selection.second.rarity}} {{user.selection.second.name}}<br>
+            {{user.selection.third.rarity}} {{user.selection.third.name}}<br>
+        </td>
+    </tr>
+</tbody>
+</table>
+{{#if treasurer}}
+<button value="new" class="btn btn-primary btn-xs edituser-btn"><span class="fa fa-plus"></span></button>
+{{/if}}
+<table class="table">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Titel</th>
+        <th>Ruhm</th>
+        {{#if treasurer}}
+        <th>Edit</th>
+        <th>Delete</th>
+        {{/if}}
+      </tr>
+    </thead>
+    <tbody>
+      <!-- {{data}} -->
+    {{#if data}}
+     {{#each data}}
+     {{#if username}}
+      <tr>
+        <td>
+            {{username}}<br>
+        </td>
+        <td>{{rank}}</td>
+        <td>{{glory}}</td>
+        {{#if ../user.treasurer}}
+        <td><p data-placement="top" data-toggle="tooltip" title="Edit"><button value="{{_id}}" class="btn btn-primary btn-xs edituser-btn" data-title="Edit" data-toggle="modal" data-target="#edit" ><span class="glyphicon glyphicon-pencil"></span></button></p></td>
+        <td><p data-placement="top" data-toggle="tooltip" title="Delete"><button value="{{_id}}" class="btn btn-danger btn-xs deleteuser-btn" data-title="Delete" data-toggle="modal" data-target="#delete" {{#ifEquals ../user.username username}}style="display: none;"{{/ifEquals}} ><span class="glyphicon glyphicon-trash"></span></button></p></td>
+        {{/if}}
+      </tr>
+      <tr>  
+        <td  colspan="3" style="border-top-style: none" >  
+        <div {{#ifEquals ../user.username username}}style="display: none;"{{/ifEquals}} >      
+          {{#if selection}}
+            <span {{#ifEquals selection.first._id ../user.selection.first._id }}style="font-weight: bold; color: red;"{{/ifEquals}}>{{selection.first.rarity}} {{selection.first.name}}</span><br>
+            <span {{#ifEquals selection.second._id ../user.selection.second._id }}style="font-weight: bold; color: red;"{{/ifEquals}}>{{selection.second.rarity}} {{selection.second.name}}</span><br>
+            <span {{#ifEquals selection.third._id ../user.selection.third._id }}style="font-weight: bold; color: red;"{{/ifEquals}}>{{selection.third.rarity}} {{selection.third.name}}</span><br>
+          {{/if}}
+        </div>
+        </td>
+      </tr>
+      {{/if}}
+      {{/each}}
+      {{/if}}
+    </tbody>
+  </table>
