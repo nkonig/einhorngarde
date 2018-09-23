@@ -98,7 +98,7 @@ app.use('/treasury', trasuryRouter);
 app.use(expressWinston.errorLogger({
   transports: [
     new winston.transports.Console({
-      level: 'debug',
+      level: 'info',
       json: true,
       colorize: true
     }),
