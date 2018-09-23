@@ -1,0 +1,5 @@
+**/logs
+**/node_modules
+moduls.txt
+bin/test
+bin/addDummyUser
