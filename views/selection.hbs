@@ -1,12 +1,11 @@
 {{> nav}}
-{{#ifMobile}}<h3>Mobile!</h3>{{/ifMobile}}
 <form action="/selection/select" method="post" accept-charset="utf-8">
   <table class="table">
     <thead>
       <tr>
         <th>Name</th>
-        <th>Level</th>
         <th>Seltenheit</th>
+        <th>Level</th>
         <!--<th>Auswahl</th>-->
       </tr>
     </thead>
@@ -14,27 +13,26 @@
       <!-- {{data.current}} -->
     {{#if data.equitment}}
      {{#each data.equitment}}
-      <tr>
+      <tr class="{{#if options.toHigh}}danger{{/if}}{{#if options.toLow}}warning{{/if}}">
         <td>
-            {{name}}<br>
+            {{raw.name}}<br>
            <!-- <label class="radio-inline"><input type="radio" name="firstradio">first</label><label class="radio-inline"><input type="radio" name="secondradio">second</label><label class="radio-inline"><input type="radio" name="thirdradio">third</label>-->
         </td>
-        <td>{{rarity}}</td>
-        <td>{{level}}</td>
+        <td>{{#ifNotEquals raw.rarity 'common'}}{{raw.rarity}}{{/ifNotEquals}}</td>
+        <td>{{raw.level}}</td>
       </tr>
-      <!-- checked="checked" {{{options.selection}}}-->
-      {{#if ability}}
-      <tr>
+      {{#if raw.ability}}
+      <tr class="{{#if options.toHigh}}danger{{/if}}{{#if options.toLow}}warning{{/if}}">
         <td  colspan="3" style="border-top-style: none" >
-          Effekt: {{ability}}
+          Effekt: {{raw.ability}}
         </td>
       </tr>
       {{/if}}
-      <tr >
+      <tr class="{{#if options.toHigh}}danger{{/if}}{{#if options.toLow}}warning{{/if}}">
         <td colspan="3" style="border-top-style: none" >
-          <label class="radio-inline"><input value={{_id}} type="radio" name="firstradio" {{#ifEquals ../options.selection.first _id}}checked="checked"{{/ifEquals}}>first</label>
-          <label class="radio-inline"><input value={{_id}} type="radio" name="secondradio" {{#ifEquals ../options.selection.second _id}}checked="checked"{{/ifEquals}}>second</label>
-          <label class="radio-inline"><input value={{_id}} type="radio" name="thirdradio" {{#ifEquals ../options.selection.third _id}}checked="checked"{{/ifEquals}}>third</label>
+          <label class="radio-inline"><input value={{raw._id}} type="radio" name="firstradio" {{#if options.selection.first}}checked="checked"{{/if}} {{#if options.notAuthorized}}disabled{{/if}}>first</label>
+          <label class="radio-inline"><input value={{raw._id}} type="radio" name="secondradio" {{#if options.selection.second}}checked="checked"{{/if}} {{#if options.notAuthorized}}disabled{{/if}}>second</label>
+          <label class="radio-inline"><input value={{raw._id}} type="radio" name="thirdradio" {{#if options.selection.third}}checked="checked"{{/if}} {{#if options.notAuthorized}}disabled{{/if}}>third</label>
         </td>
       </tr>
       {{/each}}
@@ -42,7 +40,7 @@
     
       <tr>
           <td colspan="3">
-            <input type="submit" name="submit" value="Auswahl" id="submit" class="btn btn-primary btn-block btn-flat">            </div>
+            <input type="submit" name="submit" value="Auswahl" id="submit" class="btn btn-primary btn-block btn-flat" {{#if options.notAuthorized}}disabled{{/if}}>
           </td>
       </tr>
     </tbody>

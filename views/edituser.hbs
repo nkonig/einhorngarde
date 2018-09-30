@@ -5,37 +5,72 @@
     <input type="hidden" name="exists" value="{{options.exists}}">
     <table id="mytable" class="table table-bordred table-striped">
         <tbody>
-            <tr>
-                <td>Name:</td>
-                <td><input class="form-control" type="text" name="name" value="{{user.username}}" {{#if options.exists}}readonly{{/if}}></td>
-            </tr>
-            <tr>
-                <td>Ruhm:</td>
-                <td><input class="form-control" type="text" name="glory" value="{{user.glory}}"></td>
-            </tr>
-            <tr>
-                <td>Rang:</td>
-                <td>
-                    <select name="rank" class="form-control" id="sel1">
-                        <option {{#ifEquals user.rank 'Soldat' }}selected="selected"{{/ifEquals}} name="rank" value="Soldat">Soldat</option>
-                        <option {{#ifEquals user.rank 'Offizier' }}selected="selected"{{/ifEquals}} name="rank" value="Offizier">Offizier</option>
-                        <option {{#ifEquals user.rank 'Schatzmeister' }}selected="selected"{{/ifEquals}} name="rank" value="Schatzmeister">Schatzmeister</option>
-                    </select>
-                </td>
-            </tr>
-            <tr>
-                <td>Thronsaal:</td>
-                <td>
-                    <select name="throneroom" class="form-control" id="sel1">
-                        <option {{#ifEquals user.throneroom '5' }}selected="selected"{{/ifEquals}} name="throneroom" value="5">5</option>
-                        <option {{#ifEquals user.throneroom '6' }}selected="selected"{{/ifEquals}} name="throneroom" value="6">6</option>
-                        <option {{#ifEquals user.throneroom '7' }}selected="selected"{{/ifEquals}} name="throneroom" value="7">7</option>
-                        <option {{#ifEquals user.throneroom '8' }}selected="selected"{{/ifEquals}} name="throneroom" value="8">8</option>
-                        <option {{#ifEquals user.throneroom '9' }}selected="selected"{{/ifEquals}} name="throneroom" value="9">9</option>
-                        <option {{#ifEquals user.throneroom '10'}}selected="selected"{{/ifEquals}} name="throneroom" value="10">10</option>
-                    </select>
-                </td>
-            </tr> 
+        <tr>
+            <td>Name:</td>
+            <td><input class="form-control" type="text" name="name" value="{{user.username}}" {{#if options.exists}}readonly{{/if}}></td>
+        </tr>
+        <tr>
+            <td>Ruhm:</td>
+            <td><input class="form-control" type="text" name="glory" value="{{user.glory}}"></td>
+        </tr>
+        <tr>
+            <td>Rang:</td>
+            <td>
+                <select name="rank" class="form-control" id="sel1">
+                    <option {{#ifEquals user.rank 'Soldat' }}selected="selected"{{/ifEquals}} name="rank" value="Soldat">Soldat</option>
+                    <option {{#ifEquals user.rank 'Offizier' }}selected="selected"{{/ifEquals}} name="rank" value="Offizier">Offizier</option>
+                    <option {{#ifEquals user.rank 'Schatzmeister' }}selected="selected"{{/ifEquals}} name="rank" value="Schatzmeister">Schatzmeister</option>
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <td>Thronsaal:</td>
+            <td>
+                <select name="throneroom" class="form-control" id="sel1">
+                    <option {{#ifEquals user.throneroom '5' }}selected="selected"{{/ifEquals}} name="throneroom" value="5">5</option>
+                    <option {{#ifEquals user.throneroom '6' }}selected="selected"{{/ifEquals}} name="throneroom" value="6">6</option>
+                    <option {{#ifEquals user.throneroom '7' }}selected="selected"{{/ifEquals}} name="throneroom" value="7">7</option>
+                    <option {{#ifEquals user.throneroom '8' }}selected="selected"{{/ifEquals}} name="throneroom" value="8">8</option>
+                    <option {{#ifEquals user.throneroom '9' }}selected="selected"{{/ifEquals}} name="throneroom" value="9">9</option>
+                    <option {{#ifEquals user.throneroom '10'}}selected="selected"{{/ifEquals}} name="throneroom" value="10">10</option>
+                </select>
+            </td>
+        </tr> 
+        {{#if selection}}
+        <tr>
+            <td>First:</td>
+            <td>
+                <select name="first" class="form-control" id="sel2">
+                    <option selected="selected" name="first" value="">None</option>
+                    {{#each selection.eqs}}
+                        <option {{#ifEquals _id ../user.selection.first._id }}selected="selected"{{/ifEquals}} name="first" value="{{_id}}">{{name}} {{#if level}}({{level}}){{/if}}</option>
+                    {{/each}}
+                </select>
+            </td>
+        </tr> 
+        <tr>
+            <td>Second:</td>
+            <td>
+                <select name="second" class="form-control" id="sel3">
+                    <option selected="selected" name="first" value="">None</option>
+                    {{#each selection.eqs}}
+                        <option {{#ifEquals _id ../user.selection.second._id }}selected="selected"{{/ifEquals}} name="second" value="{{_id}}">{{name}} {{#if level}}({{level}}){{/if}}</option>
+                    {{/each}}
+                </select>
+            </td>
+        </tr> 
+        <tr>
+            <td>Third:</td>
+            <td>
+                <select name="third" class="form-control" id="sel3">
+                    <option selected="selected"name="first" value="">None</option>
+                    {{#each selection.eqs}}
+                        <option {{#ifEquals _id ../user.selection.third._id }}selected="selected"{{/ifEquals}} name="third" value="{{_id}}">{{name}} {{#if level}}({{level}}){{/if}}</option>
+                    {{/each}}
+                </select>
+            </td>
+        </tr> 
+        {{/if}}
         <tr>
           <td colspan="2">
             <input type="submit" name="submit" value="Speichern" id="submit" class="btn btn-primary btn-block btn-flat">            </div>

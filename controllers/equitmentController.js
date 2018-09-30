@@ -1,5 +1,6 @@
 var Equitment = require('../models/equitment');
 var Seasion   = require('../models/season');
+var HCPlayer  = require('../models/hcplayer');
 
 exports.save = function(req, res, next) {
     var eqId = "";
@@ -41,4 +42,22 @@ exports.delete = function(req, res, next) {
             console.log('Equitment deleted ' + req.params.eqid);
             return res.redirect('/treasury/');
     });
+}
+
+exports.edit = function(req, res, next) {
+    var hcplayer = new HCPlayer(req.session.hcplayer);
+    if(req.params.eqid === 'new') {
+        var equitment = new Equitment();
+        var options = {exists: false};
+        return res.render('editeq', {data: equitment, treasurer: hcplayer.treasurer, options: options, seasonid: req.params.id, origin: { treasury : true } });
+    } else {
+        console.log('edit equitment ' + req.params.eqid);
+        var eq = Equitment.findById(req.params.eqid);
+        eq.exec(function(err, eq) {
+            if(err) return next(err);
+            console.log('ID: ' + req.params.id);
+            var options = {exists: true};
+            return res.render('editeq', {data: eq, treasurer: hcplayer.treasurer, options: options, seasonid: req.params.id, origin: { treasury : true } });
+        });
+    }
 }

@@ -38,6 +38,14 @@ $(document).ready(function() {
 		console.log('Called: ' + target);
 		$( location ).attr("href", target);
 	});
+
+	
+
+	$('.distributseason-btn').on('click', function() {
+		var target = '/treasury/season/' + this.value + '/distribute';
+		console.log('Called: ' + target);
+		$( location ).attr("href", target);
+	});
 	/*
 	editSeasonButton.addEventListener('click', function(e) {
 		console.log('button was clicked');

@@ -1,5 +1,4 @@
 var Season    = require('../models/season');
-var Equitment = require('../models/equitment');
 var Selection = require('../models/selection');
 var HCPlayer = require('../models/hcplayer');
 
@@ -13,19 +12,33 @@ exports.index = function(req, res, next) {
        Selection.findOne({hcplayer: hcplayer._id, season: season._id }, function(err, selection) {
         if(err) return next(err); 
         if(season) {
-            var options = {selection: false};
-            if(selection) {
-                options = {
-                    selection: {
-                    first: selection.first,
-                    second: selection.second,
-                    third: selection.third
-                    }
-                };
+            var data = new Array();
+            data.equitment = new Array();
+            for(var i=0; i < season.equitment.length; i++) {
+                var low  = season.equitment[i].level < hcplayer.minLevel;
+                var high = season.equitment[i].level > hcplayer.maxLevel;
+
+                var sel = new Array();
+                if(selection) {
+                    if(selection.first)  sel.first  = season.equitment[i]._id.toString() === selection.first._id.toString();
+                    if(selection.second) sel.second = season.equitment[i]._id.toString() === selection.second._id.toString();
+                    if(selection.third)  sel.third  = season.equitment[i]._id.toString() === selection.third._id.toString();
+                }
+                
+                var options = new Array();
+                options.toLow = low;
+                options.toHigh = high;
+                options.selection = sel;
+                //options.notAuthorized = hcplayer.minGlory > hcplayer.glory;
+
+                data.equitment.push( {
+                                        raw: season.equitment[i],
+                                        options: options
+                                     });
             }
-            res.render('selection', {data: season, treasurer: hcplayer.treasurer, options:  options, origin: { selection : true } }); 
+            res.render('selection', {data: data, treasurer: hcplayer.treasurer, origin: { selection : true } }); 
         } else {
-            res.render('selection', {treasurer: hcplayer.treasurer, options: options, origin: { selection : true } }); 
+            res.render('selection', {treasurer: hcplayer.treasurer, origin: { selection : true } }); 
         }
        });
        
@@ -76,5 +89,5 @@ exports.select = function(req, res, next) {
             }
         });                
     });
-    res.redirect('/selection');
+    return res.redirect('/selection');
 }

@@ -1,4 +1,6 @@
 var HCPlayer = require('../models/hcplayer');
+var Selection = require('../models/selection');
+var Season = require('../models/season');
 
 exports.index = function(req, res, next) {
     HCPlayer.find({registert: true})
@@ -24,6 +26,20 @@ exports.index = function(req, res, next) {
                         });
 }
 
+exports.add = function(req, res, next) {
+    //if(err) return handleError(err);
+    console.log('username: ' + req.body.username);
+    console.log('rolle: '    + req.body.rolle);
+
+    var hcplayer = new HCPlayer({username: req.body.username, rank: req.body.rolle, password: 'einhorngarde123!'});
+
+    hcplayer.save(function(err) {
+        if(err) return next(err);
+    });
+
+    res.redirect('/treasury');
+}
+
 exports.edit = function(req, res, next) {
     var hcplayer = new HCPlayer(req.session.hcplayer); 
     console.log(req.params.id);
@@ -34,10 +50,24 @@ exports.edit = function(req, res, next) {
         var options = {exists: false};
         return res.render('edituser', {user: user, treasurer: hcplayer.treasurer, options: options, origin: { users : true }});
     } else {
-        HCPlayer.findById(req.params.id, function(err, user) {
-            if(err) return next(err);;
+        var query = HCPlayer.findById(req.params.id).populate({path: 'selection', populate: { path: 'first second third', model: 'Equitment'}});
+        query.exec(function(err, user, next) {
+            if(err) return next(err);
             var options = {exists: true};
-            return res.render('edituser', {user: user, treasurer: hcplayer.treasurer, options: options,  origin: { users : true }});
+            var selection = {};
+            selection.first = user.selection.first._id;
+            selection.second = user.selection.second._id;
+            selection.third = user.selection.third._id;
+            var findEq = Season.findOne({current: true}).populate('equitment', 'name level');
+            findEq.exec(function(err, season, next) {
+                if(err) return next(err);
+                selection.eqs = new Array();
+                for(var i=0; i < season.equitment.length; i++) {
+                    selection.eqs.push(season.equitment[i]);
+                }
+                console.log(selection);
+                return res.render('edituser', {user: user, selection: selection, treasurer: hcplayer.treasurer, options: options,  origin: { users : true }});
+            });
         });
     }
 }
@@ -48,6 +78,7 @@ exports.save = function(req, res, next) {
     var newUser = req.body.exists === 'false';
     if(!newUser) {
         console.log('User updatet ' + req.body.userid);
+        console.log('User first: ' +  req.body.first + ' | second: ' +  req.body.second + ' | third: ' +  req.body.third);
         HCPlayer.update({_id: req.body.userid}, {
                                                 rank: req.body.rank,
                                                 throneroom: req.body.throneroom,
@@ -57,13 +88,53 @@ exports.save = function(req, res, next) {
                 if(err) return next(err);
                 console.log('User updatet ' + req.body.userid);
         });
+        Season.findOne({current: true}, function(err, season) {
+            if(err) return next(err);
+            var findSel = Selection.findOne({hcplayer: req.body.userid, season: season._id});
+            findSel.exec(function(err, sel) {
+                if(err) return next(err);
+                if(sel) {
+                    Selection.updateOne({_id: sel._id},
+                                        {
+                                            first: req.body.first,
+                                            second: req.body.second,
+                                            third: req.body.third
+                                        }, 
+                                        function(err) { if(err) return next(err) });
+                } else {
+                    var selection = new Selection({
+                        hcplayer: req.body.userid,
+                        first: req.body.first,
+                        interest: 'need',
+                        second: req.body.second,
+                        third: req.body.third,
+                        season: season._id
+                    });
+                    selection.save(function(err) { if(err) return next(err) })
+                }
+            })
+        });
+
     } else {
+        var selection = new Selection({
+            hcplayer: req.body.userid,
+            first: req.body.first,
+            interest: 'need',
+            second: req.body.second,
+            third: req.body.third,
+            season: season._id
+        });
+        selection.save(function(err) {
+                if(err) return next(err);
+                console.log('Selection added ' + selection._id);
+        });
         var hcplayer = new HCPlayer({
             username: req.body.name,
             rank: req.body.rank,
             throneroom: req.body.throneroom,
             glory: req.body.glory,
-            password: 'einhorngarde123!'
+            password: 'einhorngarde123!',
+            selection: selection._id
         });
         hcplayer.save(function(err) {
                 if(err) return next(err);
@@ -76,7 +147,11 @@ exports.save = function(req, res, next) {
 exports.delete = function(req, res, next) {
     HCPlayer.deleteOne({_id: req.params.id}, function(err) {
             if(err) return next(err);
-            console.log('User deleted ' + req.params.id);
-            return res.redirect('/users/');
+            var deleteSelections = Selection.deleteMany({hcplayer: req.params.id});
+            deleteSelections.exec(function(err) {
+                if(err) return next(err);
+                console.log('User deleted ' + req.params.id);
+                return res.redirect('/users/');
+            })
     });
 }

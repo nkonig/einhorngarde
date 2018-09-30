@@ -1,0 +1,49 @@
+{{> nav}}
+<table class="table">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Equitment</th>
+      </tr>
+    </thead>
+    <tbody>
+    <h2>Aufteilung</h2>
+    <h3>Seasion {{data.season.start}} - {{data.season.end}}</h3>
+
+    {{#if data.player}}
+     {{#each data.player}}
+      <tr>
+        <td>{{username}}</td>
+        <td>{{equitment.name}} {{#if equitment.level}}{{equitment.level}}, {{/if}}{{#ifNotEquals equitment.rarity 'common'}}{{equitment.rarity}}{{/ifNotEquals}}</td>
+      </tr>
+      {{/each}}
+    {{/if}}
+</table>
+{{#if data.playersOpen}}
+<br>
+<table class="table">
+  <tbody>
+    <tr>
+        <td colspan="2"><label>Spieler ohne Equitment</label></td>
+    </tr>
+    <tr>
+      <td colspan="2">{{#each data.playersOpen}}{{username}}, {{/each}}</td>
+    </tr>
+  </tbody>
+</table>
+{{/if}}
+{{#if data.equitmentOpen}}
+<br>
+<table class="table">
+  <tbody>
+    <tr>
+        <td colspan="2"><label>Unverteiltes Equitment</label></td>
+    </tr>
+    {{#each data.equitmentOpen}}
+    <tr>
+      <td colspan="2">{{name}} {{#if level}}{{level}}, {{/if}}{{#ifNotEquals rarity 'common'}}{{rarity}}{{/ifNotEquals}}</td>
+    </tr>
+    {{/each}}
+  </tbody>
+</table>
+{{/if}}

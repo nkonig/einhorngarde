@@ -47,6 +47,14 @@ hbs.registerHelper('ifEquals', function(a, b, options) {
   return options.inverse(this);
 });
 
+hbs.registerHelper('ifNotEquals', function(a, b, options) {
+  //console.log("HBS Helber Equals - a: " + a + " | b: " + b);
+  if (String(a) === String(b)) {
+    return options.inverse(this);
+  }
+  return options.fn(this);
+});
+
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
