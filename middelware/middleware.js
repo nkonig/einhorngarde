@@ -7,7 +7,7 @@ exports.authenticated = function(req, res, next) {
         req.session.touch();
         next();
     } else {
-        res.redirect('/login');
+        res.status(200).redirect('/login');
     }
 }
 

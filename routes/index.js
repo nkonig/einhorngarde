@@ -6,7 +6,7 @@ var login_controller = require('../controllers/loginController');
 
 /* GET home page. */
 router.get('/', middleware.authenticated, function(req, res) {
-  res.redirect('/selection');
+  res.status(200).redirect('/selection');
 }); 
 
 router.get('/login', login_controller.index);
