@@ -1,0 +1,301 @@
+<treasury>
+	<meta>
+		<!-- z.b. 18.09.2018 -->
+		<start>18.09.2018</start>
+		<end>02.10.2018</end>
+	</meta>
+	<usable>
+		<name>Gesundheit Edelstein</name>
+		<ability></ability>
+		<!-- common, rare, epic, legendary -->
+		<rarity>common</rarity>
+	</usable>
+	<usable>
+		<name>Magische Rüstung Edelstein</name>
+		<ability></ability>
+		<!-- common, rare, epic, legendary -->
+		<rarity>common</rarity>
+	</usable>
+	<usable>
+		<name>Ausgewichen Edelstein</name>
+		<ability></ability>
+		<!-- common, rare, epic, legendary -->
+		<rarity>common</rarity>
+	</usable>
+	<usable>
+		<name>Krit Edelstein</name>
+		<ability></ability>
+		<!-- common, rare, epic, legendary -->
+		<rarity>common</rarity>
+	</usable>
+	<usable count="2">
+		<name>Violetter Splitter</name>
+		<rarity>epic</rarity>
+		<ability>5 Stück</ability>
+	</usable>
+	<usable count="3">
+		<name>Blauer Splitter</name>
+		<rarity>rare</rarity>
+		<ability>3 Stück</ability>
+	</usable>
+	<usable count="6">
+		<name>Grüner Splitter</name>
+		<ability>4 Stück</ability>
+	</usable>
+	<usable count="3">
+		<name>Diamanten</name>
+		<ability>90 Stück</ability>
+	</usable>
+	<usable count="2">
+		<name>Grüner Staub</name>
+		<ability>500 Stück</ability>
+	</usable>
+	<usable count="2">
+		<name>Blauer Staub</name>
+		<ability>50 Stück</ability>
+	</usable>
+	<usable count="3">
+		<name>Tickets</name>
+		<ability>8 Stück</ability>
+	</usable>
+	<equitment>
+		<!-- item name -->
+		<name>Zepter der Orakelentschdeidung</name>
+		<!-- common, rare, epic, legendary -->
+		<rarity>legendary</rarity>
+		<!-- item level -->
+		<level>82</level>
+		<!-- item ability as text -->
+		<ability>Verursacht hin und wieder 3306 (+1543 der Zauberkraft) Flächenschaden.</ability>	
+	</equitment>
+	<equitment>
+		<!-- item name -->
+		<name>Kleidung des Schicksalsmeisters</name>
+		<!-- common, rare, epic, legendary -->
+		<rarity>legendary</rarity>
+		<!-- item level -->
+		<level>82</level>
+		<!-- item ability as text -->
+		<ability>Zauberkraft +11625, Krit +1547</ability>	
+	</equitment>
+	<equitment>
+		<!-- item name -->
+		<name>Gnadenloser Bogen</name>
+		<!-- common, rare, epic, legendary -->
+		<rarity>legendary</rarity>
+		<!-- item level -->
+		<level>46</level>
+		<!-- item ability as text -->
+		<ability>Verursacht beim Angriff mit einer Chancevon 22% 75% Schaden bei einer Gruppe von Gegnern. Erhöht beim Angriff mit einer Chance von 32% den eigenen Krit um 50%. Hält 10 Sek. an.</ability>	
+	</equitment>
+	<equitment>
+		<!-- item name -->
+		<name>Kleidung des Mystikers</name>
+		<!-- common, rare, epic, legendary -->
+		<rarity>legendary</rarity>
+		<!-- item level -->
+		<level>67</level>
+		<!-- item ability as text -->
+		<ability>Verringert, wenn Schaden erlitten wird, mit einer Chance von 33% die magische Rüstung des Gegners um 60%. Hält 10 Sek. lang an. Zauberkraft: +8773, Magische Rüstung: +1352</ability>	
+	</equitment>
+	<equitment>
+		<!-- item name -->
+		<name>Ausrüstung des Donners</name>
+		<!-- common, rare, epic, legendary -->
+		<rarity>legendary</rarity>
+		<!-- item level -->
+		<level>68</level>
+		<!-- item ability as text -->
+		<ability>Stellt, wenn Schaden erlitten wird, mit einer Chance von 23% 5% der eigenen Gesundheit wiederher.</ability>	
+	</equitment>
+	<equitment>
+		<!-- item name -->
+		<name>Plattenharnisch des unzerstörbaren Monolithen</name>
+		<!-- common, rare, epic, legendary -->
+		<rarity>epic</rarity>
+		<!-- item level -->
+		<level>96</level>
+		<!-- item ability as text -->
+		<ability>Erhöht, wenn Schaden ertlitten wird, mit einer Chance von 27% die eigene Gesundheit um 30%. Hält 10 Sek. lang an.</ability>	
+	</equitment>
+	<equitment>
+		<!-- item name -->
+		<name>Herscherkeule</name>
+		<!-- common, rare, epic, legendary -->
+		<rarity>epic</rarity>
+		<!-- item level -->
+		<level>94</level>
+		<!-- item ability as text -->
+		<ability>Betäubt beim Angriff einen Gegner mit einer Chance von 26% für 2.5 Sek. Erhöhtbeim Angriff mit einer Chance von 27% den verursachten Schaden um 45%. Hält 10 Sek. lang an.</ability>	
+	</equitment>
+	<equitment>
+		<!-- item name -->
+		<name>Amulett der Macht der Uralten</name>
+		<!-- common, rare, epic, legendary -->
+		<rarity>epic</rarity>
+		<!-- item level -->
+		<level>38</level>
+		<!-- item ability as text -->
+		<ability>Zauberkraft: +658, Gesundheit: +4286</ability>	
+	</equitment>
+	<equitment>
+		<!-- item name -->
+		<name>Bogen des tödlichen Bisses</name>
+		<!-- common, rare, epic, legendary -->
+		<rarity>epic</rarity>
+		<!-- item level -->
+		<level>86</level>
+		<!-- item ability as text -->
+		<ability>Verursacht beim Angriff mit einer Chancevon 17% 75% Schaden bei einer Gruppe von Gegnern. Erhöht beim Angriff mit einer Chance von 25% den verursachten Schaden um 30%. Hält 10 Sek. an.</ability>	
+	</equitment>
+	<equitment>
+		<!-- item name -->
+		<name>Keule des Eroberers</name>
+		<!-- common, rare, epic, legendary -->
+		<rarity>epic</rarity>
+		<!-- item level -->
+		<level>37</level>
+		<!-- item ability as text -->
+		<ability>Betäubt beim Angriff einen Gegner mit einer Chance von 27% für 2.5 Sek. Erhöht beim Angriff mit einer Chance von 26% den eigenen Krit um 30%. Hält 10 Sek. lang an.</ability>	
+	</equitment>
+	<equitment>
+		<!-- item name -->
+		<name>Plattenharnisch des unzerstörbaren Monolithen</name>
+		<!-- common, rare, epic, legendary -->
+		<rarity>epic</rarity>
+		<!-- item level -->
+		<level>96</level>
+		<!-- item ability as text -->
+		<ability>Schaden: 500-733, Rüstung: +5116, Krit: +1071. Stellt, wenn Schaden erlitten wird, mit einer Chance von 25% 7% der eigenen Gesundheit wiederher.</ability>	
+	</equitment>
+	<equitment>
+		<!-- item name -->
+		<name>Kleidung des mächtigen Zauberwebers</name>
+		<!-- common, rare, epic, legendary -->
+		<rarity>epic</rarity>
+		<!-- item level -->
+		<level>33</level>
+		<!-- item ability as text -->
+		<ability>Zauberkraft: +3117, Magische Rüstung: +578, Krit: +585. Veringert, wenn schaden erlitten wird, mit einer Chance von 29% die magische Rüstung des Gegners um 45%. Hält 10 Sek. lang an.</ability>	
+	</equitment>
+	<equitment>
+		<!-- item name -->
+		<name>Kleidung des Zauberwebers</name>
+		<!-- common, rare, epic, legendary -->
+		<rarity>epic</rarity>
+		<!-- item level -->
+		<level>30</level>
+		<!-- item ability as text -->
+		<ability>Zauberkraft: +2687, Magische Rüstung: +529, Ausgewichen: +554. Veringert, wenn schaden erlitten wird, mit einer Chance von 28% die magische Rüstung des Gegners um 45%. Hält 10 Sek. lang an.</ability>	
+	</equitment>
+	<equitment>
+		<!-- item name -->
+		<name>Siegelring des bösen Rubins</name>
+		<!-- common, rare, epic, legendary -->
+		<rarity>epic</rarity>
+		<!-- item level -->
+		<level>57</level>
+		<!-- item ability as text -->
+		<ability>Schade: +511-671, Krit: +1073</ability>	
+	</equitment>
+	<equitment>
+		<!-- item name -->
+		<name>Plattenharnisch des großen Helden</name>
+		<!-- common, rare, epic, legendary -->
+		<rarity>epic</rarity>
+		<!-- item level -->
+		<level>58</level>
+		<!-- item ability as text -->
+		<ability>Rüstung: +4124, Krit: +759. Erhöht, wenn Schaden ertlitten wird, mit einer Chance von 25% die eigene Gesundheit um 30%. Hält 10 Sek. lang an.</ability>	
+	</equitment>
+	<equitment>
+		<!-- item name -->
+		<name>Amulett der Macht der Uralten</name>
+		<!-- common, rare, epic, legendary -->
+		<rarity>rare</rarity>
+		<!-- item level -->
+		<level>35</level>
+		<!-- item ability as text -->
+		<ability>Zauberkraft: +377, Gesundheit: +2303</ability>	
+	</equitment>
+	<equitment>
+		<!-- item name -->
+		<name>Kleidung des Herrschers</name>
+		<!-- common, rare, epic, legendary -->
+		<rarity>rare</rarity>
+		<!-- item level -->
+		<level>82</level>
+		<!-- item ability as text -->
+		<ability>Zauberkraft: +6978, Magische Rüstung: +864. Veringert, wenn Schaden erlitten wird, mit einer Chance von 24% die magische Rüstung des Gegners um 35%. Hält 10 Sek. lang an.</ability>	
+	</equitment>
+	<equitment>
+		<!-- item name -->
+		<name>Armbrust der Entschlossenheit</name>
+		<!-- common, rare, epic, legendary -->
+		<rarity>rare</rarity>
+		<!-- item level -->
+		<level>75</level>
+		<!-- item ability as text -->
+		<ability>Verursacht beim Angriff mit einer Chancevon 22% in 3 Sekunden 120% Schaden. Erhöht beim Angriff mit einer Chance von 23% den eigenen Krit um 35%. Hält 10 Sek. an.</ability>	
+	</equitment>
+	<equitment>
+		<!-- item name -->
+		<name>Ausrüstung des legendären Pfadfinders</name>
+		<!-- common, rare, epic, legendary -->
+		<rarity>rare</rarity>
+		<!-- item level -->
+		<level>55</level>
+		<!-- item ability as text -->
+		<ability>Schaden: 1409-1477, Krit: +526. Veringert, wenn Schaden erlitten wird, mit einer Chance von 25% den durch den Gegner verursachten Schaden um 40%. Hält 10 Sek. lang an.</ability>	
+	</equitment>
+	<equitment>
+		<!-- item name -->
+		<name>Kleidung des Erzmagiers</name>
+		<!-- common, rare, epic, legendary -->
+		<rarity>rare</rarity>
+		<!-- item level -->
+		<level>54</level>
+		<!-- item ability as text -->
+		<ability>Zauberkraft: +3879, Krit: +594. Verringert, wenn Schaden ertlitten wird, mit einer Chance von 27% die magische Rüstung des Gegners um 50%. Hält 10 Sek. lang an.</ability>	
+	</equitment>
+	<equitment>
+		<!-- item name -->
+		<name>Ahnenvermächtnis-Zepter</name>
+		<!-- common, rare, epic, legendary -->
+		<rarity>rare</rarity>
+		<!-- item level -->
+		<level>48</level>
+		<!-- item ability as text -->
+		<ability>Zauberkraft: +609. Verursacht hin und wieder über 4 Sek. 1421(+670 der Zauberkraft) Flächenschaden.</ability>	
+	</equitment>
+	<equitment>
+		<!-- item name -->
+		<name>Siegelring des bösen Rubins</name>
+		<!-- common, rare, epic, legendary -->
+		<rarity>rare</rarity>
+		<!-- item level -->
+		<level>53</level>
+		<!-- item ability as text -->
+		<ability>Schaden: 265-361, Ausgewichen: +765</ability>	
+	</equitment>
+	<equitment>
+		<!-- item name -->
+		<name>Kleidung des höchsten Herrschers</name>
+		<!-- common, rare, epic, legendary -->
+		<rarity>rare</rarity>
+		<!-- item level -->
+		<level>93</level>
+		<!-- item ability as text -->
+		<ability>Zauberkraft: +7719, Krit: +906. Erhöht, wenn Schaden erlitten wird, mit einer Cahnce von 27% den eigenen magischen Schaden um 45%. Hält 10 Sek. lang an.</ability>	
+	</equitment>
+	<equitment>
+		<!-- item name -->
+		<name>Hand-der-Dunkelheit-Bogen</name>
+		<!-- common, rare, epic, legendary -->
+		<rarity>rare</rarity>
+		<!-- item level -->
+		<level>62</level>
+		<!-- item ability as text -->
+		<ability>Krit: +486. Verursacht beim Angriff mit einer Chancevon 15% 60% Schaden bei einer Gruppe von Gegnern. Erhöht beim Angriff mit einer Chance von 24% den verursachten Schaden um 45%. Hält 10 Sek. an.</ability>	
+	</equitment>
+</treasury>

@@ -4,7 +4,7 @@ $(document).ready(function() {
 	$(".nav li.disabled a").click(function() {
 		return false;
 	});
-	
+
 	$('.editseason-btn').on('click', function() {
 		var target = '/treasury/season/' + this.value + '/edit';
 		/*$.get(target, function(data) {
@@ -39,12 +39,44 @@ $(document).ready(function() {
 		$( location ).attr("href", target);
 	});
 
-	
+	$('.resetpasswortuser-btn').on('click', function() {
+		var target = '/users/resetpasswort/' + this.value;
+		console.log('Called: ' + target);
+		$( location ).attr("href", target);
+	});
 
 	$('.distributseason-btn').on('click', function() {
 		var target = '/treasury/season/' + this.value + '/distribute';
 		console.log('Called: ' + target);
 		$( location ).attr("href", target);
+	});
+
+	$('.filterts-btn').on('click', function() {
+		var target = '/users';
+		console.log('Value: ' + this.value);
+		if(this.value.toString() != 'all') {
+			target = '/users/throneroom=' + this.value;
+		}
+		console.log('Called: ' + target);
+		$( location ).attr("href", target);
+	});
+
+	$('.filterusername-btn').on('click', function() {
+		var target = '/users';
+		var searchinput = document.getElementById("usernamesearchinput").value;
+		if(searchinput) {
+			target = '/users/username=' +searchinput;
+		}
+		console.log('Called: ' + target);
+		$( location ).attr("href", target);
+	});
+	
+	$('.usernamesearchinput').keypress(function (e) {
+		if (e.which == 13) {
+			$('.filterusername-btn').submit();
+			console.log('Submitt: Usernamesearch');
+			return false;    //<---- Add this line
+		}
 	});
 	/*
 	editSeasonButton.addEventListener('click', function(e) {

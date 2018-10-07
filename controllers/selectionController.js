@@ -5,7 +5,7 @@ var HCPlayer = require('../models/hcplayer');
 exports.index = function(req, res, next) {
     var season = Season.findOne({current: true}).populate('equitment');
     season.exec( function(err, season) {
-       if(err) handleError(err);
+       if(err) return next(err);
 
        var hcplayer = new HCPlayer(req.session.hcplayer);
        //console.log('Found: ' + JSON.stringify(result));
@@ -29,16 +29,16 @@ exports.index = function(req, res, next) {
                 options.toLow = low;
                 options.toHigh = high;
                 options.selection = sel;
-                //options.notAuthorized = hcplayer.minGlory > hcplayer.glory;
+                var notAuthorized = hcplayer.minGlory > hcplayer.glory;
 
                 data.equitment.push( {
                                         raw: season.equitment[i],
                                         options: options
                                      });
             }
-            res.render('selection', {data: data, treasurer: hcplayer.treasurer, origin: { selection : true } }); 
+            return res.render('selection', {data: data, treasurer: hcplayer.treasurer, notAuthorized: notAuthorized, origin: { selection : true } }); 
         } else {
-            res.render('selection', {treasurer: hcplayer.treasurer, origin: { selection : true } }); 
+            return res.render('selection', {treasurer: hcplayer.treasurer, origin: { selection : true } }); 
         }
        });
        
@@ -54,7 +54,7 @@ exports.select = function(req, res, next) {
         var selectionQuery = Selection.findOne({season: season._id, hcplayer: user._id });
         selectionQuery.exec(function (err, result) {
             if(err) return next(err);
-            console.log(result);
+            //console.log(result);
             if(result) {
                 Selection.updateOne({season: season._id, hcplayer: user._id }, 
                                     {first: req.body.firstradio, second: req.body.secondradio, third: req.body.thirdradio }, function (err) {

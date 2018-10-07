@@ -51,11 +51,11 @@ exports.edit = function(req, res, next) {
         var options = {exists: false};
         return res.render('editeq', {data: equitment, treasurer: hcplayer.treasurer, options: options, seasonid: req.params.id, origin: { treasury : true } });
     } else {
-        console.log('edit equitment ' + req.params.eqid);
+        //console.log('edit equitment ' + req.params.eqid);
         var eq = Equitment.findById(req.params.eqid);
         eq.exec(function(err, eq) {
             if(err) return next(err);
-            console.log('ID: ' + req.params.id);
+            //console.log('ID: ' + req.params.id);
             var options = {exists: true};
             return res.render('editeq', {data: eq, treasurer: hcplayer.treasurer, options: options, seasonid: req.params.id, origin: { treasury : true } });
         });

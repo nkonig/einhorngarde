@@ -24,18 +24,18 @@ exports.upload = function(req, res, next) {
         //var endDate   = new Date(result.treasury.meta.end);
 
         var season = new Season({ start: result.treasury.meta.start, end: result.treasury.meta.end });
-        console.log('Season ID ' + season._id);
+        //console.log('Season ID ' + season._id);
 
         var equitIds = new Array();
         async.series([
             function(callback) {
                 // add equitment
                 for(var i=0; i < result.treasury.equitment.length; i++) {
-                    console.log(result.treasury.equitment[i]);
+                    //console.log(result.treasury.equitment[i]);
                     var equitmentJson = result.treasury.equitment[i];
                     var equitment = new Equitment(equitmentJson);
                     equitIds.push(equitment._id);
-                    //equitment.seasonId = season._id;
+                    equitment.seasonId = season._id;
                     
                     equitment.save(function(err) {
                         if(err) return next(err);
@@ -92,9 +92,9 @@ exports.upload = function(req, res, next) {
                     if(err) return next(err);
                     console.log('Season Saved!');
                 });
-                callback(null,);
+                callback(null);
             }
         ]);
     });
-    res.redirect('/treasury');
+    return res.redirect('/treasury');
 }

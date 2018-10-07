@@ -23,7 +23,7 @@ exports.loginStub = function(req, res) {
 
 exports.login = function(req, res, next) {
 
-HCPlayer.findOne({ 'username': req.body.username }).populate({path: 'selection', populate: { path: 'first second third', model: 'Equitment'}}).exec(  
+HCPlayer.findOne({ username: req.body.username }).populate({path: 'selection', populate: { path: 'first second third', model: 'Equitment'}}).exec(  
   function (err, user) {
     if (err) {
       return next(err);
@@ -34,7 +34,7 @@ HCPlayer.findOne({ 'username': req.body.username }).populate({path: 'selection',
     }
 
     bcrypt.compare(req.body.password, user.password, function (err, result) {
-      if (result === true) {
+      if (result == true) {
         //console.log(session);
         var session = req.session;
         session.hcplayer = user;
@@ -42,13 +42,18 @@ HCPlayer.findOne({ 'username': req.body.username }).populate({path: 'selection',
         //console.log('DEBUGGING: ' + user.selection);
         session.save();
         if(user.registert) {
-          console.log('Registert! session id: ' + session.id);
+          //console.log('Registert! session id: ' + session.id);
+          console.log('User ' + user.username + ' logged in.');
           return res.redirect('/selection');
         } else {
           var defaultPass = req.body.password === 'einhorngarde123!' ? true : false;
           return res.redirect('/register/' + defaultPass);
         }
       } else {
+        console.log('wrong creds for user ' +  user.username );
+        bcrypt.hash(req.body.password, 10, function (err, hash){
+          console.log('hash: ' + hash);
+        });
         return res.redirect('/login');
       }
     })
@@ -57,7 +62,7 @@ HCPlayer.findOne({ 'username': req.body.username }).populate({path: 'selection',
 
 exports.logout = function(req, res) {
   req.session.destroy(function(err) {
-    res.redirect('/login');
+    return res.redirect('/login');
   })
 }
 
@@ -77,7 +82,7 @@ exports.register = function(req, res, next) {
     HCPlayer.findById(hcplayer._id, function(err, result) {
       if(err) return next(err);
       result.throneroom = req.body.throneroom;
-      result.glory = new Number(req.body.glory);
+      result.glory = req.body.glory;
       result.registert = true;
       if(req.body.password) {
         result.password = new String(req.body.password);
@@ -85,7 +90,6 @@ exports.register = function(req, res, next) {
       result.save();
       session.hcplayer = result;    
       session.save();
-      console.log('Updated User! ' + hcplayer);
       return res.redirect('/selection'); 
     });
   }

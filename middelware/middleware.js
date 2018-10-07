@@ -16,7 +16,7 @@ exports.treasury = function(req, res, next) {
     if(req.session.hcplayer && new HCPlayer(req.session.hcplayer).treasurer) {
         next();
     } else {
-        res.redirect('/selection');
+       return res.redirect('/selection');
     }
 }
 
@@ -28,7 +28,6 @@ exports.resetseason = function (req, res, next) {
         var session = req.session;
         session.hcplayer = result;
         session.save();
-        console.log('Updated User! ' + hcplayer);
       });
     next();
 }

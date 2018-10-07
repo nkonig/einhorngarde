@@ -41,11 +41,11 @@ exports.edit = function(req, res, next) {
 exports.select = function(req, res, next) {
     Season.findOne({current: true}, function(err, currentSeason) {
         if(err) return next(err);
-        Season.findByIdAndUpdate(currentSeason._id, {current: false}, function(err, currentSeason) { 
+        Season.updateOne({_id: currentSeason._id}, {current: false}, function(err) { 
             if(err) return next(err);
         });
         var selectedId = req.body.seasonradio;
-        Season.findByIdAndUpdate(selectedId, {current: true}, function(err, result) {
+        Season.updateOne({_id: selectedId }, {current: true}, function(err) {
             if(err) return next(err);
         });
         HCPlayer.find(function(err, hcplayers) {
@@ -53,8 +53,17 @@ exports.select = function(req, res, next) {
             hcplayers.forEach(function(player, idx, hcplayers) {
                 Selection.findOne({ hcplayer: player._id, season: selectedId }, function(err, selection) {
                     if(err) return next(err);
-                    var selectionId = selection ? null : selection._id;
-                    HCPlayer.update({_id: hcplayer._id}, {selection: selectionId, registert: false, glory: 0}, function(err) { if(err) return next(err); });
+                    var update = {};
+                    if(selection) {
+                        update.selection = selection._id;
+                        update.registert = true;
+                        update.glory     = 0;
+                    } else {
+                        update.selection = undefined;
+                        update.registert = false;
+                        update.glory     = 0;
+                    }
+                    HCPlayer.update({_id: player._id}, update, function(err) { if(err) return next(err); });
                 });
             });
         });
@@ -91,8 +100,9 @@ exports.distribute = function(req, res, next) {
         for(var i = 0; i < selections.length; i++) {
             //if(selections[i].hcplayer == null || selections[i].hcplayer.username === 'Darka') console.log(selections[i]);
             if(!selections[i].hcplayer) continue;
-            //console.log('SELECTION ID: ' + selections[i]._id);
             var current = selections[i].hcplayer;
+            if(!current.selection) continue;
+            //console.log('SELECTION ID: ' + selections[i]._id);
             playerUnsorted.set(current._id, current);
             pushEqToIdStack(current.selection.first, first);
             pushEqToIdStack(current.selection.second, second);

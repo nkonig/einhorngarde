@@ -1,4 +1,13 @@
 {{> nav}}
+<h1>Wir haben es geschafft!</h1>
+<p>
+  Die Heldentruhe steht bereit zur verteilung. Viel Spaß!
+</p>
+{{#if notAuthorized}}
+<p>
+  <span style="color: red;">Du hast den Mindestruhm deines Trhonsaals nicht erreicht! Leider kannst du an der Auswahl nicht teilnehmen.</span>
+</p>
+{{/if}}
 <form action="/selection/select" method="post" accept-charset="utf-8">
   <table class="table">
     <thead>
@@ -30,9 +39,9 @@
       {{/if}}
       <tr class="{{#if options.toHigh}}danger{{/if}}{{#if options.toLow}}warning{{/if}}">
         <td colspan="3" style="border-top-style: none" >
-          <label class="radio-inline"><input value={{raw._id}} type="radio" name="firstradio" {{#if options.selection.first}}checked="checked"{{/if}} {{#if options.notAuthorized}}disabled{{/if}}>first</label>
-          <label class="radio-inline"><input value={{raw._id}} type="radio" name="secondradio" {{#if options.selection.second}}checked="checked"{{/if}} {{#if options.notAuthorized}}disabled{{/if}}>second</label>
-          <label class="radio-inline"><input value={{raw._id}} type="radio" name="thirdradio" {{#if options.selection.third}}checked="checked"{{/if}} {{#if options.notAuthorized}}disabled{{/if}}>third</label>
+          <label class="radio-inline"><input value={{raw._id}} type="radio" name="firstradio" {{#if options.selection.first}}checked="checked"{{/if}} {{#if ../notAuthorized}}disabled{{/if}}>first</label>
+          <label class="radio-inline"><input value={{raw._id}} type="radio" name="secondradio" {{#if options.selection.second}}checked="checked"{{/if}} {{#if ../notAuthorized}}disabled{{/if}}>second</label>
+          <label class="radio-inline"><input value={{raw._id}} type="radio" name="thirdradio" {{#if options.selection.third}}checked="checked"{{/if}} {{#if ../notAuthorized}}disabled{{/if}}>third</label>
         </td>
       </tr>
       {{/each}}

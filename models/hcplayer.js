@@ -17,7 +17,7 @@ var HCPlayerSchema = new Schema({
 //hashing a password before saving it to the database
 HCPlayerSchema.pre('save', function (next) {
     var user = this;
-    console.log('hash password');
+    //console.log('hash password');
     bcrypt.hash(user.password, 10, function (err, hash){
       if (err) {
         return next(err);

@@ -1,0 +1,14 @@
+[Unit]
+Description=Express Einhorngarde App
+After=network.target
+
+[Service]
+ExecStart=/usr/bin/npm run start
+WorkingDirectory=/www/einhorn
+StandardOutput=inherit
+StandardError=inherit
+Restart=always
+User=einhorn
+
+[Install]
+WantedBy=multi-user.target

@@ -7,10 +7,14 @@ var hcplayer_controller = require('../controllers/hcplayerController');
 /* GET users listing. */
 router.get('/', middleware.authenticated, hcplayer_controller.index);
 
+router.get('/:filter', middleware.authenticated, hcplayer_controller.index);
+
 router.get('/edit/:id', middleware.treasury, hcplayer_controller.edit);
 
 router.get('/delete/:id', middleware.treasury, hcplayer_controller.delete);
 
 router.post('/save', middleware.treasury, hcplayer_controller.save);
+
+router.get('/resetpasswort/:id', middleware.treasury, hcplayer_controller.resetPassword);
 
 module.exports = router;

@@ -3,33 +3,48 @@ var Selection = require('../models/selection');
 var Season = require('../models/season');
 
 exports.index = function(req, res, next) {
-    HCPlayer.find({registert: true})
-                       .limit(20)
-                       .sort({glory: -1})
-                       .select('username glory selection rank throneroom')
-                       .populate({path: 'selection' , populate: { path: 'first second third', model: 'Equitment'}})
-                       .exec(function(err, result) {
-                           if(err) return next(err);
-                           //console.log('FOUND: ' +result);
-
-                            var user = new HCPlayer(req.session.hcplayer); 
-                             
-                            for(var i = 0; i < result.length; i++) {
-                                if(user.username === result[i].username) {
-                                    user = result[i];
-                                    //delete result[i];                                    
-                                    return res.render('users', {data: result, user: user, treasurer: user.treasurer, origin: { users : true }});
-                                }
-                            }
-                            result.push(user);
-                            return res.render('users', {data: result, user: user, treasurer: user.treasurer, origin: { users : true }});
-                        });
+    var user = new HCPlayer(req.session.hcplayer); 
+    var query = {};
+    if(!user.treasurer) {
+        query.registert = true;
+    }
+    if(req.params.filter) {
+        var field = req.params.filter.split("=")[0];
+        var value = req.params.filter.split("=")[1];
+        switch(field) {
+            case 'throneroom':
+                query.throneroom = value;
+                break;
+            case 'username':
+                query.username = new RegExp(value, 'i');
+            default:
+        }
+    }    
+    //console.log(query)
+    HCPlayer.find(query)
+            .sort({glory: -1})
+            .select('username glory selection rank throneroom registert')
+            .populate({path: 'selection' , populate: { path: 'first second third', model: 'Equitment'}})
+            .exec(function(err, result) {
+                if(err) return next(err);
+                //console.log('FOUND: ' +result);
+                    
+                for(var i = 0; i < result.length; i++) {
+                    if(user.username === result[i].username) {
+                        user = result[i];
+                        //delete result[i];                                    
+                        //return res.render('users', {data: result, user: user, treasurer: user.treasurer, origin: { users : true }});
+                    }
+                }
+                
+                return res.render('users', {data: result, user: user, treasurer: user.treasurer, origin: { users : true }});
+            });
 }
 
 exports.add = function(req, res, next) {
     //if(err) return handleError(err);
-    console.log('username: ' + req.body.username);
-    console.log('rolle: '    + req.body.rolle);
+    //console.log('username: ' + req.body.username);
+    //console.log('rolle: '    + req.body.rolle);
 
     var hcplayer = new HCPlayer({username: req.body.username, rank: req.body.rolle, password: 'einhorngarde123!'});
 
@@ -37,7 +52,7 @@ exports.add = function(req, res, next) {
         if(err) return next(err);
     });
 
-    res.redirect('/treasury');
+    return res.redirect('/treasury');
 }
 
 exports.edit = function(req, res, next) {
@@ -55,9 +70,11 @@ exports.edit = function(req, res, next) {
             if(err) return next(err);
             var options = {exists: true};
             var selection = {};
-            selection.first = user.selection.first._id;
-            selection.second = user.selection.second._id;
-            selection.third = user.selection.third._id;
+            if(user.selection) {
+                if(user.selection.first) selection.first = user.selection.first._id;
+                if(user.selection.second) selection.second = user.selection.second._id;
+                if(user.selection.third) selection.third = user.selection.third._id;
+            }
             var findEq = Season.findOne({current: true}).populate('equitment', 'name level');
             findEq.exec(function(err, season, next) {
                 if(err) return next(err);
@@ -65,7 +82,7 @@ exports.edit = function(req, res, next) {
                 for(var i=0; i < season.equitment.length; i++) {
                     selection.eqs.push(season.equitment[i]);
                 }
-                console.log(selection);
+                //console.log(selection);
                 return res.render('edituser', {user: user, selection: selection, treasurer: hcplayer.treasurer, options: options,  origin: { users : true }});
             });
         });
@@ -73,12 +90,12 @@ exports.edit = function(req, res, next) {
 }
 
 exports.save = function(req, res, next) {
-    console.log(req.body.exists + ' ' + req.body.userid);
-    console.log(req.body.exists);
+    //console.log(req.body.exists + ' ' + req.body.userid);
+    //console.log(req.body.exists);
     var newUser = req.body.exists === 'false';
     if(!newUser) {
-        console.log('User updatet ' + req.body.userid);
-        console.log('User first: ' +  req.body.first + ' | second: ' +  req.body.second + ' | third: ' +  req.body.third);
+        //console.log('User updatet ' + req.body.userid);
+        //console.log('User first: ' +  req.body.first + ' | second: ' +  req.body.second + ' | third: ' +  req.body.third);
         HCPlayer.update({_id: req.body.userid}, {
                                                 rank: req.body.rank,
                                                 throneroom: req.body.throneroom,
@@ -86,7 +103,7 @@ exports.save = function(req, res, next) {
                                             },
             function(err) {
                 if(err) return next(err);
-                console.log('User updatet ' + req.body.userid);
+                //console.log('User updatet ' + req.body.userid);
         });
         Season.findOne({current: true}, function(err, season) {
             if(err) return next(err);
@@ -114,34 +131,37 @@ exports.save = function(req, res, next) {
                 }
             })
         });
-
     } else {
-        var selection = new Selection({
-            hcplayer: req.body.userid,
-            first: req.body.first,
-            interest: 'need',
-            second: req.body.second,
-            third: req.body.third,
-            season: season._id
-        });
-        selection.save(function(err) {
-                if(err) return next(err);
-                console.log('Selection added ' + selection._id);
-        });
-        var hcplayer = new HCPlayer({
-            username: req.body.name,
-            rank: req.body.rank,
-            throneroom: req.body.throneroom,
-            glory: req.body.glory,
-            password: 'einhorngarde123!',
-            selection: selection._id
-        });
-        hcplayer.save(function(err) {
-                if(err) return next(err);
-                console.log('User added ' + hcplayer.username);
+        Season.findOne({current: true}, function(err, season) {
+            if(err) return next(err);
+            var selection = new Selection({
+                hcplayer: req.body.userid,
+                first: req.body.first,
+                interest: 'need',
+                second: req.body.second,
+                third: req.body.third,
+                season: season._id
+            });
+            selection.save(function(err) {
+                    if(err) return next(err);
+                    //console.log('Selection added ' + selection._id);
+            });
+
+            var hcplayer = new HCPlayer({
+                username: req.body.name,
+                rank: req.body.rank,
+                throneroom: req.body.throneroom,
+                glory: req.body.glory,
+                password: 'einhorngarde123!',
+                selection: selection._id
+            });
+            hcplayer.save(function(err) {
+                    if(err) return next(err);
+                    //console.log('User added ' + hcplayer.username);
+            });
         });
     }
-    return res.redirect('/users/');
+    return res.redirect('/users');
 }
 
 exports.delete = function(req, res, next) {
@@ -153,5 +173,18 @@ exports.delete = function(req, res, next) {
                 console.log('User deleted ' + req.params.id);
                 return res.redirect('/users/');
             })
+    });
+}
+
+exports.resetPassword = function(req, res, next) {
+    HCPlayer.findById(req.params.id, function(err, user) {
+        if(err) return next(err);
+        if(user) {
+            user.password = 'einhorngarde123!';
+            user.registert = false;
+            user.save(function(err) { if(err) return next(err)});
+            console.log('Passwort for user ' + user.username + ' reseted');
+        }
+        return res.redirect('/users');
     });
 }
