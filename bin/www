@@ -25,7 +25,7 @@ var server = http.createServer(app);
  * Listen on provided port, on all network interfaces.
  */
 
-var server_ip_adress = '172.30.153.221';
+var server_ip_address = '172.30.153.221';
 //var server_ip_address = '192.168.2.220';
 //var server_ip_address = '127.0.0.1';
 
