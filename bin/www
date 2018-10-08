@@ -25,8 +25,9 @@ var server = http.createServer(app);
  * Listen on provided port, on all network interfaces.
  */
 
+var server_ip_adress = '172.30.153.221';
 //var server_ip_address = '192.168.2.220';
-var server_ip_address = '127.0.0.1';
+//var server_ip_address = '127.0.0.1';
 
 server.listen(server_port, server_ip_address, function () {
   console.log( "Listening on " + server_ip_address + ", port " + server_port )
