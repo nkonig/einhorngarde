@@ -12,7 +12,7 @@ var http = require('http');
  * Get port from environment and store in Express.
  */
 
-var server_port = normalizePort('3000');
+var server_port = '8080'; //normalizePort('8080');
 app.set('port', server_port);
 
 /**
@@ -25,8 +25,9 @@ var server = http.createServer(app);
  * Listen on provided port, on all network interfaces.
  */
 
+var server_ip_address = '0.0.0.0';
 //var server_ip_address = '192.168.2.220';
-var server_ip_address = '127.0.0.1';
+//var server_ip_address = '127.0.0.1';
 
 server.listen(server_port, server_ip_address, function () {
   console.log( "Listening on " + server_ip_address + ", port " + server_port )
@@ -63,9 +64,9 @@ function onError(error) {
     throw error;
   }
 
-  var bind = typeof port === 'string'
-    ? 'Pipe ' + port
-    : 'Port ' + port;
+  var bind = typeof server_port === 'string'
+    ? 'Pipe ' + server_port
+    : 'Port ' + server_port;
 
   // handle specific listen errors with friendly messages
   switch (error.code) {
