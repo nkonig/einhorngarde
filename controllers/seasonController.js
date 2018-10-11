@@ -10,16 +10,16 @@ const pushEqToIdStack = function(equitment, array) {
     }
 }
 const remove = function(element, array) {
-var index = array.indexOf(element);
-console.log('Remove from ' + JSON.stringify(array));
-if(index > -1) {
-    array.splice(index,1);
-    console.log('Remove ' + element);
-    return true;
-}  else {
-    console.log('Not found ' + element);
-    return false;
-}
+    var index = array.indexOf(element);
+    //console.log('Remove from ' + JSON.stringify(array));
+    if(index > -1) {
+        array.splice(index,1);
+        //console.log('Remove ' + element);
+        return true;
+    }  else {
+        //console.log('Not found ' + element);
+        return false;
+    }
 }
 
 const compareGlory = function(u1, u2) {
@@ -72,6 +72,89 @@ exports.select = function(req, res, next) {
 }
  
 exports.distribute = function(req, res, next) {
+
+    var query = HCPlayer.find({})
+                        .sort({glory: -1})
+                        .populate({ path: 'selection', model: 'Selection', populate: { path: 'first second third', model: 'Equitment'}});
+
+    query.exec(function(err, players) {
+        if(err) return next(err);
+        //if(!players) return next();
+        var seasonQuery = Season.findById(req.params.id)
+                                .populate('equitment');
+        
+        seasonQuery.exec(function(err, season) {
+            if(err) return next(err);
+            console.log('distribute called.');
+
+            var result = new Array();
+            result.distribution = new Map();
+            result.playersNotQualified = new Map();
+            result.playersOpen = new Array();
+            result.season = new Array();
+
+            result.season.start = season.start;
+            result.season.end = season.end;
+
+            var equitmentOpen = new Array();
+            for(var eq of season.equitment) {
+                //console.log('EQ' + eq);
+                if(eq) pushEqToIdStack(eq, equitmentOpen);
+            }
+
+            for(var player of players) {
+                //console.log('dist for player ' + player.username);
+                var selection = player.selection;
+                //player has no selection
+                if(!selection) {
+                    console.log(player.username + ': no selection for player.');
+                    result.playersNotQualified.set(player.username.toString(), 'Keine Auswahl');
+                    continue;
+                }
+                //player selection is old
+                if(selection.season.toString() != req.params.id) {
+                    console.log(player.username + ': selection not from current season.');
+                    result.playersNotQualified.set(player.username.toString(), 'Auswahl passt nicht zur aktuellen Saison');
+                    continue;
+                }
+                //player has not enougth glory 
+                var notQualified = player.minGlory > player.glory;
+                if(notQualified) {
+                    console.log(player.username + ': not enougth glory for distribution.');
+                    result.playersNotQualified.set(player.username.toString(), 'Nicht genug Ruhm');
+                    continue;
+                }                
+                if(equitmentOpen.includes(selection.first._id.toString())) {
+                    console.log(player.username + ': distribute ' + selection.first.name);
+                    remove(selection.first._id.toString(), equitmentOpen);
+                    result.distribution.set(player.username, selection.first);
+                    continue;
+                }
+                if(equitmentOpen.includes(selection.second._id.toString())) {
+                    console.log(player.username + ': distribute ' + selection.second.name);
+                    remove(selection.second._id.toString(), equitmentOpen);
+                    result.distribution.set(player.username, selection.second);
+                    continue;
+                }
+                if(equitmentOpen.includes(selection.third._id.toString())) {
+                    console.log(player.username + ': distribute ' + selection.third.name);
+                    remove(selection.third._id.toString(), equitmentOpen);
+                    result.distribution.set(player.username, selection.third);
+                    continue;
+                }
+                console.log(player.username + ': no selection made');
+                result.playersOpen.push(player);
+            }
+            result.equitmentOpen = new Array();
+            for(var eq of season.equitment) {
+                if(equitmentOpen.includes(eq._id.toString())) result.equitmentOpen.push(eq);
+            }
+            var hcplayer = new HCPlayer(req.session.hcplayer);
+            return res.render('distribution', {data: result, treasurer: hcplayer.treasurer, origin: { treasury : true } })
+        });
+    });
+
+    /*
     var query = Selection.find({season: req.params.id})
                          .populate('first second third')
                          .populate({ path: 'hcplayer' , populate: { path: 'selection', model: 'Selection', populate: { path: 'first second third', model: 'Equitment'}}})
@@ -108,7 +191,8 @@ exports.distribute = function(req, res, next) {
             pushEqToIdStack(current.selection.second, second);
             pushEqToIdStack(current.selection.third, third);
         }
-        
+       
+
 
         //console.log('First: ' + JSON.stringify(first));
         //console.log('Second: ' + JSON.stringify(second));
@@ -118,12 +202,13 @@ exports.distribute = function(req, res, next) {
         
         //console.log('Sorted: ');
         //players.forEach(function(user, id, players) { console.log('SELECTION USER: ' + user.glory + ' ' + user.username) });
-        var playersOpen = new Array();
         var players = sortMap(playerUnsorted, ([k1, v1], [k2, v2]) => compareGlory(v1, v2));
         var dist = new Map();
         //distribute first
         for(var [key, player] of players) {
             playersOpen.push(player.username.toString());
+
+
             if(first.includes(player.selection.first._id.toString())) {
                 dist.set(player.username + ' (' + player.glory + ')', player.selection.first);
                 //console.log('First dist: ' + player.username + ' (' + player.glory + ')', player.selection.first._id);
@@ -178,4 +263,5 @@ exports.distribute = function(req, res, next) {
         console.log(result);
         return res.render('distribution', {data: result, treasurer: hcplayer.treasurer, origin: { treasury : true } })
     });
+    */
 }

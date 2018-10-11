@@ -1,47 +1,86 @@
 {{> nav}}
+<h2>Season {{data.season.start}} - {{data.season.end}}</h2>
+<br>
+<h3>Aufteilung</h3>
 <table class="table">
     <thead>
       <tr>
         <th>Name</th>
-        <th>Equitment</th>
+        <th colspan="3">Equitment</th>
       </tr>
     </thead>
-    <tbody>
-    <h2>Aufteilung</h2>
-    <h3>Seasion {{data.season.start}} - {{data.season.end}}</h3>
 
-    {{#if data.player}}
-     {{#each data.player}}
+    {{#if data.distribution}}
+    <tbody>
+     <!-- {{data.distribution.length}} -->
+     {{#eachInMap data.distribution}}
       <tr>
-        <td>{{username}}</td>
-        <td>{{equitment.name}} {{#if equitment.level}}{{equitment.level}}, {{/if}}{{#ifNotEquals equitment.rarity 'common'}}{{equitment.rarity}}{{/ifNotEquals}}</td>
+        <td>{{key}}</td>
+        <td>{{#ifNotEquals value.rarity 'common'}}{{value.rarity}}{{/ifNotEquals}}</td>
+        <td>{{value.name}}</td>
+        <td>{{#if value.level}}{{value.level}}{{/if}}</td>
       </tr>
-      {{/each}}
+      {{/eachInMap}}
+    </tbody>
     {{/if}}
 </table>
 {{#if data.playersOpen}}
 <br>
+<h3>Spieler ohne Equitment</h3>
 <table class="table">
+  <thead>
+    <tr>
+      <td><label>Name</label></td>
+      <td><label>Auswahl</label></td>
+    </tr>
+  </thead>
   <tbody>
+  {{#each data.playersOpen}}
     <tr>
-        <td colspan="2"><label>Spieler ohne Equitment</label></td>
+      <td>{{username}}</td>
+      <td>1: {{selection.first.name}}, 2: {{selection.second.name}}, 3: {{selection.third.name}}</td>
     </tr>
+  {{/each}}
+  </tbody>
+</table>
+{{/if}}
+{{#if data.playersNotQualified}}
+<br>
+<h3>Spieler nicht qualifiziert</h3>
+<table class="table">
+  <thead>
     <tr>
-      <td colspan="2">{{#each data.playersOpen}}{{username}}, {{/each}}</td>
+      <th><label>Name</label></th>
+      <th><label>Grund</label></th>
     </tr>
+  </thead>
+  <tbody>
+    {{#eachInMap data.playersNotQualified}}
+    <tr>
+      <td>{{key}}</td>
+      <td>{{value}}</td>
+    </tr>
+    {{/eachInMap}}
   </tbody>
 </table>
 {{/if}}
 {{#if data.equitmentOpen}}
 <br>
+<h3>Unverteiltes Equitment</h3>
 <table class="table">
-  <tbody>
+  <thead>
     <tr>
-        <td colspan="2"><label>Unverteiltes Equitment</label></td>
+      <th><label>Name</label></th>
+      <th><label>Level</label></th>
+      <th><label>Seltenheit</label></th>
     </tr>
+  </thead>
+  <tbody>
     {{#each data.equitmentOpen}}
     <tr>
-      <td colspan="2">{{name}} {{#if level}}{{level}}, {{/if}}{{#ifNotEquals rarity 'common'}}{{rarity}}{{/ifNotEquals}}</td>
+      <td>{{name}}</td>
+      <td>{{#if level}}{{level}}{{/if}}</td>
+      <td>{{#ifNotEquals rarity 'common'}}{{rarity}}{{/ifNotEquals}}</td>
     </tr>
     {{/each}}
   </tbody>

@@ -39,13 +39,13 @@ exports.upload = function(req, res, next) {
                     
                     equitment.save(function(err) {
                         if(err) return next(err);
-                        console.log('DONE! ID: ' + equitment._id);
+                        //console.log('DONE! ID: ' + equitment._id);
                     });
                 }
 
                 // add usable
                 for(var i=0; i < result.treasury.usable.length; i++) {
-                    console.log(result.treasury.usable[i]);
+                    //console.log(result.treasury.usable[i]);
                     var usableJson = result.treasury.usable[i];
                     var id = Buffer.from(usableJson.name).toString('base64').substr(0, 24);
                     //console.log('XXXXX ' + typeof id);
@@ -86,7 +86,7 @@ exports.upload = function(req, res, next) {
                 callback(null);
             }, 
             function(callback) {
-                console.log('Add ' + equitIds.length + ' Equitment IDs: ' + equitIds);
+                //console.log('Add ' + equitIds.length + ' Equitment IDs: ' + equitIds);
                 season.equitment = equitIds;
                 season.save(function(err) {
                     if(err) return next(err);

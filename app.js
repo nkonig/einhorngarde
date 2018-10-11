@@ -55,6 +55,15 @@ hbs.registerHelper('ifNotEquals', function(a, b, options) {
   return options.fn(this);
 });
 
+hbs.registerHelper( 'eachInMap', function ( map, block ) {
+  var out = '';
+  var mapKeys = Array.from(map.keys());
+  mapKeys.map(function( prop ) {
+     out += block.fn( {key: prop, value: map.get(prop)} );
+  });
+  return out;
+} );
+
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());

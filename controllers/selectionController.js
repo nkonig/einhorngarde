@@ -75,8 +75,7 @@ exports.select = function(req, res, next) {
                                                third: req.body.thirdradio,
                                                interest: 'need'});
                 selection.save(function(err) {
-                    if(err) return next(err);;
-                    console.log('Selection Saved!');
+                    if(err) return next(err);
                 });
     
                 HCPlayer.findByIdAndUpdate(user._id, {selection: selection._id}, function(err, result) {

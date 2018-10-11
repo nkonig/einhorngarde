@@ -12,12 +12,12 @@ exports.loginStub = function(req, res) {
                            _id:  '5b98331dbb919a27c4858c53',
                            username: 'Stub User',
                            throneroom: 10});
-  console.log('User Treasurer: ' + user.treasurer);
+  //console.log('User Treasurer: ' + user.treasurer);
   var session = req.session;
   session.hcplayer = user;
   session.save();
-  console.log('session id: ' + session.id);
-  console.log(session); 
+  //console.log('session id: ' + session.id);
+  //console.log(session); 
   return res.redirect('/selection');
 }
 
@@ -51,9 +51,9 @@ HCPlayer.findOne({ username: req.body.username }).populate({path: 'selection', p
         }
       } else {
         console.log('wrong creds for user ' +  user.username );
-        bcrypt.hash(req.body.password, 10, function (err, hash){
+        /*bcrypt.hash(req.body.password, 10, function (err, hash){
           console.log('hash: ' + hash);
-        });
+        });*/
         return res.redirect('/login');
       }
     })

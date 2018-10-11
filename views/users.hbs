@@ -17,9 +17,9 @@
     <tr>
         <td><label>Auswahl:</label></td>
         <td>
-            {{user.selection.first.rarity}} {{user.selection.first.name}}<br>
-            {{user.selection.second.rarity}} {{user.selection.second.name}}<br>
-            {{user.selection.third.rarity}} {{user.selection.third.name}}<br>
+            {{#ifNotEquals user.selection.first.rarity 'common'}}{{user.selection.first.rarity}}{{/ifNotEquals}} {{user.selection.first.name}}<br>
+            {{#ifNotEquals user.selection.second.rarity 'common'}}{{user.selection.second.rarity}}{{/ifNotEquals}} {{user.selection.second.name}}<br>
+            {{#ifNotEquals user.selection.third.rarity 'common'}}{{user.selection.third.rarity}}{{/ifNotEquals}} {{user.selection.third.name}}<br>
         </td>
     </tr>
 </tbody>
@@ -85,9 +85,9 @@
         <div {{#ifEquals ../user.username username}}style="display: none;"{{/ifEquals}} >     
         <td  colspan="7" style="border-top-style: none" >   
           {{#if selection}}
-            <span {{#ifEquals selection.first._id ../user.selection.first._id }}style="font-weight: bold; color: red;"{{/ifEquals}}>{{selection.first.rarity}} {{selection.first.name}}</span><br>
-            <span {{#ifEquals selection.second._id ../user.selection.second._id }}style="font-weight: bold; color: red;"{{/ifEquals}}>{{selection.second.rarity}} {{selection.second.name}}</span><br>
-            <span {{#ifEquals selection.third._id ../user.selection.third._id }}style="font-weight: bold; color: red;"{{/ifEquals}}>{{selection.third.rarity}} {{selection.third.name}}</span><br>
+            <span {{#ifEquals selection.first._id ../user.selection.first._id }}style="font-weight: bold; color: red;"{{/ifEquals}}> {{#ifNotEquals selection.first.rarity 'common'}}{{selection.first.rarity}}{{/ifNotEquals}} {{selection.first.name}}</span><br>
+            <span {{#ifEquals selection.second._id ../user.selection.second._id }}style="font-weight: bold; color: red;"{{/ifEquals}}> {{#ifNotEquals selection.second.rarity 'common'}}{{selection.second.rarity}}{{/ifNotEquals}} {{selection.second.name}}</span><br>
+            <span {{#ifEquals selection.third._id ../user.selection.third._id }}style="font-weight: bold; color: red;"{{/ifEquals}}> {{#ifNotEquals selection.third.rarity 'common'}}{{selection.third.rarity}}{{/ifNotEquals}} {{selection.third.name}}</span><br>
           {{/if}}
         </td>
         </div>

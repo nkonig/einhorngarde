@@ -57,8 +57,6 @@ exports.add = function(req, res, next) {
 
 exports.edit = function(req, res, next) {
     var hcplayer = new HCPlayer(req.session.hcplayer); 
-    console.log(req.params.id);
-    console.log(req.params.id === 'new');
     var newUser = req.params.id === 'new';
     if(newUser) {
         var user = new HCPlayer({username: '', password: 'einhorngarde123!'});
