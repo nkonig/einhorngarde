@@ -1,0 +1,21 @@
+{{> nav}}
+<div class="container">
+  <form action="/users/saveallglory" method="post" accept-charset="utf-8">
+    <table id="mytable" class="table table-bordred table-striped">
+      <thead>
+        <th>Name</th>
+        <th>Ruhm</th>
+      </thead>
+      <tbody>
+        {{#if data}}
+        {{#each data}}
+          <tr>
+            <td>{{username}}<br></td>
+            <td><input class="form-control" type="text" name="glory" value="{{username}}"></td>
+          </tr>
+        {{/each}}
+        {{/if}}    
+      </tbody> 
+    </table>
+  </form>
+</div>

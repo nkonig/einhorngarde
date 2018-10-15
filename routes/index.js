@@ -13,8 +13,8 @@ router.get('/login', login_controller.index);
 
 router.get('/logout', login_controller.logout);
 
-router.post('/login' , login_controller.login);
-//router.post('/login' , login_controller.loginStub);
+//router.post('/login' , login_controller.login);
+router.post('/login' , login_controller.loginStub);
 
 router.post('/logout', login_controller.logout);
 

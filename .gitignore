@@ -1,4 +1,4 @@
-**/logs
+logs/einhorngarde.log
 **/node_modules
 moduls.txt
 bin/test

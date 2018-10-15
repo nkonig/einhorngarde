@@ -8,7 +8,7 @@ exports.index = function(req, res) {
 
 exports.loginStub = function(req, res) {
 
-  var user = new HCPlayer({rank: 'Schatzmeister',
+  var user = new HCPlayer({rank: 'Stellvertreter',
                            _id:  '5b98331dbb919a27c4858c53',
                            username: 'Stub User',
                            throneroom: 10});

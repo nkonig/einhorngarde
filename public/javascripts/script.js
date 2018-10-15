@@ -33,6 +33,12 @@ $(document).ready(function() {
 		$( location ).attr("href", target);
 	});
 
+	$('.editallglory-btn').on('click', function() {
+		var target = '/users/editallglory/';
+		//console.log('Called: ' + target);
+		$( location ).attr("href", target);
+	});
+
 	$('.deleteuser-btn').on('click', function() {
 		var target = '/users/delete/' + this.value;
 		//console.log('Called: ' + target);

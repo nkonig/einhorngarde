@@ -20,6 +20,13 @@
                     <option {{#ifEquals user.rank 'Soldat' }}selected="selected"{{/ifEquals}} name="rank" value="Soldat">Soldat</option>
                     <option {{#ifEquals user.rank 'Offizier' }}selected="selected"{{/ifEquals}} name="rank" value="Offizier">Offizier</option>
                     <option {{#ifEquals user.rank 'Schatzmeister' }}selected="selected"{{/ifEquals}} name="rank" value="Schatzmeister">Schatzmeister</option>
+                    {{#ifEquals options.rank 'BigBoss'}}
+                    <option {{#ifEquals user.rank 'Stellvertreter' }}selected="selected"{{/ifEquals}} name="rank" value="Stellvertreter">Stellvertreter</option>
+                    <option {{#ifEquals user.rank 'BigBoss' }}selected="selected"{{/ifEquals}} name="rank" value="BigBoss">BigBoss</option>
+                    {{/ifEquals}}
+                    {{#ifEquals options.rank 'Stellvertreter'}}
+                    <option {{#ifEquals user.rank 'Stellvertreter' }}selected="selected"{{/ifEquals}} name="rank" value="Stellvertreter">Stellvertreter</option>
+                    {{/ifEquals}}
                 </select>
             </td>
         </tr>
@@ -35,14 +42,13 @@
                     <option {{#ifEquals user.throneroom '10'}}selected="selected"{{/ifEquals}} name="throneroom" value="10">10</option>
                 </select>
             </td>
-        </tr> 
-        <!--
+        </tr>
         {{#if selection}}
         <tr>
             <td>First:</td>
             <td>
                 <select name="first" class="form-control" id="sel2">
-                    <option selected="selected" name="first" value="">None</option>
+                    <option selected="selected" name="first" value="none">None</option>
                     {{#each selection.eqs}}
                         <option {{#ifEquals _id ../user.selection.first._id }}selected="selected"{{/ifEquals}} name="first" value="{{_id}}">{{name}} {{#if level}}({{level}}){{/if}}</option>
                     {{/each}}
@@ -53,7 +59,7 @@
             <td>Second:</td>
             <td>
                 <select name="second" class="form-control" id="sel3">
-                    <option selected="selected" name="first" value="">None</option>
+                    <option selected="selected" name="first" value="none">None</option>
                     {{#each selection.eqs}}
                         <option {{#ifEquals _id ../user.selection.second._id }}selected="selected"{{/ifEquals}} name="second" value="{{_id}}">{{name}} {{#if level}}({{level}}){{/if}}</option>
                     {{/each}}
@@ -64,7 +70,7 @@
             <td>Third:</td>
             <td>
                 <select name="third" class="form-control" id="sel3">
-                    <option selected="selected"name="first" value="">None</option>
+                    <option selected="selected"name="first" value="none">None</option>
                     {{#each selection.eqs}}
                         <option {{#ifEquals _id ../user.selection.third._id }}selected="selected"{{/ifEquals}} name="third" value="{{_id}}">{{name}} {{#if level}}({{level}}){{/if}}</option>
                     {{/each}}
@@ -72,7 +78,6 @@
             </td>
         </tr> 
         {{/if}}
-        -->
         <tr>
           <td colspan="2">
             <input type="submit" name="submit" value="Speichern" id="submit" class="btn btn-primary btn-block btn-flat">            </div>

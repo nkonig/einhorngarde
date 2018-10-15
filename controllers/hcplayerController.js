@@ -26,7 +26,7 @@ exports.index = function(req, res, next) {
             .select('username glory selection rank throneroom registert')
             .populate({path: 'selection' , populate: { path: 'first second third', model: 'Equitment'}})
             .exec(function(err, result) {
-                if(err) return next(err);
+                if(err) console.error(err);
                 //console.log('FOUND: ' +result);
                     
                 for(var i = 0; i < result.length; i++) {
@@ -49,7 +49,7 @@ exports.add = function(req, res, next) {
     var hcplayer = new HCPlayer({username: req.body.username, rank: req.body.rolle, password: 'einhorngarde123!'});
 
     hcplayer.save(function(err) {
-        if(err) return next(err);
+        if(err) console.error(err);
     });
 
     return res.redirect('/treasury');
@@ -65,8 +65,9 @@ exports.edit = function(req, res, next) {
     } else {
         var query = HCPlayer.findById(req.params.id).populate({path: 'selection', populate: { path: 'first second third', model: 'Equitment'}});
         query.exec(function(err, user, next) {
-            if(err) return next(err);
+            if(err) console.error(err);
             var options = {exists: true};
+            options.rank = hcplayer.rank;
             var selection = {};
             if(user.selection) {
                 if(user.selection.first) selection.first = user.selection.first._id;
@@ -75,7 +76,7 @@ exports.edit = function(req, res, next) {
             }
             var findEq = Season.findOne({current: true}).populate('equitment', 'name level');
             findEq.exec(function(err, season, next) {
-                if(err) return next(err);
+                if(err) console.error(err);
                 selection.eqs = new Array();
                 for(var i=0; i < season.equitment.length; i++) {
                     selection.eqs.push(season.equitment[i]);
@@ -90,84 +91,102 @@ exports.edit = function(req, res, next) {
 exports.save = function(req, res, next) {
     //console.log(req.body.exists + ' ' + req.body.userid);
     //console.log(req.body.exists);
+    var firstSel = req.body.first === 'none' ? undefined :  req.body.first;
+    var secondSel = req.body.second === 'none' ? undefined :  req.body.second;
+    var thirdSel = req.body.third === 'none' ? undefined :  req.body.third;
+    var noSel =!firstSel && !secondSel && !thirdSel; 
     var newUser = req.body.exists === 'false';
+    console.log(noSel + ' | ' +req.body.first + ' | ' +  req.body.second + ' | ' + req.body.third );
     if(!newUser) {
-        //console.log('User updatet ' + req.body.userid);
-        //console.log('User first: ' +  req.body.first + ' | second: ' +  req.body.second + ' | third: ' +  req.body.third);
         HCPlayer.update({_id: req.body.userid}, {
                                                 rank: req.body.rank,
                                                 throneroom: req.body.throneroom,
                                                 glory: req.body.glory
                                             },
-            function(err) {
-                if(err) return next(err);
-                //console.log('User updatet ' + req.body.userid);
-        });
-        Season.findOne({current: true}, function(err, season) {
-            if(err) return next(err);
-            var findSel = Selection.findOne({hcplayer: req.body.userid, season: season._id});
-            findSel.exec(function(err, sel) {
-                if(err) return next(err);
-                if(sel) {
-                    Selection.updateOne({_id: sel._id},
-                                        {
-                                            first: req.body.first,
-                                            second: req.body.second,
-                                            third: req.body.third
-                                        }, 
-                                        function(err) { if(err) return next(err) });
-                } else {
-                    var selection = new Selection({
-                        hcplayer: req.body.userid,
-                        first: req.body.first,
-                        interest: 'need',
-                        second: req.body.second,
-                        third: req.body.third,
-                        season: season._id
-                    });
-                    selection.save(function(err) { if(err) return next(err) })
-                }
-            })
-        });
+            function(err) { if(err) console.error(err); });
+        if(!noSel) {
+            Season.findOne({current: true}, function(err, season) {
+                if(err) console.error(err);
+                var findSel = Selection.findOne({hcplayer: req.body.userid, season: season._id});
+                findSel.exec(function(err, sel) {
+                    if(err) console.error(err);
+                    if(sel) {
+                        Selection.updateOne({_id: sel._id},
+                                            {
+                                                first: firstSel,
+                                                second: secondSel,
+                                                third: thirdSel
+                                            }, 
+                                            function(err) { if(err) console.error(err) });
+                    } else {
+                        var selection = new Selection({
+                            hcplayer: req.body.userid,
+                            first: firstSel,
+                            interest: 'need',
+                            second: secondSel,
+                            third: thirdSel,
+                            season: season._id
+                        });
+                        selection.save(function(err) { if(err) console.error(err) });
+                        HCPlayer.updateOne({ _id: req.body.userid }, { selection: selection._id }, function(err) { if(err) console.error(err) });
+                    }
+                })
+            });
+        } else {
+            HCPlayer.findByIdAndUpdate(req.body.userid, { selection: null }, function(err, player) { 
+                if(err) console.error(err)
+                if(player.selection) {
+                    Selection.deleteOne({ _id: player.selection}, function(err) { if(err) console.error(err) });
+                } 
+            });
+        }
     } else {
-        Season.findOne({current: true}, function(err, season) {
-            if(err) return next(err);
-            var selection = new Selection({
-                hcplayer: req.body.userid,
-                first: req.body.first,
-                interest: 'need',
-                second: req.body.second,
-                third: req.body.third,
-                season: season._id
-            });
-            selection.save(function(err) {
-                    if(err) return next(err);
-                    //console.log('Selection added ' + selection._id);
-            });
+        if(!noSel) {
+            Season.findOne({current: true}, function(err, season) {
+                if(err) console.error(err);
+                var selection = new Selection({
+                    hcplayer: req.body.userid,
+                    first: firstSel,
+                    interest: 'need',
+                    second: secondSel,
+                    third: thirdSel,
+                    season: season._id
+                });
+                selection.save(function(err) {
+                        if(err) console.error(err);
+                        //console.log('Selection added ' + selection._id);
+                });
 
+                var hcplayer = new HCPlayer({
+                    username: req.body.name,
+                    rank: req.body.rank,
+                    throneroom: req.body.throneroom,
+                    glory: req.body.glory,
+                    password: 'einhorngarde123!',
+                    selection: selection._id
+                });
+                hcplayer.save(function(err) { if(err) console.error(err); });
+            });
+        } else {
             var hcplayer = new HCPlayer({
                 username: req.body.name,
                 rank: req.body.rank,
                 throneroom: req.body.throneroom,
                 glory: req.body.glory,
-                password: 'einhorngarde123!',
-                selection: selection._id
+                password: 'einhorngarde123!'
             });
-            hcplayer.save(function(err) {
-                    if(err) return next(err);
-                    //console.log('User added ' + hcplayer.username);
-            });
-        });
+            hcplayer.save(function(err) { if(err) console.error(err); });
+        }
     }
     return res.redirect('/users');
 }
 
 exports.delete = function(req, res, next) {
     HCPlayer.deleteOne({_id: req.params.id}, function(err) {
-            if(err) return next(err);
+            if(err) console.error(err);
             var deleteSelections = Selection.deleteMany({hcplayer: req.params.id});
             deleteSelections.exec(function(err) {
-                if(err) return next(err);
+                if(err) console.error(err);
                 console.log('User deleted ' + req.params.id);
                 return res.redirect('/users/');
             })
@@ -176,13 +195,27 @@ exports.delete = function(req, res, next) {
 
 exports.resetPassword = function(req, res, next) {
     HCPlayer.findById(req.params.id, function(err, user) {
-        if(err) return next(err);
+        if(err) console.error(err);
         if(user) {
             user.password = 'einhorngarde123!';
             user.registert = false;
-            user.save(function(err) { if(err) return next(err)});
+            user.save(function(err) { if(err) console.error(err)});
             console.log('Passwort for user ' + user.username + ' reseted');
         }
         return res.redirect('/users');
     });
+}
+ 
+exports.editglory = function(req, res, next) {
+    console.log('TEST');
+    var query = HCPlayer.find({}).select('username glory');
+    query.exec(function(err, players) {
+        if(err) console.error(err);
+        var hcplayer = new HCPlayer(req.session.hcplayer); 
+        return res.redirect('/selection', {data: players, treasurer: hcplayer.treasurer, origin: { users : true }});
+    });
+}
+
+exports.saveallglory = function(req, res, next) {
+
 }

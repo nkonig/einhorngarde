@@ -17,7 +17,10 @@ var app = express();
 
 //Set up mongoose connection
 var mongoose = require('mongoose');
-var mongoDB = 'mongodb://root:einhorngarde123@ds245022.mlab.com:45022/einhorngarde';
+
+//var mongoDB = 'mongodb://root:einhorngarde123@ds245022.mlab.com:45022/einhorngarde';
+var mongoDB = 'mongodb://root:einhorngarde123@ds115543.mlab.com:15543/einhorngarde_dev';
+
 mongoose.connect(mongoDB, { useNewUrlParser: true });
 mongoose.Promise = global.Promise;
 var db = mongoose.connection;

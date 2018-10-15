@@ -11,6 +11,10 @@ router.get('/:filter', middleware.authenticated, hcplayer_controller.index);
 
 router.get('/edit/:id', middleware.treasury, hcplayer_controller.edit);
 
+router.get('/editallglory', middleware.treasury, hcplayer_controller.editglory);
+
+router.post('/saveallglory/', middleware.treasury, hcplayer_controller.saveallglory);
+
 router.get('/delete/:id', middleware.treasury, hcplayer_controller.delete);
 
 router.post('/save', middleware.treasury, hcplayer_controller.save);
