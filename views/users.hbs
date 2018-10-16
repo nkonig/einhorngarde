@@ -73,7 +73,7 @@
      {{#each data}}
      {{#if username}}
       <tr class="{{#unless registert}}warning{{/unless}}">
-        <td>{{#if notAuthorized }}<span title="Erforderlichen Ruhm nicht erreicht!" class="glyphicon glyphicon-exclamation-sign"></span> {{/if}}{{username}}</td>
+        <td>{{#if ../user.treasurer}}{{#if notAuthorized }}<span title="Erforderlichen Ruhm nicht erreicht!" class="glyphicon glyphicon-exclamation-sign"></span> {{/if}}{{/if}}{{username}}</td>
         <td>{{rank}}</td>
         <td>{{glory}}</td>
         {{#if ../user.treasurer}}
