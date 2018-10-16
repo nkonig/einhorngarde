@@ -139,7 +139,7 @@ exports.save = function(req, res, next) {
                 })
             });
         } else {
-            HCPlayer.findByIdAndUpdate(req.body.userid, { selection: null, throneroom: req.body.throneroom, glory: req.body.glory }, function(err, player) { 
+            HCPlayer.findByIdAndUpdate(req.body.userid, { selection: null, rank: req.body.rank, throneroom: req.body.throneroom, glory: req.body.glory }, function(err, player) { 
                 if(err) console.error(err);
                 if(player.selection) {
                     Selection.deleteOne({ _id: player.selection}, function(err) { if(err) console.error(err) });
