@@ -7,6 +7,8 @@ var selection_controller = require('../controllers/selectionController');
 
 router.get('/', middleware.authenticated, selection_controller.index);
 
+router.get('/:filter', middleware.authenticated, selection_controller.index);
+
 router.post('/select' , middleware.authenticated, selection_controller.select);
 
 module.exports = router;  

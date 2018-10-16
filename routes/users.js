@@ -9,7 +9,7 @@ router.get('/', middleware.authenticated, hcplayer_controller.index);
 
 router.get('/:filter', middleware.authenticated, hcplayer_controller.index);
 
-router.get('/edit/:id', middleware.treasury, hcplayer_controller.edit);
+router.get('/edit/:id', middleware.authenticated, hcplayer_controller.edit);
 
 router.get('/editallglory', middleware.treasury, hcplayer_controller.editglory);
 
@@ -17,7 +17,7 @@ router.post('/saveallglory/', middleware.treasury, hcplayer_controller.saveallgl
 
 router.get('/delete/:id', middleware.treasury, hcplayer_controller.delete);
 
-router.post('/save', middleware.treasury, hcplayer_controller.save);
+router.post('/save', middleware.authenticated, hcplayer_controller.save);
 
 router.get('/resetpasswort/:id', middleware.treasury, hcplayer_controller.resetPassword);
 

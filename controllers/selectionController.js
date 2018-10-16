@@ -2,8 +2,21 @@ var Season    = require('../models/season');
 var Selection = require('../models/selection');
 var HCPlayer = require('../models/hcplayer');
 
-exports.index = function(req, res, next) {
-    var season = Season.findOne({current: true}).populate('equitment');
+exports.index = function(req, res, next) {    
+    var sort = {};
+    if(req.params.filter) {
+        var field = req.params.filter.split("=")[0];
+        var value = req.params.filter.split("=")[1];
+        switch(field) {
+            case 'name':
+                sort  = { 'name': value};
+                break;
+            case 'level':
+                sort  = { 'level': value};
+            default:
+        }
+    }    
+    var season = Season.findOne({current: true}).populate('equitment', '', null, { sort: sort });
     season.exec( function(err, season) {
        if(err) return next(err);
 
@@ -17,6 +30,7 @@ exports.index = function(req, res, next) {
             for(var i=0; i < season.equitment.length; i++) {
                 var low  = season.equitment[i].level < hcplayer.minLevel;
                 var high = season.equitment[i].level > hcplayer.maxLevel;
+                var pic  = !low && !high;
 
                 var sel = new Array();
                 if(selection) {
@@ -29,6 +43,7 @@ exports.index = function(req, res, next) {
                 options.toLow = low;
                 options.toHigh = high;
                 options.selection = sel;
+                options.selectiable = pic;
                 var notAuthorized = hcplayer.minGlory > hcplayer.glory;
 
                 data.equitment.push( {
@@ -62,7 +77,7 @@ exports.select = function(req, res, next) {
                 });
                 HCPlayer.updateOne({_id: user._id }, {selection: result._id}, function(err) {
                     if(err) return next(err);;
-                    console.log('Selection updateted');
+                    console.log('Selection updateted' + user.username);
                 });
                 user.selection = result;
                 req.session.hcplayer = user;

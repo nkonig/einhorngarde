@@ -1,0 +1,198 @@
+<treasury>
+	<meta>
+		<start>02.10.2018</start>
+		<end>16.10.2018</end>
+	</meta>
+	<usable>
+		<name>Ausgewichen Edelstein</name>
+		<ability></ability>
+		<!-- common, rare, epic, legendary -->
+		<rarity>common</rarity>
+	</usable>
+	<usable count="1">
+		<name>Violetter Splitter</name>
+		<rarity>epic</rarity>
+		<ability>2 Stück</ability>
+	</usable>
+	<usable count="3">
+		<name>Blauer Splitter</name>
+		<rarity>rare</rarity>
+		<ability>3 Stück</ability>
+	</usable>
+	<usable count="5">
+		<name>Grüner Splitter</name>
+		<ability>4 Stück</ability>
+	</usable>
+	<usable count="3">
+		<name>Diamanten</name>
+		<ability>70 Stück</ability>
+	</usable>
+	<usable count="2">
+		<name>Grüner Staub</name>
+		<ability>500 Stück</ability>
+	</usable>
+	<usable count="3">
+		<name>Tickets</name>
+		<ability>6 Stück</ability>
+	</usable>
+	<equitment>
+		<!-- item name -->
+		<name>Halskette der Magiemacht</name>
+		<!-- common, rare, epic, legendary -->
+		<rarity>legendary</rarity>
+		<!-- item level -->
+		<level>92</level>
+		<!-- item ability as text -->
+		<ability>Rüstung: +1819, Magische Rüstung: +2035, Gesundheit: +16521</ability>	
+	</equitment>
+	<equitment>
+		<!-- item name -->
+		<name>Drachenzahnschwert</name>
+		<!-- common, rare, epic, legendary -->
+		<rarity>legendary</rarity>
+		<!-- item level -->
+		<level>36</level>
+		<!-- item ability as text -->
+		<ability>Kirt: +764, Ausgewichen: +665. Stellt, wenn Schaden erlitten wird, mit einer Chance von 20 9% der eigenen Gesundheit wiederher. Erhöhtbeim Angriff mit einer Chance von 33% den verursachten Schaden um 55%. Hält 10 Sek. lang an.</ability>	
+	</equitment>
+	<equitment>
+		<!-- item name -->
+		<name>Moment-der-Wahrheit-Bogen</name>
+		<!-- common, rare, epic, legendary -->
+		<rarity>epic</rarity>
+		<!-- item level -->
+		<level>56</level>
+		<!-- item ability as text -->
+		<ability>Kirt: +669. Verursacht beim Angriff mit einer Chancevon 17% 75% Schaden bei einer Gruppe von Gegnern. Erhöht beim Angriff mit einer Chance von 29% den eigenen Krit um 45%. Hält 10 Sek. an.</ability>	
+	</equitment>
+	<equitment>
+		<!-- item name -->
+		<name>Dolch des Orienträtsels</name>
+		<!-- common, rare, epic, legendary -->
+		<rarity>epic</rarity>
+		<!-- item level -->
+		<level>51</level>
+		<!-- item ability as text -->
+		<ability>Kirt: +721. Verursacht beim Angriff mit einer Chancevon 11% in 5 Sekunden 100% Schaden. Erhöht beim Angriff mit einer Chance von 29% den verursachten Schaden um 30%. Hält 10 Sek. an.</ability>	
+	</equitment>
+	<equitment>
+		<!-- item name -->
+		<name>Stahlschlächterdolche</name>
+		<!-- common, rare, epic, legendary -->
+		<rarity>epic</rarity>
+		<!-- item level -->
+		<level>37</level>
+		<!-- item ability as text -->
+		<ability>Krit: +533. Verursacht beim Angriff mit einer Chancevon 10% in 5 Sekunden 115% Schaden. Verringer beim Angriff mit einer Chance von 29% die Rüstung eines Gegners um 35%. Hält 10 Sek. an.</ability>	
+	</equitment>
+	<equitment>
+		<!-- item name -->
+		<name>Bogen des technologischen Triumphes</name>
+		<!-- common, rare, epic, legendary -->
+		<rarity>epic</rarity>
+		<!-- item level -->
+		<level>38</level>
+		<!-- item ability as text -->
+		<ability>Verursacht beim Angriff mit einer Chancevon 18% 80% Schaden bei einer Gruppe von Gegnern. Erhöht beim Angriff mit einer Chance von 27% den eigenen Krit um 30%. Hält 10 Sek. an.</ability>	
+	</equitment>
+	<equitment>
+		<!-- item name -->
+		<name>Ausrüstung des berühmten Pfadfinders</name>
+		<!-- common, rare, epic, legendary -->
+		<rarity>epic</rarity>
+		<!-- item level -->
+		<level>50</level>
+		<!-- item ability as text -->
+		<ability>Schade: 1636-1701, Ausgewichen: +566. Veringert, wenn Schaden erlitten wird, mit einer Chance von 31% den durch den Gegner verursachten Schaden um 50%. Hält 10 Sek. lang an.</ability>	
+	</equitment>
+	<equitment>
+		<!-- item name -->
+		<name>Talisman der unersättlichen Beere</name>
+		<!-- common, rare, epic, legendary -->
+		<rarity>epic</rarity>
+		<!-- item level -->
+		<level>51</level>
+		<!-- item ability as text -->
+		<ability>Magische Rüstung: +969, Gesundheit: +6947</ability>	
+	</equitment>
+	<equitment>
+		<!-- item name -->
+		<name>Schwert der großen Kraft</name>
+		<!-- common, rare, epic, legendary -->
+		<rarity>rare</rarity>
+		<!-- item level -->
+		<level>90</level>
+		<!-- item ability as text -->
+		<ability>Ausgewichen: +714. Stellt beim Angriff mit einer Chance von 16% 6% der eigenen Gesundheit wiederher. Erhöht beim Angriff mit einer Chance von 22% den eigenen Krit um 40%. Hält 10 Sek. an.</ability>	
+	</equitment>
+	<equitment>
+		<!-- item name -->
+		<name>Titanengeheimnis-Kugel</name>
+		<!-- common, rare, epic, legendary -->
+		<rarity>rare</rarity>
+		<!-- item level -->
+		<level>47</level>
+		<!-- item ability as text -->
+		<ability>Ausgewichen: +537. Stellt hin und wieder über 4 Sek. 1970(+0 der Zauberkraft) Gesundheit eines Verbündeten wiederher.</ability>	
+	</equitment>
+	<equitment>
+		<!-- item name -->
+		<name>Kleidung des Magiers</name>
+		<!-- common, rare, epic, legendary -->
+		<rarity>rare</rarity>
+		<!-- item level -->
+		<level>40</level>
+		<!-- item ability as text -->
+		<ability>Zauberkraft: +2993, Ausgewichen: +569. Erhöht, wenn Schaden erlitten wird, mit einer Chance von 27% den eigenen magischen Schaden um 35%. Hält 10 Sek. lang an.</ability>	
+	</equitment>
+	<equitment>
+		<!-- item name -->
+		<name>Armbrust der Entschlossenheit</name>
+		<!-- common, rare, epic, legendary -->
+		<rarity>rare</rarity>
+		<!-- item level -->
+		<level>76</level>
+		<!-- item ability as text -->
+		<ability>Krit: +656. Verursacht beim Angriff mit einer Chance von 23% in 3 Sekunden 110% Schaden. Erhöht beim Angriff mit einer Chance von 21% den eigenen Krit um 35%. Hält 10 Sek. an.</ability>	
+	</equitment>
+	<equitment>
+		<!-- item name -->
+		<name>Amulett der beißenden Substanz</name>
+		<!-- common, rare, epic, legendary -->
+		<rarity>rare</rarity>
+		<!-- item level -->
+		<level>70</level>
+		<!-- item ability as text -->
+		<ability>Rüstung: +807, Magische Rüstung: +1024</ability>	
+	</equitment>
+	<equitment>
+		<!-- item name -->
+		<name>Mächtiger Titanen-Plattenharnisch</name>
+		<!-- common, rare, epic, legendary -->
+		<rarity>rare</rarity>
+		<!-- item level -->
+		<level>67</level>
+		<!-- item ability as text -->
+		<ability>Rüstung: +4040. Veringert, wenn Schaden erlitten wird, mit einer Chance von 23% den durch den Gegner verursachten Schaden um 50%. Hält 10 Sek. lang an.</ability>	
+	</equitment>
+	<equitment>
+		<!-- item name -->
+		<name>Streitaxt des Blutsaugers</name>
+		<!-- common, rare, epic, legendary -->
+		<rarity>rare</rarity>
+		<!-- item level -->
+		<level>77</level>
+		<!-- item ability as text -->
+		<ability>Krit: +650. Verursacht beim Angriff mit einer Chance von 29% 140% Flächenschaden. Erhöht beim Angriff mit einer Chance von 22% den verursachten Schaden um 30%. Hält 10 Sek. an.</ability>	
+	</equitment>
+	<equitment>
+		<!-- item name -->
+		<name>Kugel der Himmelsmagie</name>
+		<!-- common, rare, epic, legendary -->
+		<rarity>rare</rarity>
+		<!-- item level -->
+		<level>40</level>
+		<!-- item ability as text -->
+		<ability>Zauberkraft: +555.Verursacht hin und wieder über 4 Sek. 1232 (+611 der Zauberkraft) Flächenschaden. </ability>	
+	</equitment>
+</treasury>

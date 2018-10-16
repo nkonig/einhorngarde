@@ -121,7 +121,7 @@ exports.distribute = function(req, res, next) {
                 var notQualified = player.minGlory > player.glory;
                 if(notQualified) {
                     console.log(player.username + ': not enougth glory for distribution.');
-                    result.playersNotQualified.set(player.username.toString(), 'Nicht genug Ruhm');
+                    result.playersNotQualified.set(player.username.toString(), 'Er Mindesruhm wurde nicht erreicht');
                     continue;
                 }                
                 if(equitmentOpen.includes(selection.first._id.toString())) {

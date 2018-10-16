@@ -1,5 +1,6 @@
 {{> nav}}
-<h3>Hallo {{user.username}}</h3>
+<h3>Hallo {{user.username}} <button value="{{user._id}}" title="Ruhm bearbeiten." class="btn btn-primary btn-xs edituser-btn" data-title="Ruhm bearbeiten" data-toggle="modal" data-target="#edit" ><span class="glyphicon glyphicon-flag"></span></span></button></h3>
+
 <table class="table">
     <tbody>
     <tr>
@@ -49,7 +50,7 @@
 </p>
 <p>
   <button value="new" class="btn btn-primary btn-xs edituser-btn"><span class="fa fa-plus"></span></button>
-  <button value="" class="btn btn-primary btn-xs editallglory-btn">Ruhm verteilen</button>
+  <!--<button value="" class="btn btn-primary btn-xs editallglory-btn" type="button">Ruhm verteilen</button>-->
 </p>
 {{/if}}
 <table class="table">
@@ -72,9 +73,7 @@
      {{#each data}}
      {{#if username}}
       <tr class="{{#unless registert}}warning{{/unless}}">
-        <td>
-            {{username}}<br>
-        </td>
+        <td>{{#if notAuthorized }}<span title="Erforderlichen Ruhm nicht erreicht!" class="glyphicon glyphicon-exclamation-sign"></span> {{/if}}{{username}}</td>
         <td>{{rank}}</td>
         <td>{{glory}}</td>
         {{#if ../user.treasurer}}

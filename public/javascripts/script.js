@@ -67,6 +67,13 @@ $(document).ready(function() {
 		$( location ).attr("href", target);
 	});
 
+	$('.filterselection-btn').on('click', function() {
+		//console.log('Value: ' + this.value);
+		var target = '/selection/' + this.value;
+		console.log('Called: ' + target);
+		$( location ).attr("href", target);
+	});
+
 	$('.filterusername-btn').on('click', function() {
 		var target = '/users';
 		var searchinput = document.getElementById("usernamesearchinput").value;

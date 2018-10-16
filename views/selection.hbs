@@ -8,7 +8,7 @@
   <span style="color: red;">Du hast den Mindestruhm deines Trhonsaals nicht erreicht! Leider kannst du an der Auswahl nicht teilnehmen.</span>
 </p>
 {{/if}}
-<p>
+<!--<p>
 <label>Filter</label> <br>
   Level:
   <button value="5" class="btn btn-primary btn-xs filterts-btn">5</button>
@@ -18,14 +18,23 @@
   <button value="9" class="btn btn-primary btn-xs filterts-btn">9</button>
   <button value="10" class="btn btn-primary btn-xs filterts-btn">10</button>
   <button value="all" class="btn btn-primary btn-xs filterts-btn">All</button> <br>
-</p>
+</p>-->
 <form action="/selection/select" method="post" accept-charset="utf-8">
   <table class="table">
     <thead>
       <tr>
-        <th>Name</th>
-        <th>Seltenheit</th>
-        <th>Level</th>
+        <th>
+          Name
+          <button value="name=1" class="btn btn-primary btn-xs filterselection-btn" type="button"><span class="glyphicon glyphicon-chevron-up"></span></button>
+          <button value="name=-1" class="btn btn-primary btn-xs filterselection-btn" type="button"><span class="glyphicon glyphicon-chevron-down"></span></button>
+        </th>
+        <th>
+          Seltenheit
+          <button value="" class="btn btn-primary btn-xs filterselection-btn" type="button"><span class="glyphicon glyphicon-chevron-up"></span></button>
+        <th>
+          Level
+          <button value="level=1" class="btn btn-primary btn-xs filterselection-btn" type="button"><span class="glyphicon glyphicon-chevron-up"></span></button>
+          <button value="level=-1" class="btn btn-primary btn-xs filterselection-btn" type="button"><span class="glyphicon glyphicon-chevron-down"></span></button></th>
         <!--<th>Auswahl</th>-->
       </tr>
     </thead>
@@ -33,7 +42,7 @@
       <!-- {{data.current}} -->
     {{#if data.equitment}}
      {{#each data.equitment}}
-      <tr class="{{#if options.toHigh}}danger{{/if}}{{#if options.toLow}}warning{{/if}}">
+      <tr class="{{#if options.toHigh}}danger{{/if}}{{#if options.toLow}}warning{{/if}}{{#if options.selectiable}}success{{/if}}">
         <td>
             {{raw.name}}<br>
            <!-- <label class="radio-inline"><input type="radio" name="firstradio">first</label><label class="radio-inline"><input type="radio" name="secondradio">second</label><label class="radio-inline"><input type="radio" name="thirdradio">third</label>-->
@@ -42,13 +51,13 @@
         <td>{{raw.level}}</td>
       </tr>
       {{#if raw.ability}}
-      <tr class="{{#if options.toHigh}}danger{{/if}}{{#if options.toLow}}warning{{/if}}">
+      <tr class="{{#if options.toHigh}}danger{{/if}}{{#if options.toLow}}warning{{/if}}{{#if options.selectiable}}success{{/if}}">
         <td  colspan="3" style="border-top-style: none" >
           Effekt: {{raw.ability}}
         </td>
       </tr>
       {{/if}}
-      <tr class="{{#if options.toHigh}}danger{{/if}}{{#if options.toLow}}warning{{/if}}">
+      <tr class="{{#if options.toHigh}}danger{{/if}}{{#if options.toLow}}warning{{/if}}{{#if options.selectiable}}success{{/if}}">
         <td colspan="3" style="border-top-style: none" >
           <label class="radio-inline"><input value={{raw._id}} type="radio" name="firstradio" {{#if options.selection.first}}checked="checked"{{/if}} {{#if ../notAuthorized}}disabled{{/if}}>first</label>
           <label class="radio-inline"><input value={{raw._id}} type="radio" name="secondradio" {{#if options.selection.second}}checked="checked"{{/if}} {{#if ../notAuthorized}}disabled{{/if}}>second</label>

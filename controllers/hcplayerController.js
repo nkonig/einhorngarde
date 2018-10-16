@@ -20,7 +20,7 @@ exports.index = function(req, res, next) {
             default:
         }
     }    
-    //console.log(query)
+    console.log(query)
     HCPlayer.find(query)
             .sort({glory: -1})
             .select('username glory selection rank throneroom registert')
@@ -28,16 +28,22 @@ exports.index = function(req, res, next) {
             .exec(function(err, result) {
                 if(err) console.error(err);
                 //console.log('FOUND: ' +result);
-                    
+                
+                var raw = new Array();    
                 for(var i = 0; i < result.length; i++) {
+                    var value = result[i];
+                    if(result[i].minGlory > result[i].glory) {
+                        value.notAuthorized = true;
+                    }
                     if(user.username === result[i].username) {
                         user = result[i];
                         //delete result[i];                                    
                         //return res.render('users', {data: result, user: user, treasurer: user.treasurer, origin: { users : true }});
                     }
+                    raw.push(value);
                 }
                 
-                return res.render('users', {data: result, user: user, treasurer: user.treasurer, origin: { users : true }});
+                return res.render('users', {data: raw, user: user, treasurer: user.treasurer, origin: { users : true }});
             });
 }
 
@@ -89,21 +95,21 @@ exports.edit = function(req, res, next) {
 }
 
 exports.save = function(req, res, next) {
-    //console.log(req.body.exists + ' ' + req.body.userid);
+    console.log(req.body.exists + ' ' + req.body.userid);
     //console.log(req.body.exists);
     var firstSel = req.body.first === 'none' ? undefined :  req.body.first;
     var secondSel = req.body.second === 'none' ? undefined :  req.body.second;
     var thirdSel = req.body.third === 'none' ? undefined :  req.body.third;
     var noSel =!firstSel && !secondSel && !thirdSel; 
     var newUser = req.body.exists === 'false';
-    console.log(noSel + ' | ' +req.body.first + ' | ' +  req.body.second + ' | ' + req.body.third );
+    //console.log(noSel + ' | ' +req.body.first + ' | ' +  req.body.second + ' | ' + req.body.third );
     if(!newUser) {
         HCPlayer.update({_id: req.body.userid}, {
-                                                rank: req.body.rank,
-                                                throneroom: req.body.throneroom,
-                                                glory: req.body.glory
-                                            },
-            function(err) { if(err) console.error(err); });
+                                                    rank: req.body.rank,
+                                                    throneroom: req.body.throneroom,
+                                                    glory: req.body.glory
+                                                }, function(err) { if(err) console.error(err); });
+
         if(!noSel) {
             Season.findOne({current: true}, function(err, season) {
                 if(err) console.error(err);
@@ -133,8 +139,8 @@ exports.save = function(req, res, next) {
                 })
             });
         } else {
-            HCPlayer.findByIdAndUpdate(req.body.userid, { selection: null }, function(err, player) { 
-                if(err) console.error(err)
+            HCPlayer.findByIdAndUpdate(req.body.userid, { selection: null, throneroom: req.body.throneroom, glory: req.body.glory }, function(err, player) { 
+                if(err) console.error(err);
                 if(player.selection) {
                     Selection.deleteOne({ _id: player.selection}, function(err) { if(err) console.error(err) });
                 } 
