@@ -12,6 +12,7 @@ var indexRouter   = require('./routes/index');
 var usersRouter   = require('./routes/users');
 var selectRouter  = require('./routes/selection');
 var trasuryRouter = require('./routes/treasury');
+var warroomRouter = require('./routes/warrom');
 
 var app = express();
 
@@ -113,6 +114,7 @@ app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/selection', selectRouter);
 app.use('/treasury', trasuryRouter);
+app.use('/warroom', warroomRouter);
 
 app.use(expressWinston.errorLogger({
   transports: [

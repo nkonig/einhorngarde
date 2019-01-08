@@ -1,15 +1,21 @@
 var Season    = require('../models/season');
 var Equitment = require('../models/equitment');
 var HCPlayer  = require('../models/hcplayer');
-var async = require('async');
+var Clan      = require('../models/clan');
+var async     = require('async');
 
 exports.index = function(req, res, next) {
-    Season.find({}, function(err, result) {
-        if(err) return next(err);
-        var hcplayer = new HCPlayer(req.session.hcplayer);
-        //console.log('HCPlayer: ' + result);
-        return res.render('treasury', {data: result, username: hcplayer.username, rank: hcplayer.rank, treasurer: hcplayer.treasurer, origin: { treasury : true } });
-   });
+    var query = req.params.clanid ? {_id: req.params.clanid} : {main: true};
+    Clan.findOne( query )
+        .populate({ path: 'seasons', model: 'Season' })
+        .exec( function(err, clanSeasons) {
+            if(err) return next(err);
+            Clan.find({}, function(err, clans) {
+                if(err) return next(err);
+                var hcplayer = new HCPlayer(req.session.hcplayer);
+                return res.render('treasury', {data: clanSeasons, clans: clans, username: hcplayer.username, rank: hcplayer.rank, treasurer: hcplayer.treasurer, origin: { treasury : true } });    
+            });
+    });
 } 
 
 exports.upload = function(req, res, next) {    
@@ -86,12 +92,9 @@ exports.upload = function(req, res, next) {
                 callback(null);
             }, 
             function(callback) {
-                //console.log('Add ' + equitIds.length + ' Equitment IDs: ' + equitIds);
                 season.equitment = equitIds;
-                season.save(function(err) {
-                    if(err) return next(err);
-                    console.log('Season Saved!');
-                });
+                season.save(function(err) { if(err) return next(err); });
+                Clan.update({ _id: result.treasury.meta.clanid}, { $push: { seasons: season._id } }, function(err) { if(err) return next(err); });
                 callback(null);
             }
         ]);

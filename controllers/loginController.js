@@ -8,10 +8,16 @@ exports.index = function(req, res) {
 
 exports.loginStub = function(req, res) {
 
+  //Einhorngarde
+  var clan = '5c325734e7179a7d123ff04e'
+  //Zweihorngarde
+  //var clan = '5c329056e7179a7d124000d0';
+
   var user = new HCPlayer({rank: 'Stellvertreter',
                            _id:  '5b98331dbb919a27c4858c53',
                            username: 'Stub User',
-                           throneroom: 10});
+                           throneroom: 10,
+                           clan: clan});
   //console.log('User Treasurer: ' + user.treasurer);
   var session = req.session;
   session.hcplayer = user;
@@ -46,7 +52,9 @@ HCPlayer.findOne({ username: req.body.username }).populate({path: 'selection', p
           console.log('User ' + user.username + ' logged in.');
           return res.redirect('/selection');
         } else {
-          var defaultPass = req.body.password === 'einhorngarde123!' ? true : false;
+          //disabled
+          //var defaultPass = req.body.password === 'einhorngarde123!' ? true : false;
+          var defaultPass = false;
           return res.redirect('/register/' + defaultPass);
         }
       } else {

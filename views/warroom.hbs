@@ -1,0 +1,68 @@
+{{> nav}}
+<h3>Wilkommen in der Kriegskammer {{user.name}}</h3>
+
+<hr>
+<h3>Clankriegsteilnahme eintragen</h3>
+<table>
+  <tbody>
+    {{#if treasurer}}
+    <tr>
+      <td><label>Clan:</label></td>
+      <td>
+        <select class="form-control" name="clan" id="clan_sel">    
+            {{#each clans}}
+                <option {{#ifEquals ../season.clan _id }}selected="selected"{{/ifEquals}} name="clan" value="{{_id}}">{{name}}</option>
+            {{/each}}
+        </select>
+      </td>
+    </tr>
+    {{/if}}
+    <tr>
+      <td><label>Tag:</label></td>
+      <td><input type="date" class="form-control" name="ckday" min="{{season.startformated}}" max="{{season.endformated}}"></td>
+    </tr>
+    <tr>
+      <td><label>Stunde:</label></td>
+      <td>
+        <select class="form-control" name="ckhour" id="ckhour_sel">
+          <option value="04:00">04:00</option>
+          <option value="11:00">11:00</option>
+          <option value="16:00">16:00</option>
+          <option value="22:00">22:00</option>
+        </select>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+
+
+<hr>
+<table class="table table-bordered">
+  <col>
+  <col>
+  <colgroup span="4"></colgroup>
+  <thead>
+    <tr>
+      <th rowspan="2">Name</th>
+      <th rowspan="2" scope="col">TN</th>
+      <th colspan="4" scope="colgroup">{{#ifNotEquals season.start '02.10.2018'}}Button{{/ifNotEquals}} 08.01.2019 {{#ifNotEquals season.end '16.10.2018'}}Button{{/ifNotEquals}}</th>
+    </tr>
+    <tr>
+      <th scope="colgroup">04:00</th>
+      <th scope="colgroup">11:00</th>
+      <th scope="colgroup">16:00</th>
+      <th scope="colgroup">22:00</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Narrenkönig</td>
+      <td>7</td>
+      <td class="success"></td>
+      <td class="warning"></td>
+      <td class="danger"></td>    
+      <td class="warning"></td>
+    </tr>
+  </tbody>
+</table>

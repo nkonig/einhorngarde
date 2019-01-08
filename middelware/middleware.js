@@ -14,6 +14,17 @@ exports.authenticated = function(req, res, next) {
 exports.treasury = function(req, res, next) {
     //console.log('Middelware function treasury called.')
     if(req.session.hcplayer && new HCPlayer(req.session.hcplayer).treasurer) {
+        req.session.touch();
+        next();
+    } else {
+       return res.redirect('/selection');
+    }
+}
+
+exports.seneschal = function(req, res, next) {
+    //console.log('Middelware function seneschal called.')
+    if(req.session.hcplayer && new HCPlayer(req.session.hcplayer).seneschal) {
+        req.session.touch();
         next();
     } else {
        return res.redirect('/selection');

@@ -1,46 +1,69 @@
 {{> nav}}
-<h2>Hallo {{rank}} {{username}}</h2>
-<h3>Upload Clantruhen inhalte:</h3>
-<div class="form-group">
-<form method="post" enctype="multipart/form-data" action="/treasury/upload">
-    <input type="file" name="clantruhe">
-    <input type="submit">
-</form>
-</div> 
-<div class="form-group">
-<form action="/treasury/selectseason" method="post" accept-charset="utf-8">
-<table class="table">
-    <thead>
-      <tr>
-        <th>Aktiv</th>
-        <th>Season</th>
-        <th>Edit</th>
-        <th>Verteilen</th>
-      </tr>
-    </thead>
-    <tbody>
-      {{#each data}}
-      <tr>
-        <td>
-            <input value="{{_id}}" {{#if current}}checked="checked"{{/if}} type="radio" name="seasonradio">
-        </td>
-        <td>{{start}} - {{end}}</td>
-        <td>
-            <p data-placement="top" data-toggle="tooltip"><button type="button" class="btn btn-primary btn-xs editseason-btn" data-title="Edit" title="Edit" data-toggle="tooltip" data-target="#edit" value="{{_id}}"><span class="glyphicon glyphicon-pencil"></span></button></p>
-        </td>
-        <td>
-        {{#if current}}
-            <p data-placement="top" data-toggle="tooltip"><button type="button" class="btn btn-primary btn-xs distributseason-btn" data-title="Edit" title="Verteilung berechnen" data-toggle="tooltip" data-target="#distribute" value="{{_id}}"><span class="glyphicon glyphicon-cog"></span></button></p>
-        {{/if}}
-        </td>
-      </tr>
-      {{/each}}
-      <tr>
-          <td colspan="4">
-              <input type="submit" name="submit" value="Auswahl" id="submit" class="btn btn-primary btn-block btn-flat">
-          </td>
-      </tr>
-    </tbody>
-  </table>
-  </form>
-  </div>
+<div class="container">
+    <h2>Hallo {{rank}} {{username}}</h2>
+    <br>
+    <h3>Upload Clantruhen Inhalte:</h3>
+    <div class="form-group">
+        <form method="post" enctype="multipart/form-data" action="/treasury/upload">
+            <input type="file" name="clantruhe">
+            <input type="submit" class="btn btn-primary btn-xs">
+        </form>
+    </div> 
+    <hr>
+    <div class="form-group">
+    <form action="/treasury/selectseason" method="post" accept-charset="utf-8">
+    <div class="form-inline">
+        <div class="form-group">
+            <p class="form-control-static">Clan:</p>
+        </div>
+        <div class="form-group mx-sm-2">
+            <select name="clan" class="form-control" id="clan_sel">    
+                {{#each clans}}
+                    <option {{#ifEquals ../data._id _id }}selected="selected"{{/ifEquals}} name="clan" value="{{_id}}">{{name}}</option>
+                {{/each}}
+            </select>
+        </div>
+        <button type="button" class="btn btn-primary btn-xs selectclan-btn" data-title="Select" title="Select Clan" data-toggle="Select Clan" data-target="#selectclan">Auswahl</button>
+    </div>
+    <!--
+    <p>
+    <button type="button" class="btn btn-primary btn-xs addclan-btn"><span class="fa fa-plus"></span></button>
+    </p>
+    -->
+    <table class="table">
+        <thead>
+        <tr>
+            <th>Aktiv</th>
+            <th>Season</th>
+            <th>Edit</th>
+            <th>Verteilen</th>
+        </tr>
+        </thead>
+        <tbody>
+            <!-- {{data}} -->
+        {{#each data.seasons}}
+        <tr>
+            <td>
+                <input value="{{_id}}" {{#if current}}checked="checked"{{/if}} type="radio" name="seasonradio">
+            </td>
+            <td>{{start}} - {{end}}</td>
+            <td>
+                <p data-placement="top" data-toggle="tooltip"><button type="button" class="btn btn-primary btn-xs editseason-btn" data-title="Edit" title="Edit" data-toggle="tooltip" data-target="#edit" value="{{_id}}"><span class="glyphicon glyphicon-pencil"></span></button></p>
+            </td>
+            <td>
+            {{#if current}}
+                <p data-placement="top" data-toggle="tooltip"><button type="button" class="btn btn-primary btn-xs distributseason-btn" data-title="Edit" title="Verteilung berechnen" data-toggle="tooltip" data-target="#distribute" value="{{_id}}"><span class="glyphicon glyphicon-cog"></span></button></p>
+            {{/if}}
+            </td>
+        </tr>
+        {{/each}}
+        <tr>
+            <td colspan="4">
+                <input type="submit" name="submit" value="Auswahl" id="submit" class="btn btn-primary btn-block btn-flat">
+            </td>
+        </tr>
+        </tbody>
+    </table>
+    </form>
+    </div>
+</div>

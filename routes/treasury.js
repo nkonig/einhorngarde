@@ -6,8 +6,11 @@ var treasury_controller = require('../controllers/treasuryController');
 var equitmant_controller = require('../controllers/equitmentController');
 var season_controller = require('../controllers/seasonController');
 var hcplayer_controller = require('../controllers/hcplayerController');
+var clan_controller = require('../controllers/clanController');
 
 router.get('/', middleware.treasury, treasury_controller.index);
+
+router.get('/:clanid', middleware.treasury, treasury_controller.index);
 
 router.post('/upload', middleware.treasury, treasury_controller.upload);
 
@@ -24,5 +27,7 @@ router.get('/season/:id/edit/:eqid', middleware.treasury, equitmant_controller.e
 router.post('/eq/save', middleware.treasury, equitmant_controller.save);
 
 router.get('/eq/delete/:eqid', middleware.treasury, equitmant_controller.delete);
+
+router.get('/addclan', middleware.treasury, clan_controller.index);
 
 module.exports = router;  

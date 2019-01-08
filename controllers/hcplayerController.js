@@ -1,30 +1,39 @@
 var HCPlayer = require('../models/hcplayer');
 var Selection = require('../models/selection');
 var Season = require('../models/season');
+var Clan      = require('../models/clan');
 
 exports.index = function(req, res, next) {
     var user = new HCPlayer(req.session.hcplayer); 
     var query = {};
     if(!user.treasurer) {
         query.registert = true;
+        query.clan = user.clan;
     }
     if(req.params.filter) {
-        var field = req.params.filter.split("=")[0];
-        var value = req.params.filter.split("=")[1];
-        switch(field) {
-            case 'throneroom':
-                query.throneroom = value;
-                break;
-            case 'username':
-                query.username = new RegExp(value, 'i');
-            default:
+        var filter = req.params.filter.split('$$');
+        for(idx in filter) {
+            var field = filter[idx].split("=")[0];
+            var value = filter[idx].split("=")[1];
+            switch(field) {
+                case 'throneroom':
+                    query.throneroom = value;
+                    break;
+                case 'username':
+                    query.username = new RegExp(value, 'i');
+                    break;
+                case 'clan':
+                    query.clan = value;
+                    break;
+                default:
+            }
         }
     }    
-    console.log(query)
     HCPlayer.find(query)
             .sort({glory: -1})
-            .select('username glory selection rank throneroom registert')
+            .select('username glory selection rank throneroom registert clan')
             .populate({path: 'selection' , populate: { path: 'first second third', model: 'Equitment'}})
+            .populate({path: 'clan', model: 'Clan'})
             .exec(function(err, result) {
                 if(err) console.error(err);
                 //console.log('FOUND: ' +result);
@@ -42,15 +51,14 @@ exports.index = function(req, res, next) {
                     }
                     raw.push(value);
                 }
-                
-                return res.render('users', {data: raw, user: user, treasurer: user.treasurer, origin: { users : true }});
+                Clan.find({}, function(err, clans) {
+                    if(err) console.error(err);
+                    return res.render('users', {data: raw, clans: clans, clanfilter: query.clan, user: user, treasurer: user.treasurer, origin: { users : true }});
+                });
             });
 }
 
 exports.add = function(req, res, next) {
-    //if(err) return handleError(err);
-    //console.log('username: ' + req.body.username);
-    //console.log('rolle: '    + req.body.rolle);
 
     var hcplayer = new HCPlayer({username: req.body.username, rank: req.body.rolle, password: 'einhorngarde123!'});
 
@@ -67,7 +75,10 @@ exports.edit = function(req, res, next) {
     if(newUser) {
         var user = new HCPlayer({username: '', password: 'einhorngarde123!'});
         var options = {exists: false};
-        return res.render('edituser', {user: user, treasurer: hcplayer.treasurer, options: options, origin: { users : true }});
+        Clan.find({}, function(err, clans) {
+            if(err) console.error(err);
+            return res.render('edituser', {user: user, clans: clans, treasurer: hcplayer.treasurer, options: options, origin: { users : true }});
+        });
     } else {
         var query = HCPlayer.findById(req.params.id).populate({path: 'selection', populate: { path: 'first second third', model: 'Equitment'}});
         query.exec(function(err, user, next) {
@@ -87,27 +98,28 @@ exports.edit = function(req, res, next) {
                 for(var i=0; i < season.equitment.length; i++) {
                     selection.eqs.push(season.equitment[i]);
                 }
-                //console.log(selection);
-                return res.render('edituser', {user: user, selection: selection, treasurer: hcplayer.treasurer, options: options,  origin: { users : true }});
+                Clan.find({}, function(err, clans) {
+                    if(err) console.error(err);
+                    return res.render('edituser', {user: user, clans: clans, selection: selection, treasurer: hcplayer.treasurer, options: options,  origin: { users : true }});
+                });
             });
         });
     }
 }
 
 exports.save = function(req, res, next) {
-    console.log(req.body.exists + ' ' + req.body.userid);
-    //console.log(req.body.exists);
     var firstSel = req.body.first === 'none' ? undefined :  req.body.first;
     var secondSel = req.body.second === 'none' ? undefined :  req.body.second;
     var thirdSel = req.body.third === 'none' ? undefined :  req.body.third;
     var noSel =!firstSel && !secondSel && !thirdSel; 
     var newUser = req.body.exists === 'false';
-    //console.log(noSel + ' | ' +req.body.first + ' | ' +  req.body.second + ' | ' + req.body.third );
+    
     if(!newUser) {
         HCPlayer.update({_id: req.body.userid}, {
                                                     rank: req.body.rank,
                                                     throneroom: req.body.throneroom,
-                                                    glory: req.body.glory
+                                                    glory: req.body.glory,
+                                                    clan:  req.body.clan
                                                 }, function(err) { if(err) console.error(err); });
 
         if(!noSel) {
@@ -139,7 +151,7 @@ exports.save = function(req, res, next) {
                 })
             });
         } else {
-            HCPlayer.findByIdAndUpdate(req.body.userid, { selection: null, throneroom: req.body.throneroom, glory: req.body.glory }, function(err, player) { 
+            HCPlayer.findByIdAndUpdate(req.body.userid, { selection: null, rank: req.body.rank, throneroom: req.body.throneroom, glory: req.body.glory, clan: req.body.clan }, function(err, player) { 
                 if(err) console.error(err);
                 if(player.selection) {
                     Selection.deleteOne({ _id: player.selection}, function(err) { if(err) console.error(err) });

@@ -39,12 +39,15 @@ exports.edit = function(req, res, next) {
 }
 
 exports.select = function(req, res, next) {
-    Season.findOne({current: true}, function(err, currentSeason) {
+
+    var clanId = req.body.clan;
+    var selectedId = req.body.seasonradio;
+
+    Season.findOne({clan: clanId, current: true}, function(err, currentSeason) {
         if(err) return next(err);
         Season.updateOne({_id: currentSeason._id}, {current: false}, function(err) { 
             if(err) return next(err);
         });
-        var selectedId = req.body.seasonradio;
         Season.updateOne({_id: selectedId }, {current: true}, function(err) {
             if(err) return next(err);
         });

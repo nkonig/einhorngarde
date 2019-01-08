@@ -7,11 +7,12 @@ var Schema = mongoose.Schema;
 var HCPlayerSchema = new Schema({
     username    : { type: String, unique: true, required: true, trim: true }, 
     password    : { type: String, required: true },
-    rank        : { type: String, enum: ['Soldat', 'Offizier', 'Schatzmeister', 'Stellvertreter', 'BigBoss'], default: 'Soldat' },
+    rank        : { type: String, enum: ['Soldat', 'Offizier', 'Truchsess', 'Schatzmeister', 'Stellvertreter', 'BigBoss'], default: 'Soldat' },
     throneroom  : { type: Number, min: 5, max: 10 },
     selection   : { type: Schema.Types.ObjectId, ref: 'Selection' },
     glory       : Number,
-    registert   : { type: Boolean, default: false}
+    registert   : { type: Boolean, default: false},
+    clan        : { type: Schema.Types.ObjectId, ref: 'Clan'}
 });
 
 //hashing a password before saving it to the database
@@ -84,6 +85,10 @@ HCPlayerSchema.virtual('minLevel').get(function() {
 
 HCPlayerSchema.virtual('treasurer').get(function() {
   return (this.rank === 'Schatzmeister' ||  this.rank === 'Stellvertreter' ||  this.rank === 'BigBoss');
+})
+
+HCPlayerSchema.virtual('seneschal').get(function() {
+  return (this.rank === 'Truchsess' || this.rank === 'Schatzmeister' ||  this.rank === 'Stellvertreter' ||  this.rank === 'BigBoss');
 })
 
 module.exports = mongoose.model('HCPlayer', HCPlayerSchema);

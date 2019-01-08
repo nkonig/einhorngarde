@@ -1,0 +1,276 @@
+<treasury>
+	<meta>
+		<!-- z.b. 18.09.2018 -->
+		<start>27.11.2018</start>
+		<end>04.12.2018</end>
+		<clanid>5c325734e7179a7d123ff04e</clanid>
+	</meta>
+	<usable>
+		<name>Krit Edelstein</name>
+		<ability></ability>
+		<!-- common, rare, epic, legendary -->
+		<rarity>common</rarity>
+	</usable>
+	<usable>
+		<name>Zauberkraft Edelstein</name>
+		<ability></ability>
+		<!-- common, rare, epic, legendary -->
+		<rarity>common</rarity>
+	</usable>
+	<usable>
+		<name>Gesundheit Edelstein</name>
+		<ability></ability>
+		<!-- common, rare, epic, legendary -->
+		<rarity>common</rarity>
+	</usable>
+	<usable count="1">
+		<name>Violetter Splitter</name>
+		<rarity>epic</rarity>
+		<ability>5 Stück</ability>
+	</usable>
+	<usable count="5">
+		<name>Blauer Splitter</name>
+		<rarity>rare</rarity>
+		<ability>3 Stück</ability>
+	</usable>
+	<usable count="5">
+		<name>Grüner Splitter</name>
+		<ability>4 Stück</ability>
+	</usable>
+	<usable count="5">
+		<name>Diamanten</name>
+		<ability>90 Stück</ability>
+	</usable>
+	<usable count="4">
+		<name>Grüner Staub</name>
+		<ability>500 Stück</ability>
+	</usable>
+	<usable count="3">
+		<name>Blauer Staub</name>
+		<ability>50 Stück</ability>
+	</usable>
+	<usable count="5">
+		<name>Tickets</name>
+		<ability>8 Stück</ability>
+	</usable>
+	<equitment>
+		<!-- item name -->
+		<name>Ring des Schlangenblicks</name>
+		<!-- common, rare, epic, legendary -->
+		<rarity>legendary</rarity>
+		<!-- item level -->
+		<level>75</level>
+		<!-- item ability as text -->
+		<ability>Magischer Schaden 425-567, Krit +1373, Ausgewichen: +1543</ability>	
+	</equitment>
+	<equitment>
+		<!-- item name -->
+		<name>Titanen-Plattenharnisch</name>
+		<!-- common, rare, epic, legendary -->
+		<rarity>legendary</rarity>
+		<!-- item level -->
+		<level>68</level>
+		<!-- item ability as text -->
+		<ability>Sachaden: 576-725, Rüstung +4473, Krit: +1290.  Erhöht, wenn Schaden erlitten wird, mit einer Chance von 30% die eigene magische Rüstung um 50%. Hält 10 Sek. lang an.</ability>	
+	</equitment>
+	<equitment>
+		<!-- item name -->
+		<name>Kleidung des Meisters der Magie</name>
+		<!-- common, rare, epic, legendary -->
+		<rarity>legendary</rarity>
+		<!-- item level -->
+		<level>39</level>
+		<!-- item ability as text -->
+		<ability>Zauberkraft +7052, Ausgewichen +863. Verringert, wenn Schaden erlitten wird, mit einer Chance von 33% die magische Rüstung des Gegners um 60%. Hält 10 Sek. lang an.</ability>	
+	</equitment>
+	<equitment>
+		<!-- item name -->
+		<name>Stab der Macht des Waldes</name>
+		<!-- common, rare, epic, legendary -->
+		<rarity>legendary</rarity>
+		<!-- item level -->
+		<level>39</level>
+		<!-- item ability as text -->
+		<ability>Zauberkraft: +907, Krit +855. Verursacht hin und wieder über 4 Sek. 2115 (+998 der Zauberkraft) Flächenschaden.</ability>	
+	</equitment>
+	<equitment>
+		<!-- item name -->
+		<name>Kleidung des höchsten Herrschers</name>
+		<!-- common, rare, epic, legendary -->
+		<rarity>legendary</rarity>
+		<!-- item level -->
+		<level>99</level>
+		<!-- item ability as text -->
+		<ability>Zauberkraft: +15465, Magische Rüstung: +1807. Erhöht, wenn Schaden erlitten wird, mit einer Chance von 35% den eigenen magischen Schaden um 55%. Hält 10 Sek. lang an.</ability>	
+	</equitment>
+	<equitment>
+		<!-- item name -->
+		<name>Kleidung des erhabenen Mystikers</name>
+		<!-- common, rare, epic, legendary -->
+		<rarity>epic</rarity>
+		<!-- item level -->
+		<level>74</level>
+		<!-- item ability as text -->
+		<ability>Zauberkraft: +7021, Magische Rüstung: +1095. Erhöht, wenn Schaden erlitten wird, mit einer Chance von 32% den eigenen magischen Schaden um 54%. Hält 10 Sek. lang an.</ability>	
+	</equitment>
+	<equitment>
+		<!-- item name -->
+		<name>Ausrüstung des gewaltigen Donners</name>
+		<!-- common, rare, epic, legendary -->
+		<rarity>epic</rarity>
+		<!-- item level -->
+		<level>81</level>
+		<!-- item ability as text -->
+		<ability>Schaden: 3175-3458. Stellt, wenn Schaden ertlitten wird, mit einer Chance von 31% 8% der eigenen Gesundheit wiederher.</ability>	
+	</equitment>
+	<equitment>
+		<!-- item name -->
+		<name>Gnadenloser Bogen</name>
+		<!-- common, rare, epic, legendary -->
+		<rarity>epic</rarity>
+		<!-- item level -->
+		<level>42</level>
+		<!-- item ability as text -->
+		<ability>Ausgewichen: +572. Verursacht beim Angriff mit einer Chance von 19% 75% Schaden bei einer Groppe von Gegnern. Erhöht beim Angriff mit einer Chance von 28% den eigenen Krit um 40%. Hält 10 Sek. lang an.</ability>	
+	</equitment>
+	<equitment>
+		<!-- item name -->
+		<name>Ausrüstung des Donners</name>
+		<!-- common, rare, epic, legendary -->
+		<rarity>epic</rarity>
+		<!-- item level -->
+		<level>66</level>
+		<!-- item ability as text -->
+		<ability>Schade: 2152-2246, Krit: +837. Veringert, wenn schaden erlitten wird, mit einer Chance von 28% den durch den Gegner verursachten Schaden um 45%. Hält 10 Sek. lang an.</ability>	
+	</equitment>
+	<equitment>
+		<!-- item name -->
+		<name>Siegelring des Smaragdrätsels</name>
+		<!-- common, rare, epic, legendary -->
+		<rarity>epic</rarity>
+		<!-- item level -->
+		<level>63</level>
+		<!-- item ability as text -->
+		<ability>Magischer Schaden: 283-372, Ausgewichen: +1199</ability>	
+	</equitment>
+	<equitment>
+		<!-- item name -->
+		<name>Amulett der Macht der Uralten</name>
+		<!-- common, rare, epic, legendary -->
+		<rarity>epic</rarity>
+		<!-- item level -->
+		<level>38</level>
+		<!-- item ability as text -->
+		<ability>Rüstung: +1033, Gesundheit: +4999.</ability>	
+	</equitment>
+	<equitment>
+		<!-- item name -->
+		<name>Amulett des Abgrundfeuers</name>
+		<!-- common, rare, epic, legendary -->
+		<rarity>epic</rarity>
+		<!-- item level -->
+		<level>63</level>
+		<!-- item ability as text -->
+		<ability>Zauberkraft: +1247, Gesundheit: +9079.</ability>	
+	</equitment>
+	<equitment>
+		<!-- item name -->
+		<name>Zepter der Orakelentscheidung</name>
+		<!-- common, rare, epic, legendary -->
+		<rarity>epic</rarity>
+		<!-- item level -->
+		<level>33</level>
+		<!-- item ability as text -->
+		<ability>Krit: +1216, Ausgewichen: +1191. Stellt hin und wieder 3536 (+0 der Zauberkraft) Gesundheit eines Verbündeten wiederher.</ability>	
+	</equitment>
+	<equitment>
+		<!-- item name -->
+		<name>Spielzeug-Siegelring des Erzmagiers</name>
+		<!-- common, rare, epic, legendary -->
+		<rarity>epic</rarity>
+		<!-- item level -->
+		<level>87</level>
+		<!-- item ability as text -->
+		<ability>Magischer Schaden: 431-565, Krit: +1772.</ability>	
+	</equitment>
+	<equitment>
+		<!-- item name -->
+		<name>Inquisitoraxt</name>
+		<!-- common, rare, epic, legendary -->
+		<rarity>rare</rarity>
+		<!-- item level -->
+		<level>31</level>
+		<!-- item ability as text -->
+		<ability>Verursacht beim Angriff mit einer Chance von 32% 135% Flächenschaden. Verringert beim Angriff mit einer Chance von 21% die Rüstung des Gegners um 50%. Hält 10 Sek. an.</ability>	
+	</equitment>
+	<equitment>
+		<!-- item name -->
+		<name>Titanen-Plattenharnisch</name>
+		<!-- common, rare, epic, legendary -->
+		<rarity>rare</rarity>
+		<!-- item level -->
+		<level>60</level>
+		<!-- item ability as text -->
+		<ability>Rüstung: +3007, Krit: +512. Stellt, wenn Schaden ertlitten wird, mit einer Chance von 21% 4% der eigenen Gesundheit wiederher.</ability>	
+	</equitment>
+	<equitment>
+		<!-- item name -->
+		<name>Ausrüstung des legendären Meuchlers</name>
+		<!-- common, rare, epic, legendary -->
+		<rarity>rare</rarity>
+		<!-- item level -->
+		<level>36</level>
+		<!-- item ability as text -->
+		<ability>Schaden: 931-965, Ausgewichen: +418. Veringert, wenn schaden erlitten wird, mit einer Chance von 25% den durch den Gegner verursachten Schaden um 50%. Hält 10 Sek. lang an.</ability>	
+	</equitment>
+	<equitment>
+		<!-- item name -->
+		<name>Ring des Schlangenblicks</name>
+		<!-- common, rare, epic, legendary -->
+		<rarity>rare</rarity>
+		<!-- item level -->
+		<level>69</level>
+		<!-- item ability as text -->
+		<ability>Magischer Schaden: 165-226, Ausgewichen: +1058.</ability>	
+	</equitment>
+	<equitment>
+		<!-- item name -->
+		<name>Streitaxt des Nordwinds</name>
+		<!-- common, rare, epic, legendary -->
+		<rarity>rare</rarity>
+		<!-- item level -->
+		<level>60</level>
+		<!-- item ability as text -->
+		<ability>Verursacht beim Angriff mit einer Chance von 30% 130% Flächenschaden. Verringert beim Angriff mit einer Chance von 23% die Rüstung des Gegners um 35%. Hält 10 Sek. an.</ability>	
+	</equitment>
+	<equitment>
+		<!-- item name -->
+		<name>Stab der Macht des Waldes</name>
+		<!-- common, rare, epic, legendary -->
+		<rarity>rare</rarity>
+		<!-- item level -->
+		<level>36</level>
+		<!-- item ability as text -->
+		<ability>Krit: +433. Verursacht hin und wieder 723 (+0 der Zauberkraft) Flächenschaden.</ability>	
+	</equitment>
+	<equitment>
+		<!-- item name -->
+		<name>Herrscherkeule</name>
+		<!-- common, rare, epic, legendary -->
+		<rarity>rare</rarity>
+		<!-- item level -->
+		<level>93</level>
+		<!-- item ability as text -->
+		<ability>Ausgewichen: +761. Betäubt beim Angriff einen Gegner mit einer Chance von 23% für 2 Sekunden. Erhöht beim Angriff mit einer Chance von 21% den eigenen Krit um 45%. Hält 10 Sek. an.</ability>	
+	</equitment>
+	<equitment>
+		<!-- item name -->
+		<name>Moment-der-Wahrheit-Bogen</name>
+		<!-- common, rare, epic, legendary -->
+		<rarity>rare</rarity>
+		<!-- item level -->
+		<level>53</level>
+		<!-- item ability as text -->
+		<ability>Verursacht beim Angriff mit einer Chance von 15% 70% Schaden bei einer Gruppe von Gegnern. Erhöht beim Angriff mit einer Chance von 24% den eigenen Krit um 35%. Hält 10 Sek. an.</ability>	
+	</equitment>
+</treasury>

@@ -1,166 +1,35 @@
-<!-- <div class="navbar-more-overlay"></div>-->
-	<nav class="navbar navbar-inverse navbar-fixed-top animate">
-			<!--
-    <div class="container navbar-more visible-xs">
-		
-      <form class="navbar-form navbar-left" role="search">
-				<div class="form-group">
-					<div class="input-group">
-						<input type="text" class="form-control" placeholder="Search for...">
-						<span class="input-group-btn">
-							<button class="btn btn-default" type="submit">Submit</button>
-						</span>
-					</div>
-				</div>
-			</form>
-			<ul class="nav navbar-nav">
-				<li>
-					<a href="#">
-						<span class="menu-icon fa fa-picture-o"></span>
-						Photos
-					</a>
-				</li>
-				<li>
-					<a href="#">
-						<span class="menu-icon fa fa-bell-o"></span>
-						Reservations
-					</a>
-				</li>
-				<li>
-					<a href="#">
-						<span class="menu-icon fa fa-picture-o"></span>
-						Photos
-					</a>
-				</li>
-				<li>
-					<a href="#">
-						<span class="menu-icon fa fa-bell-o"></span>
-						Reservations
-					</a>
-				</li>
-				<li>
-					<a href="#">
-						<span class="menu-icon fa fa-picture-o"></span>
-						Photos
-					</a>
-				</li>
-				<li>
-					<a href="#">
-						<span class="menu-icon fa fa-bell-o"></span>
-						Reservations
-					</a>
-				</li>
-				<li>
-					<a href="#">
-						<span class="menu-icon fa fa-picture-o"></span>
-						Photos
-					</a>
-				</li>
-				<li>
-					<a href="#">
-						<span class="menu-icon fa fa-bell-o"></span>
-						Reservations
-					</a>
-				</li>
-				<li>
-					<a href="#">
-						<span class="menu-icon fa fa-picture-o"></span>
-						Photos
-					</a>
-				</li>
-				<li>
-					<a href="#">
-						<span class="menu-icon fa fa-bell-o"></span>
-						Reservations
-					</a>
-				</li>
-				<li>
-					<a href="#">
-						<span class="menu-icon fa fa-picture-o"></span>
-						Photos
-					</a>
-				</li>
-				<li>
-					<a href="#">
-						<span class="menu-icon fa fa-bell-o"></span>
-						Reservations
-					</a>
-				</li>
-				<li>
-					<a href="#">
-						<span class="menu-icon fa fa-picture-o"></span>
-						Photos
-					</a>
-				</li>
-				<li>
-					<a href="#">
-						<span class="menu-icon fa fa-bell-o"></span>
-						Reservations
-					</a>
+<nav class="navbar navbar-inverse navbar-fixed-top animate">
+	<div class="container">
+		<ul class="nav navbar-nav navbar-right mobile-bar">
+			<li class="nav-item {{#if origin.selection }}active{{/if}} {{#if origin.register}}disabled{{/if}}">
+				<a href="/selection">
+					<span class="menu-icon fa fa-cube"></span>
+					<span>Auswahl</span>
+				</a>
+			</li>
+			<li class="nav-item {{#if origin.users }}active{{/if}} {{#if origin.register}}disabled{{/if}}">
+				<a href="/users">
+					<span class="menu-icon fa fa-group"></span>
+					<span class="hidden-xs">Benutzer</span>
+					<span class="visible-xs">Benutzer</span>
+				</a>
+			</li>
+        	{{#if treasurer }}
+			<li class="nav-item {{#if origin.treasury }}active{{/if}} {{#if origin.register}}disabled{{/if}}">
+				<a href="/treasury">
+					<span class="menu-icon fa fa-diamond"></span>					
+					<span class="hidden-xs">Clan Halle</span>
+					<span class="visible-xs">Clan Halle</span>
+				</a>
+			</li>
+        	{{/if}}
+			<li>
+				<a href="/logout">
+					<span class="menu-icon fa fa-close"></span>						
+					<span class="hidden-xs">Logout</span>
+					<span class="visible-xs">Logout</span>
+				</a>
 				</li>
 			</ul>
-		</div>
-    
-      -->
-		<div class="container">
-			<!--
-      <div class="navbar-header hidden-xs">
-				<a class="navbar-brand" href="#">Brand</a>
-			</div>
-      -->
-			<ul class="nav navbar-nav navbar-right mobile-bar">
-				<li class="nav-item {{#if origin.selection }}active{{/if}} {{#if origin.register}}disabled{{/if}}">
-					<a href="/selection">
-						<span class="menu-icon fa fa-cube"></span>
-						Auswahl
-					</a>
-				</li>
-				<!-- {{origin.register}} -->
-				<li class="nav-item {{#if origin.users }}active{{/if}} {{#if origin.register}}disabled{{/if}}">
-					<a href="/users">
-						<span class="menu-icon fa fa-group"></span>
-						<span class="hidden-xs">Benutzer</span>
-						<span class="visible-xs">Benutzer</span>
-					</a>
-				</li>
-        <!--
-				<li class="hidden-xs">
-					<a href="#">
-						<span class="menu-icon fa fa-picture-o"></span>
-						Photos
-					</a>
-				</li>
-        -->
-        {{#if treasurer }}
-				<li class="nav-item {{#if origin.treasury }}active{{/if}} {{#if origin.register}}disabled{{/if}}">
-					<a href="/treasury">
-						<span class="menu-icon fa fa-diamond"></span>					
-						<span class="hidden-xs">Schatzkammer</span>
-						<span class="visible-xs">Schatzkammer</span>
-					</a>
-				</li>
-        {{/if}}
-        <!--
-				<li class="hidden-xs">
-					<a href="#">
-						<span class="menu-icon fa fa-bell-o"></span>
-						Reservations
-					</a>
-				</li>
-        -->
-				<li>
-					<a href="/logout">
-						<span class="menu-icon fa fa-close"></span>						
-						<span class="hidden-xs">Logout</span>
-						<span class="visible-xs">Logout</span>
-					</a>
-				</li>
-<!--				<li class="visible-xs">
-					<a href="#navbar-more-show">
-						<span class="menu-icon fa fa-bars"></span>
-						More
-					</a>
-				</li>-->
-			</ul>
-		</div>
-	</nav>
+	</div>
+</nav>

@@ -1,6 +1,7 @@
 var Season    = require('../models/season');
 var Selection = require('../models/selection');
-var HCPlayer = require('../models/hcplayer');
+var HCPlayer  = require('../models/hcplayer');
+var Clan      = require('../models/clan');
 
 exports.index = function(req, res, next) {    
     var sort = {};
@@ -15,17 +16,24 @@ exports.index = function(req, res, next) {
                 sort  = { 'level': value};
             default:
         }
-    }    
-    var season = Season.findOne({current: true}).populate('equitment', '', null, { sort: sort });
-    season.exec( function(err, season) {
+    }  
+    var hcplayer = new HCPlayer(req.session.hcplayer); 
+    var season = Clan.findOne({_id: hcplayer.clan}).populate({ path: 'seasons', populate: { path: 'equitment', model: 'Equitment', options: { sort: sort }}});
+    season.exec( function(err, clan) {
        if(err) return next(err);
-
-       var hcplayer = new HCPlayer(req.session.hcplayer);
-       //console.log('Found: ' + JSON.stringify(result));
-       Selection.findOne({hcplayer: hcplayer._id, season: season._id }, function(err, selection) {
-        if(err) return next(err); 
-        if(season) {
+       var season;
+       for(idx in clan.seasons) {
+        if(clan.seasons[idx].current) {
+            season = clan.seasons[idx];
+            //console.log('Found: ' + season);
+            break;
+        }
+       }
+       if(season) {
+        Selection.findOne({hcplayer: hcplayer._id, season: season._id }, function(err, selection) {
+            if(err) return next(err); 
             var data = new Array();
+            data.chestname = season.chest;
             data.equitment = new Array();
             for(var i=0; i < season.equitment.length; i++) {
                 var low  = season.equitment[i].level < hcplayer.minLevel;
@@ -49,14 +57,15 @@ exports.index = function(req, res, next) {
                 data.equitment.push( {
                                         raw: season.equitment[i],
                                         options: options
-                                     });
+                                        });
             }
+            
             return res.render('selection', {data: data, treasurer: hcplayer.treasurer, notAuthorized: notAuthorized, origin: { selection : true } }); 
+
+         });
         } else {
             return res.render('selection', {treasurer: hcplayer.treasurer, origin: { selection : true } }); 
         }
-       });
-       
     });
 }
 

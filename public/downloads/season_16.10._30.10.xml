@@ -1,0 +1,222 @@
+<treasury>
+	<meta>
+		<start>02.10.2018</start>
+		<end>16.10.2018</end>
+	</meta>
+	<usable>
+		<name>Magische Rüstung Edelstein</name>
+		<ability></ability>
+		<!-- common, rare, epic, legendary -->
+		<rarity>common</rarity>
+	</usable>
+	<usable count="2">
+		<name>Violetter Splitter</name>
+		<rarity>epic</rarity>
+		<ability>2 Stück</ability>
+	</usable>
+	<usable count="3">
+		<name>Blauer Splitter</name>
+		<rarity>rare</rarity>
+		<ability>3 Stück</ability>
+	</usable>
+	<usable count="4">
+		<name>Grüner Splitter</name>
+		<ability>4 Stück</ability>
+	</usable>
+	<usable count="2">
+		<name>Diamanten</name>
+		<ability>70 Stück</ability>
+	</usable>
+	<usable count="2">
+		<name>Blauer Staub</name>
+		<ability>50 Stück</ability>
+	</usable>
+	<usable count="2">
+		<name>Grüner Staub</name>
+		<ability>500 Stück</ability>
+	</usable>
+	<usable count="4">
+		<name>Tickets</name>
+		<ability>6 Stück</ability>
+	</usable>
+	<equitment>
+		<!-- item name -->
+		<name>Kleidung des Mystikers</name>
+		<!-- common, rare, epic, legendary -->
+		<rarity>legendary</rarity>
+		<!-- item level -->
+		<level>67</level>
+		<!-- item ability as text -->
+		<ability>Zauberkraft: +12640, Krit: +1357. Erhöht, wenn Schadene erlitten wird, mit einer Chance von 37% den eigenen magischen Schaden um 60%. Hält 10 Sek. lang an.</ability>	
+	</equitment>
+	<equitment>
+		<!-- item name -->
+		<name>Kugel des Erdpartikels</name>
+		<!-- common, rare, epic, legendary -->
+		<rarity>legendary</rarity>
+		<!-- item level -->
+		<level>61</level>
+		<!-- item ability as text -->
+		<ability>Kirt: +1213, Ausgewichen: +1234. Verursacht hin und wieder 4378 (+0 der Zauberkraft) Schaden bei dem Gegner, der 4 Sekunden lang die meiste Gesundheit hat.</ability>	
+	</equitment>
+	<equitment>
+		<!-- item name -->
+		<name>Ausrüstung des legendären Pfadfinders</name>
+		<!-- common, rare, epic, legendary -->
+		<rarity>legendary</rarity>
+		<!-- item level -->
+		<level>60</level>
+		<!-- item ability as text -->
+		<ability>Schaden: 2593-2690, Kirt: +995. Erhöht beim Angriff mit einer Chance von 34% das eigene Ausweichen um 55%. Hält 10 Sek. an.</ability>	
+	</equitment>
+	<equitment>
+		<!-- item name -->
+		<name>Kugel der Wunscherfüllung</name>
+		<!-- common, rare, epic, legendary -->
+		<rarity>epic</rarity>
+		<!-- item level -->
+		<level>88</level>
+		<!-- item ability as text -->
+		<ability>Kirt: +1320, Ausgewichen: +1278. Stellt hin und wieder 3917(+0 der Zauberkraft) Gesundheit eines Verbündeten wiederher.</ability>	
+	</equitment>
+	<equitment>
+		<!-- item name -->
+		<name>Ring des Schlangenblicks</name>
+		<!-- common, rare, epic, legendary -->
+		<rarity>epic</rarity>
+		<!-- item level -->
+		<level>37</level>
+		<!-- item ability as text -->
+		<ability>Krit: +1398, Ausgewichen: +1472.</ability>	
+	</equitment>
+	<equitment>
+		<!-- item name -->
+		<name>Titanen-Plattenharnisch</name>
+		<!-- common, rare, epic, legendary -->
+		<rarity>epic</rarity>
+		<!-- item level -->
+		<level>63</level>
+		<!-- item ability as text -->
+		<ability>Rüstung: 4766. Erhöht, wenn Schaden erlitten wird, mit einer Chance von 25% die eigene Rüstung um 30%. Hält 10 Sek. lang an.</ability>	
+	</equitment>
+	<equitment>
+		<!-- item name -->
+		<name>Dolche des letzen Fluchs</name>
+		<!-- common, rare, epic, legendary -->
+		<rarity>epic</rarity>
+		<!-- item level -->
+		<level>56</level>
+		<!-- item ability as text -->
+		<ability>Krit: +732, Ausgewichen: +566. Erhöht beim Angriff mit einer Chance von 10% in 5 Sekunden 120% Schaden. Erhöht beim Angriff mit einer Chance von 26% den verursachten Schaden um 40%. Hält 10 Sek. lang an.</ability>	
+	</equitment>
+	<equitment>
+		<!-- item name -->
+		<name>Ausrüstung des Donners</name>
+		<!-- common, rare, epic, legendary -->
+		<rarity>epic</rarity>
+		<!-- item level -->
+		<level>51</level>
+		<!-- item ability as text -->
+		<ability>Schaden: 2166-2244, Krit: +719. Erhöht beim Angriff mit einer Chance von 31% das eigene Ausweichen um 30%. Hält 10 Sek. an.</ability>	
+	</equitment>
+	<equitment>
+		<!-- item name -->
+		<name>Amulett des Abgrundfeuers</name>
+		<!-- common, rare, epic, legendary -->
+		<rarity>epic</rarity>
+		<!-- item level -->
+		<level>66</level>
+		<!-- item ability as text -->
+		<ability>Zauberkraft: +714, Rüstung: +1579.</ability>	
+	</equitment>
+	<equitment>
+		<!-- item name -->
+		<name>Siegelring des außerirdischen Zorns</name>
+		<!-- common, rare, epic, legendary -->
+		<rarity>epic</rarity>
+		<!-- item level -->
+		<level>47</level>
+		<!-- item ability as text -->
+		<ability>Magischer Schaden: 374-491, Krit: +1736.</ability>	
+	</equitment>
+	<equitment>
+		<!-- item name -->
+		<name>Ausrüstung des Donners</name>
+		<!-- common, rare, epic, legendary -->
+		<rarity>rare</rarity>
+		<!-- item level -->
+		<level>60</level>
+		<!-- item ability as text -->
+		<ability>Schaden: 1631-1698. Veringert, wenn Schaden erlitten wird, mit einer Chance von 26% den durch den Gegner verursachten Schaden um 50%. Hält 10 Sek. lang an.</ability>	
+	</equitment>
+	<equitment>
+		<!-- item name -->
+		<name>Verfolger-Armbrust</name>
+		<!-- common, rare, epic, legendary -->
+		<rarity>rare</rarity>
+		<!-- item level -->
+		<level>69</level>
+		<!-- item ability as text -->
+		<ability>Ausgewichen: +518. Verursacht beim Angriff mit einer Chance von 21% in 3 Sekunden 125% Schaden. Erhöht beim Angriff mit einer Chance von 23% den eigenen Krit um 40%. Hält 10 Sek. an.</ability>	
+	</equitment>
+	<equitment>
+		<!-- item name -->
+		<name>Amulett der Blutrubine</name>
+		<!-- common, rare, epic, legendary -->
+		<rarity>rare</rarity>
+		<!-- item level -->
+		<level>70</level>
+		<!-- item ability as text -->
+		<ability>Zauberkraft: +328, Gesundheit: +2139</ability>	
+	</equitment>
+	<equitment>
+		<!-- item name -->
+		<name>Kleidung des Zauberwebers</name>
+		<!-- common, rare, epic, legendary -->
+		<rarity>rare</rarity>
+		<!-- item level -->
+		<level>28</level>
+		<!-- item ability as text -->
+		<ability>Zauberkraft: +1932, Krit: +353. Veringert, wenn Schaden erlitten wird, mit einer Chance von 26% die magische Rüstung des Gegners um 50%. Hält 10 Sek. lang an.</ability>	
+	</equitment>
+	<equitment>
+		<!-- item name -->
+		<name>Hand-der-Dunkelheit-Bogen</name>
+		<!-- common, rare, epic, legendary -->
+		<rarity>rare</rarity>
+		<!-- item level -->
+		<level>61</level>
+		<!-- item ability as text -->
+		<ability>Krit: +542. Verursacht beim Angriff mit einer Chance von 15% 60% Schaden bei einer Gruppe von Gegnern. Erhöht beim Angriff mit einer Chance von 24% den verursachten Schaden um 35%. Hält 10 Sek. an.</ability>	
+	</equitment>
+	<equitment>
+		<!-- item name -->
+		<name>Orb Plume ardente</name>
+		<!-- common, rare, epic, legendary -->
+		<rarity>rare</rarity>
+		<!-- item level -->
+		<level>62</level>
+		<!-- item ability as text -->
+		<ability>Krit: +656. Belebt hin und wieder einen Verbündeten mit 5726 (+0 der Zauberkraft) GEsundheit wieder.</ability>	
+	</equitment>
+		<equitment>
+		<!-- item name -->
+		<name>Dolche der sengenden Flammen</name>
+		<!-- common, rare, epic, legendary -->
+		<rarity>rare</rarity>
+		<!-- item level -->
+		<level>59</level>
+		<!-- item ability as text -->
+		<ability>Verursacht beim Angriff mit einer Chance von 9% in 5 Sekunden 95% Schaden. Erhöht beim Angriff mit einer Chance von 22% den verursachten Schaden um 30%. Hält 10 Sek. an</ability>	
+	</equitment>
+		<equitment>
+		<!-- item name -->
+		<name>Weg des Kriegers-Schwert</name>
+		<!-- common, rare, epic, legendary -->
+		<rarity>rare</rarity>
+		<!-- item level -->
+		<level>77</level>
+		<!-- item ability as text -->
+		<ability>Ausgewichen: +704. Stellt beim Angriff mit einer Chance von 14% 7% der eigenen Gesundheit wiederher. Erhöht beim Angriff mit einer Chance von 21% den eigenen Krit um 30%. Hält 10 Sek. lang an.</ability>	
+	</equitment>
+</treasury>

@@ -1,0 +1,285 @@
+<treasury>
+	<meta>
+		<!-- z.b. 18.09.2018 -->
+		<start>13.11.2018</start>
+		<end>27.11.2018</end>
+	</meta>
+	<usable>
+		<name>Magischer Sachaden Edelstein</name>
+		<ability></ability>
+		<!-- common, rare, epic, legendary -->
+		<rarity>common</rarity>
+	</usable>
+	<usable>
+		<name>Magische Rüstung Edelstein</name>
+		<ability></ability>
+		<!-- common, rare, epic, legendary -->
+		<rarity>common</rarity>
+	</usable>
+	<usable>
+		<name>Ausgewichen Edelstein</name>
+		<ability></ability>
+		<!-- common, rare, epic, legendary -->
+		<rarity>common</rarity>
+	</usable>
+	<usable count="1">
+		<name>Violetter Splitter</name>
+		<rarity>epic</rarity>
+		<ability>5 Stück</ability>
+	</usable>
+	<usable count="5">
+		<name>Blauer Splitter</name>
+		<rarity>rare</rarity>
+		<ability>3 Stück</ability>
+	</usable>
+	<usable count="5">
+		<name>Grüner Splitter</name>
+		<ability>4 Stück</ability>
+	</usable>
+	<usable count="3">
+		<name>Diamanten</name>
+		<ability>90 Stück</ability>
+	</usable>
+	<usable count="2">
+		<name>Grüner Staub</name>
+		<ability>500 Stück</ability>
+	</usable>
+	<usable count="3">
+		<name>Blauer Staub</name>
+		<ability>50 Stück</ability>
+	</usable>
+	<usable count="3">
+		<name>Tickets</name>
+		<ability>8 Stück</ability>
+	</usable>
+	<equitment>
+		<!-- item name -->
+		<name>Machtkristall-Anhänger</name>
+		<!-- common, rare, epic, legendary -->
+		<rarity>legendary</rarity>
+		<!-- item level -->
+		<level>62</level>
+		<!-- item ability as text -->
+		<ability>Zauberkraft +1179, Rüstung +1368, Gesundheit: +9545</ability>	
+	</equitment>
+	<equitment>
+		<!-- item name -->
+		<name>Siegelring des Smaragdrätsels</name>
+		<!-- common, rare, epic, legendary -->
+		<rarity>legendary</rarity>
+		<!-- item level -->
+		<level>82</level>
+		<!-- item ability as text -->
+		<ability>Magischer Sachaden: 370-493, Krit +1484, Ausgewichen: +1466</ability>	
+	</equitment>
+	<equitment>
+		<!-- item name -->
+		<name>Talisman der unersättlichen Beere</name>
+		<!-- common, rare, epic, legendary -->
+		<rarity>legendary</rarity>
+		<!-- item level -->
+		<level>55</level>
+		<!-- item ability as text -->
+		<ability>Zauberkraft +1012, Rüstung +1232, Gesundheit: +7151</ability>	
+	</equitment>
+	<equitment>
+		<!-- item name -->
+		<name>Siegelring des außerirdischen</name>
+		<!-- common, rare, epic, legendary -->
+		<rarity>legendary</rarity>
+		<!-- item level -->
+		<level>82</level>
+		<!-- item ability as text -->
+		<ability>Magischer Sachaden: 489-652, Krit +1555, Ausgewichen: +1413</ability>	
+	</equitment>
+	<equitment>
+		<!-- item name -->
+		<name>Herrscherkeule</name>
+		<!-- common, rare, epic, legendary -->
+		<rarity>legendary</rarity>
+		<!-- item level -->
+		<level>100</level>
+		<!-- item ability as text -->
+		<ability>Betäubt beim Angriff einen Gegner mit einer Chance von 33% für 2.5 Sek. Erhöhtbeim Angriff mit einer Chance von 33% den verursachten Schaden um 65%. Hält 10 Sek. lang an.</ability>	
+	</equitment>
+	<equitment>
+		<!-- item name -->
+		<name>Standhafter Titanen-Plattenharnisch</name>
+		<!-- common, rare, epic, legendary -->
+		<rarity>legendary</rarity>
+		<!-- item level -->
+		<level>82</level>
+		<!-- item ability as text -->
+		<ability>Rüstung: +1352. Verringert, wenn Schaden erlitten wird, mit einer Chance von 31% den durch den Gegner verursachten Schaden um 60%. Hält 10 Sek. lang an.</ability>	
+	</equitment>
+	<equitment>
+		<!-- item name -->
+		<name>Kleidung des Mystikers</name>
+		<!-- common, rare, epic, legendary -->
+		<rarity>epic</rarity>
+		<!-- item level -->
+		<level>63</level>
+		<!-- item ability as text -->
+		<ability>Zauberkraft: +8817, Ausgewichen: +1035. Verringert, wenn Schaden erlitten wird, mit einer Chance von 31% die magische Rüstung des Gegners um 35%. Hält 10 Sek. lang an.</ability>	
+	</equitment>
+	<equitment>
+		<!-- item name -->
+		<name>Plattenharnisch des strahlenden Helden</name>
+		<!-- common, rare, epic, legendary -->
+		<rarity>epic</rarity>
+		<!-- item level -->
+		<level>52</level>
+		<!-- item ability as text -->
+		<ability>Rüstung: +3795. Erhöht, wenn Schaden ertlitten wird, mit einer Chance von 29% die eigene magische Rüstung um 35%. Hält 10 Sek. lang an.</ability>	
+	</equitment>
+	<equitment>
+		<!-- item name -->
+		<name>Keule der Ängste der Welt</name>
+		<!-- common, rare, epic, legendary -->
+		<rarity>epic</rarity>
+		<!-- item level -->
+		<level>52</level>
+		<!-- item ability as text -->
+		<ability>Betäubt beim Angriff einen Gegner mit einer Chance von 26% für 2.5 Sek. Erhöhtbeim Angriff mit einer Chance von 29% den eigenen Krit um 45%. Hält 10 Sek. lang an.</ability>	
+	</equitment>
+	<equitment>
+		<!-- item name -->
+		<name>Ausrüstung des gnadenlosen Meuchlers</name>
+		<!-- common, rare, epic, legendary -->
+		<rarity>epic</rarity>
+		<!-- item level -->
+		<level>33</level>
+		<!-- item ability as text -->
+		<ability>Schade: 1080-1124, Krit: +464. Erhöht beim Angriff mit einer Chance von 30% das eigene Ausweichen um 45%. Hält 10 Sek. an.</ability>	
+	</equitment>
+	<equitment>
+		<!-- item name -->
+		<name>Ring des Prinzenstolzes</name>
+		<!-- common, rare, epic, legendary -->
+		<rarity>epic</rarity>
+		<!-- item level -->
+		<level>37</level>
+		<!-- item ability as text -->
+		<ability>Schaden: 336-441, Krit: +989</ability>	
+	</equitment>
+	<equitment>
+		<!-- item name -->
+		<name>Kleidung des Mystikers</name>
+		<!-- common, rare, epic, legendary -->
+		<rarity>epic</rarity>
+		<!-- item level -->
+		<level>64</level>
+		<!-- item ability as text -->
+		<ability>Zauberkraft: +8679. Erhöht, wenn Schaden erlitten wird, mit einer Chance von 30% den eigenen magischen Schaden um 45%. Hält 10 Sek. lang an.</ability>	
+	</equitment>
+	<equitment>
+		<!-- item name -->
+		<name>Kleidung des Meisters der Magie</name>
+		<!-- common, rare, epic, legendary -->
+		<rarity>epic</rarity>
+		<!-- item level -->
+		<level>37</level>
+		<!-- item ability as text -->
+		<ability>Zauberkraft: +3556, Krit: +642. Erhöht, wenn schaden erlitten wird, mit einer Chance von 32% den eigenen magische Schaden um 40%. Hält 10 Sek. lang an.</ability>	
+	</equitment>
+	<equitment>
+		<!-- item name -->
+		<name>Ausrüstung des gnadenlosen Meuchlers</name>
+		<!-- common, rare, epic, legendary -->
+		<rarity>epic</rarity>
+		<!-- item level -->
+		<level>33</level>
+		<!-- item ability as text -->
+		<ability>Schaden: +1201-1301, Krit: +474. Veringert, wenn schaden erlitten wird, mit einer Chance von 28% die magische Rüstung des Gegners um 45%. Hält 10 Sek. lang an.</ability>	
+	</equitment>
+	<equitment>
+		<!-- item name -->
+		<name>Siegelring des Smaragdrätsels</name>
+		<!-- common, rare, epic, legendary -->
+		<rarity>epic</rarity>
+		<!-- item level -->
+		<level>63</level>
+		<!-- item ability as text -->
+		<ability>Krit: +1073, Ausgewichen: +1442</ability>	
+	</equitment>
+	<equitment>
+		<!-- item name -->
+		<name>Spielzeug-Siegelring des Erzmagiers</name>
+		<!-- common, rare, epic, legendary -->
+		<rarity>epic</rarity>
+		<!-- item level -->
+		<level>86</level>
+		<!-- item ability as text -->
+		<ability>Schaden: 894-1174, Krit: +1752.</ability>	
+	</equitment>
+	<equitment>
+		<!-- item name -->
+		<name>Streitaxt des Nordwinds</name>
+		<!-- common, rare, epic, legendary -->
+		<rarity>rare</rarity>
+		<!-- item level -->
+		<level>62</level>
+		<!-- item ability as text -->
+		<ability>Krit: +593. Verursacht beim Angriff mit einer Chance von 31% 145% Flächenschaden. Erhöht beim Angriff mit einer Chance von 23% den verursachten Schaden um 45%. Hält 10 Sek. an.</ability>	
+	</equitment>
+	<equitment>
+		<!-- item name -->
+		<name>Kleidung des Meisters der Magie</name>
+		<!-- common, rare, epic, legendary -->
+		<rarity>rare</rarity>
+		<!-- item level -->
+		<level>35</level>
+		<!-- item ability as text -->
+		<ability>Zauberkraft: +2548, Ausgewichen: +429. Veringert, wenn Schaden erlitten wird, mit einer Chance von 27% die magische Rüstung des Gegners um 35%. Hält 10 Sek. lang an.</ability>	
+	</equitment>
+	<equitment>
+		<!-- item name -->
+		<name>Ausrüstung des legendären Meuchlers</name>
+		<!-- common, rare, epic, legendary -->
+		<rarity>rare</rarity>
+		<!-- item level -->
+		<level>35</level>
+		<!-- item ability as text -->
+		<ability>Schaden: 926-966, Krit: +364. Erhöht beim Angriff mit einer Chance von 23% das eigene Ausweichen um 45%. Hält 10 Sek. lang an.</ability>	
+	</equitment>
+	<equitment>
+		<!-- item name -->
+		<name>Ausrüstung Blitzschlags</name>
+		<!-- common, rare, epic, legendary -->
+		<rarity>rare</rarity>
+		<!-- item level -->
+		<level>84</level>
+		<!-- item ability as text -->
+		<ability>Schaden: 2668-2854. Stellt, wenn Schaden ertlitten wird, mit einer Chance von 24% 7% der eigenen Gesundheit wiederher.</ability>	
+	</equitment>
+	<equitment>
+		<!-- item name -->
+		<name>Kugel der Tiefenmagie</name>
+		<!-- common, rare, epic, legendary -->
+		<rarity>rare</rarity>
+		<!-- item level -->
+		<level>36</level>
+		<!-- item ability as text -->
+		<ability>Kirt: +434. Verursacht hin und wieder über 4 Sek. 1115 (+0 der Zauberkraft) Flächenschaden.</ability>	
+	</equitment>
+	<equitment>
+		<!-- item name -->
+		<name>Dolch der Schmerzenszähne</name>
+		<!-- common, rare, epic, legendary -->
+		<rarity>rare</rarity>
+		<!-- item level -->
+		<level>76</level>
+		<!-- item ability as text -->
+		<ability>Krit: +585. Verursacht beim Angriff mit einer Chance von 8% in 5 Sekunden 90% Schaden. Erhöht beim Angriff mit einer Chance von 23% den eigenen Krit um 30%. Hält 10 Sek. an.</ability>	
+	</equitment>
+	<equitment>
+		<!-- item name -->
+		<name>Hand-des-Untergangs-Armbrust</name>
+		<!-- common, rare, epic, legendary -->
+		<rarity>rare</rarity>
+		<!-- item level -->
+		<level>19</level>
+		<!-- item ability as text -->
+		<ability>Verursacht beim Angriff mit einer Chance von 22% in 3 Sekunden 125% Schaden.  Erhöht beim Angriff mit einer Chance von 24% den verursachten Schaden um 45%. Hält 10 Sek. an.</ability>	
+	</equitment>
+</treasury>

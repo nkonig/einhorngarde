@@ -1,6 +1,11 @@
 /*const editSeasonButton = document.getElementById('editSeason');*/
-
+/* mdb bootstrap
+ $(document).ready(function() {
+	$('.mdb-select').materialSelect();
+  });
+*/
 $(document).ready(function() {
+
 	$(".nav li.disabled a").click(function() {
 		return false;
 	});
@@ -33,6 +38,19 @@ $(document).ready(function() {
 		$( location ).attr("href", target);
 	});
 
+	$('.addckparticipation-btn').on('click', function() {
+		//var origin = window.location.href;
+		var target = '/warroom';
+		//console.log('Called: ' + target);
+		$( location ).attr("href", target);
+	});
+
+	$('.addclan-btn').on('click', function() {
+		var target = '/treasury/addclan';
+		console.log('Called: ' + target);
+		$( location ).attr("href", target);
+	});
+
 	$('.editallglory-btn').on('click', function() {
 		var target = '/users/editallglory/';
 		//console.log('Called: ' + target);
@@ -57,11 +75,35 @@ $(document).ready(function() {
 		$( location ).attr("href", target);
 	});
 
+	$('.selectclan-btn').on('click', function() {
+		var target = '/treasury';
+		var clan_id = document.getElementById("clan_sel").value;
+		if(clan_id) {
+			target = '/treasury/' + clan_id;
+		}
+		//console.log('Called: ' + target);
+		$( location ).attr("href", target);
+	});
+
+	$('.filterclan-btn').on('click', function() {
+		var target = '/users';
+		var clan_id = document.getElementById("clan_filter").value;
+		if(clan_id) {
+			target = '/users/clan=' + clan_id;
+		}
+		//console.log('Called: ' + target);
+		$( location ).attr("href", target);
+	});
+
 	$('.filterts-btn').on('click', function() {
 		var target = '/users';
 		//console.log('Value: ' + this.value);
 		if(this.value.toString() != 'all') {
 			target = '/users/throneroom=' + this.value;
+			var clanfilter = document.getElementById('clan_filter').value;
+			if(clanfilter) {
+				target = target + '$$clan=' + clanfilter;
+			}
 		}
 		//console.log('Called: ' + target);
 		$( location ).attr("href", target);
@@ -78,9 +120,12 @@ $(document).ready(function() {
 		var target = '/users';
 		var searchinput = document.getElementById("usernamesearchinput").value;
 		if(searchinput) {
-			target = '/users/username=' +searchinput;
+			target = '/users/username=' + searchinput;
 		}
-		//console.log('Called: ' + target);
+		var clanfilter = document.getElementById('clan_filter').value;
+		if(clanfilter) {
+			target = target + '$$clan=' + clanfilter;
+		}
 		$( location ).attr("href", target);
 	});
 	
