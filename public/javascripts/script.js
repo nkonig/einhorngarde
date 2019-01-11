@@ -101,7 +101,8 @@ $(document).ready(function() {
 		if(this.value.toString() != 'all') {
 			target = '/users/throneroom=' + this.value;
 			var clanfilter = document.getElementById('clan_filter').value;
-			if(clanfilter) {
+			var origin = window.location.href;
+			if(clanfilter && origin.includes('clan=')) {
 				target = target + '$$clan=' + clanfilter;
 			}
 		}
@@ -123,7 +124,8 @@ $(document).ready(function() {
 			target = '/users/username=' + searchinput;
 		}
 		var clanfilter = document.getElementById('clan_filter').value;
-		if(clanfilter) {
+		var origin = window.location.href;
+		if(clanfilter && origin.includes('clan=')) {
 			target = target + '$$clan=' + clanfilter;
 		}
 		$( location ).attr("href", target);
@@ -136,6 +138,43 @@ $(document).ready(function() {
 			return false;    //<---- Add this line
 		}
 	});
+
+	$('.searchable').multiSelect({
+		selectableHeader: "<input type='text' class='search-input' autocomplete='off' placeholder='try \"12\"'>",
+		selectionHeader: "<input type='text' class='search-input' autocomplete='off' placeholder='try \"4\"'>",
+		afterInit: function(ms){
+		  var that = this,
+			  $selectableSearch = that.$selectableUl.prev(),
+			  $selectionSearch = that.$selectionUl.prev(),
+			  selectableSearchString = '#'+that.$container.attr('id')+' .ms-elem-selectable:not(.ms-selected)',
+			  selectionSearchString = '#'+that.$container.attr('id')+' .ms-elem-selection.ms-selected';
+	  
+		  that.qs1 = $selectableSearch.quicksearch(selectableSearchString)
+		  .on('keydown', function(e){
+			if (e.which === 40){
+			  that.$selectableUl.focus();
+			  return false;
+			}
+		  });
+	  
+		  that.qs2 = $selectionSearch.quicksearch(selectionSearchString)
+		  .on('keydown', function(e){
+			if (e.which == 40){
+			  that.$selectionUl.focus();
+			  return false;
+			}
+		  });
+		},
+		afterSelect: function(){
+		  this.qs1.cache();
+		  this.qs2.cache();
+		},
+		afterDeselect: function(){
+		  this.qs1.cache();
+		  this.qs2.cache();
+		}
+	  });
+
 	/*
 	editSeasonButton.addEventListener('click', function(e) {
 		console.log('button was clicked');
@@ -164,3 +203,9 @@ $(document).ready(function() {
 		return false;
 	});*/
 });
+
+function changeClanForStats() {
+	var clanid = document.getElementById("clan_sel").value;
+	var target = "/warroom/" + clanid;
+	$( location ).attr("href", target);
+}

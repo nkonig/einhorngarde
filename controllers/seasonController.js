@@ -76,19 +76,19 @@ exports.select = function(req, res, next) {
  
 exports.distribute = function(req, res, next) {
 
-    var query = HCPlayer.find({})
-                        .sort({glory: -1})
-                        .populate({ path: 'selection', model: 'Selection', populate: { path: 'first second third', model: 'Equitment'}});
+    var seasonQuery = Season.findById(req.params.id).populate('equitment');
 
-    query.exec(function(err, players) {
+    seasonQuery.exec(function(err, season) {
         if(err) return next(err);
-        //if(!players) return next();
-        var seasonQuery = Season.findById(req.params.id)
-                                .populate('equitment');
-        
-        seasonQuery.exec(function(err, season) {
+
+        var query = HCPlayer.find({clan: season.clan})
+                            .sort({glory: -1})
+                            .populate({ path: 'selection', model: 'Selection', populate: { path: 'first second third', model: 'Equitment'}});
+
+        query.exec(function(err, players) {
             if(err) return next(err);
-            console.log('distribute called.');
+            //if(!players) return next();
+            console.log('distribute called.' + players);
 
             var result = new Array();
             result.distribution = new Map();
@@ -127,19 +127,19 @@ exports.distribute = function(req, res, next) {
                     result.playersNotQualified.set(player.username.toString(), 'Er Mindesruhm wurde nicht erreicht');
                     continue;
                 }                
-                if(equitmentOpen.includes(selection.first._id.toString())) {
+                if(selection.first && equitmentOpen.includes(selection.first._id.toString())) {
                     console.log(player.username + ': distribute ' + selection.first.name);
                     remove(selection.first._id.toString(), equitmentOpen);
                     result.distribution.set(player.username, selection.first);
                     continue;
                 }
-                if(equitmentOpen.includes(selection.second._id.toString())) {
+                if(selection.second && equitmentOpen.includes(selection.second._id.toString())) {
                     console.log(player.username + ': distribute ' + selection.second.name);
                     remove(selection.second._id.toString(), equitmentOpen);
                     result.distribution.set(player.username, selection.second);
                     continue;
                 }
-                if(equitmentOpen.includes(selection.third._id.toString())) {
+                if(selection.third && equitmentOpen.includes(selection.third._id.toString())) {
                     console.log(player.username + ': distribute ' + selection.third.name);
                     remove(selection.third._id.toString(), equitmentOpen);
                     result.distribution.set(player.username, selection.third);

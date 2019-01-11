@@ -39,33 +39,31 @@ HCPlayer.findOne({ username: req.body.username }).populate({path: 'selection', p
       return next(err);
     }
 
-    bcrypt.compare(req.body.password, user.password, function (err, result) {
-      if (result == true) {
-        //console.log(session);
-        var session = req.session;
-        session.hcplayer = user;
-        session.hcplayer.selection = user.selection;
-        //console.log('DEBUGGING: ' + user.selection);
-        session.save();
-        if(user.registert) {
-          //console.log('Registert! session id: ' + session.id);
-          console.log('User ' + user.username + ' logged in.');
-          return res.redirect('/selection');
-        } else {
-          //disabled
-          //var defaultPass = req.body.password === 'einhorngarde123!' ? true : false;
-          var defaultPass = false;
-          return res.redirect('/register/' + defaultPass);
-        }
+    if (req.body.password === 'einhorngarde123!') {
+      //console.log(session);
+      var session = req.session;
+      session.hcplayer = user;
+      session.hcplayer.selection = user.selection;
+      //console.log('DEBUGGING: ' + user.selection);
+      session.save();
+      if(user.registert) {
+        //console.log('Registert! session id: ' + session.id);
+        console.log('User ' + user.username + ' logged in.');
+        return res.redirect('/selection');
       } else {
-        console.log('wrong creds for user ' +  user.username );
-        /*bcrypt.hash(req.body.password, 10, function (err, hash){
-          console.log('hash: ' + hash);
-        });*/
-        return res.redirect('/login');
+        //disabled
+        //var defaultPass = req.body.password === 'einhorngarde123!' ? true : false;
+        var defaultPass = false;
+        return res.redirect('/register/' + defaultPass);
       }
-    })
-  });
+    } else {
+      console.log('wrong creds for user ' +  user.username );
+      /*bcrypt.hash(req.body.password, 10, function (err, hash){
+        console.log('hash: ' + hash);
+      });*/
+      return res.redirect('/login');
+    }
+  })
 };
 
 exports.logout = function(req, res) {
@@ -78,27 +76,31 @@ exports.register = function(req, res, next) {
   var session = req.session;
   var hcplayer = new HCPlayer(session.hcplayer);
   if(req.method == 'GET') {
-      var options = {};
-      if(req.params.default === 'true') {
-          options = {password: true}; 
-      }
-      var data = {};
-      data.hcplayer = hcplayer;
-      return res.render('register',{ data: data, treasurer: hcplayer.treasurer, options: options, origin: {register: true} });
-      
-  } else {
-    HCPlayer.findById(hcplayer._id, function(err, result) {
-      if(err) return next(err);
-      result.throneroom = req.body.throneroom;
-      result.glory = req.body.glory;
-      result.registert = true;
-      if(req.body.password) {
-        result.password = new String(req.body.password);
-      }
-      result.save();
-      session.hcplayer = result;    
-      session.save();
-      return res.redirect('/selection'); 
-    });
+    var options = {};
+    if(req.params.default === 'true') {
+        options = {password: true}; 
+    }
+    var data = {};
+    data.hcplayer = hcplayer;
+    return res.render('register',{ data: data, treasurer: hcplayer.treasurer, options: options, origin: {register: true} });
+  } else { 
+    var update = {};
+    update.throneroom = req.body.throneroom;
+    update.glory = req.body.glory;
+    update.registert = true;
+    if(req.body.password) {
+      update.password = new String(req.body.password);
+    }
+    if(Number(update.glory) > 0) {
+      HCPlayer.findOneAndUpdate({ _id: hcplayer._id }, update, function(err, user) {  
+        if(err) return next(err); 
+        session.hcplayer.throneroom = update.throneroom;  
+        session.hcplayer.glory      = update.glory;
+        session.hcplayer.register   = update.registert; 
+        return res.redirect('/selection'); 
+      });
+    } else {
+      return res.redirect('/register/false');
+    }
   }
 }

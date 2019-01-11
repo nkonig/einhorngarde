@@ -76,13 +76,13 @@ exports.edit = function(req, res, next) {
         var user = new HCPlayer({username: '', password: 'einhorngarde123!'});
         var options = {exists: false};
         Clan.find({}, function(err, clans) {
-            if(err) console.error(err);
+            if(err) return next(err);
             return res.render('edituser', {user: user, clans: clans, treasurer: hcplayer.treasurer, options: options, origin: { users : true }});
         });
     } else {
         var query = HCPlayer.findById(req.params.id).populate({path: 'selection', populate: { path: 'first second third', model: 'Equitment'}});
         query.exec(function(err, user, next) {
-            if(err) console.error(err);
+            if(err) return next(err);
             var options = {exists: true};
             options.rank = hcplayer.rank;
             var selection = {};
@@ -91,17 +91,23 @@ exports.edit = function(req, res, next) {
                 if(user.selection.second) selection.second = user.selection.second._id;
                 if(user.selection.third) selection.third = user.selection.third._id;
             }
-            var findEq = Season.findOne({current: true}).populate('equitment', 'name level');
-            findEq.exec(function(err, season, next) {
-                if(err) console.error(err);
-                selection.eqs = new Array();
-                for(var i=0; i < season.equitment.length; i++) {
-                    selection.eqs.push(season.equitment[i]);
-                }
-                Clan.find({}, function(err, clans) {
-                    if(err) console.error(err);
-                    return res.render('edituser', {user: user, clans: clans, selection: selection, treasurer: hcplayer.treasurer, options: options,  origin: { users : true }});
-                });
+            var clanQuery = Clan.find({}).populate({ path: 'seasons', populate: { path: 'equitment', model: 'Equitment'}});
+            clanQuery.exec(function(err, clans, next) {
+                if(err) return next(err);
+                if(user.clan) {
+                    clans.forEach(function(clan) {
+                        if(clan._id.toString() == user.clan.toString()) {
+                            clan.seasons.forEach(function(season) {
+                                if(season.current) {
+                                selection.eqs = season.equitment;
+                                }
+                            })
+                        }
+                    });
+                } else {
+                    selection.eqs = {};
+                }                 
+                return res.render('edituser', {user: user, clans: clans, selection: selection, treasurer: hcplayer.treasurer, options: options,  origin: { users : true }});
             });
         });
     }
@@ -181,7 +187,8 @@ exports.save = function(req, res, next) {
                     throneroom: req.body.throneroom,
                     glory: req.body.glory,
                     password: 'einhorngarde123!',
-                    selection: selection._id
+                    selection: selection._id,
+                    clan: req.body.clan
                 });
                 hcplayer.save(function(err) { if(err) console.error(err); });
             });
@@ -191,7 +198,8 @@ exports.save = function(req, res, next) {
                 rank: req.body.rank,
                 throneroom: req.body.throneroom,
                 glory: req.body.glory,
-                password: 'einhorngarde123!'
+                password: 'einhorngarde123!',
+                clan: req.body.clan
             });
             hcplayer.save(function(err) { if(err) console.error(err); });
         }

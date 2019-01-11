@@ -17,7 +17,7 @@ exports.index = function(req, res, next) {
             default:
         }
     }  
-    var hcplayer = new HCPlayer(req.session.hcplayer); 
+    var hcplayer = new HCPlayer(req.session.hcplayer);
     var season = Clan.findOne({_id: hcplayer.clan}).populate({ path: 'seasons', populate: { path: 'equitment', model: 'Equitment', options: { sort: sort }}});
     season.exec( function(err, clan) {
        if(err) return next(err);
@@ -30,7 +30,7 @@ exports.index = function(req, res, next) {
         }
        }
        if(season) {
-        Selection.findOne({hcplayer: hcplayer._id, season: season._id }, function(err, selection) {
+        Selection.findOne({hcplayer: hcplayer._id, season: season._id}, function(err, selection) {
             if(err) return next(err); 
             var data = new Array();
             data.chestname = season.chest;
@@ -71,14 +71,14 @@ exports.index = function(req, res, next) {
 
 exports.select = function(req, res, next) {
 
-    Season.findOne({current: true}, function(err, season) {
+    var user = new HCPlayer(req.session.hcplayer);
+
+    Season.findOne({current: true, clan: user.clan}, function(err, season) {
         if(err) return next(err);
         
-        var user = new HCPlayer(req.session.hcplayer);
         var selectionQuery = Selection.findOne({season: season._id, hcplayer: user._id });
         selectionQuery.exec(function (err, result) {
             if(err) return next(err);
-            //console.log(result);
             if(result) {
                 Selection.updateOne({season: season._id, hcplayer: user._id }, 
                                     {first: req.body.firstradio, second: req.body.secondradio, third: req.body.thirdradio }, function (err) {
