@@ -1,68 +1,90 @@
 {{> nav}}
-<h3>Wilkommen in der Kriegskammer {{user.name}}</h3>
 
-<hr>
-<h3>Clankriegsteilnahme eintragen</h3>
-<table>
-  <tbody>
-    {{#if treasurer}}
-    <tr>
-      <td><label>Clan:</label></td>
-      <td>
-        <select class="form-control" name="clan" id="clan_sel">    
-            {{#each clans}}
-                <option {{#ifEquals ../season.clan _id }}selected="selected"{{/ifEquals}} name="clan" value="{{_id}}">{{name}}</option>
-            {{/each}}
-        </select>
-      </td>
-    </tr>
-    {{/if}}
-    <tr>
-      <td><label>Tag:</label></td>
-      <td><input type="date" class="form-control" name="ckday" min="{{season.startformated}}" max="{{season.endformated}}"></td>
-    </tr>
-    <tr>
-      <td><label>Stunde:</label></td>
-      <td>
-        <select class="form-control" name="ckhour" id="ckhour_sel">
-          <option value="04:00">04:00</option>
-          <option value="11:00">11:00</option>
-          <option value="16:00">16:00</option>
-          <option value="22:00">22:00</option>
-        </select>
-      </td>
-    </tr>
-  </tbody>
-</table>
+<div class="container">
+  <h3>Wilkommen in der Kriegskammer {{user.name}}</h3>
 
+  <hr>
+  <h3>Clankriegsteilnahme eintragen</h3>
 
-
-<hr>
-<table class="table table-bordered">
-  <col>
-  <col>
-  <colgroup span="4"></colgroup>
-  <thead>
-    <tr>
-      <th rowspan="2">Name</th>
-      <th rowspan="2" scope="col">TN</th>
-      <th colspan="4" scope="colgroup">{{#ifNotEquals season.start '02.10.2018'}}Button{{/ifNotEquals}} 08.01.2019 {{#ifNotEquals season.end '16.10.2018'}}Button{{/ifNotEquals}}</th>
-    </tr>
-    <tr>
-      <th scope="colgroup">04:00</th>
-      <th scope="colgroup">11:00</th>
-      <th scope="colgroup">16:00</th>
-      <th scope="colgroup">22:00</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>Narrenkönig</td>
-      <td>7</td>
-      <td class="success"></td>
-      <td class="warning"></td>
-      <td class="danger"></td>    
-      <td class="warning"></td>
-    </tr>
-  </tbody>
-</table>
+  <form action="/warroom/add" method="post" accept-charset="utf-8">
+    <table>
+      <tbody>
+        {{#if treasurer}}
+        <tr>
+          <td><label>Clan:</label></td>
+          <td>
+            <select class="form-control" name="clan" id="clan_sel" onchange="changeClanForStats()">    
+                {{#each clans}}
+                    <option {{#ifEquals ../season.clan _id }}selected="selected"{{/ifEquals}} name="clan" value="{{_id}}">{{name}}</option>
+                {{/each}}
+            </select>
+          </td>
+        </tr>
+        {{/if}}
+        <tr>
+          <td><label>Tag:</label></td>
+          <td><input type="date" class="form-control" name="ckday" value="{{season.todayformated}}" min="{{season.startformated}}" max="{{season.endformated}}"></td>
+        </tr>
+        <tr>
+          <td><label>Stunde:</label></td>
+          <td>
+            <select class="form-control" name="ckhour" id="ckhour_sel">
+              <option value="04:00">04:00</option>
+              <option value="11:00">11:00</option>
+              <option value="16:00">16:00</option>
+              <option value="22:00">22:00</option>
+            </select>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <br>
+    <select class="form-control searchable" name="participantlist" id='participantlist_sel' multiple='multiple'>
+      {{#each users}}
+        <option value='{{_id}}'>{{username}}</option>
+      {{/each}}
+    </select>
+    <br>
+    <input type="submit" name="submit" value="Speichern" id="submit" class="btn btn-primary btn-block btn-flat">
+  </form>
+  <hr>
+</div>
+<div class="table-responsive">
+  <table class="table table-bordered">
+    <col>
+    <col>
+    <colgroup span="4"></colgroup>
+    <thead>
+      <tr>
+        <th rowspan="2">Name</th>
+        <th rowspan="2" scope="col">TN</th>
+        {{#each header}}
+          <th colspan="4" scope="colgroup" style="text-align: center;">{{day}}</th>
+        {{/each}}
+        <!-- {{#ifNotEquals season.start day}}Button{{/ifNotEquals}}      {{#ifNotEquals season.end day}}Button{{/ifNotEquals}} -->
+      </tr>
+      <tr>
+        {{#each header}}
+          <th scope="colgroup" style="text-align: center;">04:00</th>
+          <th scope="colgroup" style="text-align: center;">11:00</th>
+          <th scope="colgroup" style="text-align: center;">16:00</th>
+          <th scope="colgroup" style="text-align: center;">22:00</th>
+        {{/each}}
+      </tr>
+    </thead>
+    <tbody>
+        {{#each data}}
+            <tr>
+              <td>{{user.username}}</td>
+              <td>{{sum}}</td>
+          {{#eachInMap participation}}
+              <td {{#if value.first}}class="success"{{/if}}{{#unless value.first}}class="danger"{{/unless}}></td>
+              <td {{#if value.second}}class="success"{{/if}}{{#unless value.second}}class="danger"{{/unless}}></td>
+              <td {{#if value.third}}class="success"{{/if}}{{#unless value.third}}class="danger"{{/unless}}></td>
+              <td {{#if value.fourth}}class="success"{{/if}}{{#unless value.fourth}}class="danger"{{/unless}}></td>
+          {{/eachInMap}}
+            </tr>
+        {{/each}}
+    </tbody>
+  </table>
+</div>

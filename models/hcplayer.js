@@ -88,7 +88,7 @@ HCPlayerSchema.virtual('treasurer').get(function() {
 })
 
 HCPlayerSchema.virtual('seneschal').get(function() {
-  return (this.rank === 'Truchsess' || this.rank === 'Schatzmeister' ||  this.rank === 'Stellvertreter' ||  this.rank === 'BigBoss');
+  return (this.rank === 'Truchsess' || this.rank === 'Offizier' || this.rank === 'Schatzmeister' ||  this.rank === 'Stellvertreter' ||  this.rank === 'BigBoss');
 })
 
 module.exports = mongoose.model('HCPlayer', HCPlayerSchema);

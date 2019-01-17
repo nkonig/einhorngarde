@@ -1,128 +1,130 @@
 {{> nav}}
-<h3>Hallo {{user.username}} </h3>
+<div class="container">
+  <h3>Hallo {{user.username}} </h3>
 
-<table class="table">
-  <tbody>
-    <tr>
-      <td><label>Privilegien:</label></td>
-      <td>
-        <button value="{{user._id}}" title="Ruhm bearbeiten." class="btn btn-primary btn-xs edituser-btn" data-title="Ruhm bearbeiten" data-toggle="modal" data-target="#edit" ><span class="glyphicon glyphicon-flag"></span></span></button>
-        <!--
-        {{#if user.seneschal}}
-        <button value="{{user._id}}" title="CK Teilnahme erfassen." class="btn btn-primary btn-xs addckparticipation-btn" data-title="CK Teilnahme erfassen." data-toggle="modal" data-target="#edit" ><span class="glyphicon glyphicon-check"></span></span></button>
-        {{/if}}
-        -->
-      </td>
-    </tr>  
-    <tr> 
-        <td><label>Ruhm:</label></td>
-        <td>{{user.glory}}</td>
-    </tr>
-    <tr>
-        <td><label>Rang:</label></td>
-        <td>{{user.rank}}</td>
-    </tr>
-    <tr>
-        <td><label>Thronsaal:</label></td>
-        <td>{{user.throneroom}}</td>
-    </tr>
-    <tr>
-        <td><label>Auswahl:</label></td>
-        <td>
-            {{#ifNotEquals user.selection.first.rarity 'common'}}{{user.selection.first.rarity}}{{/ifNotEquals}} {{user.selection.first.name}}<br>
-            {{#ifNotEquals user.selection.second.rarity 'common'}}{{user.selection.second.rarity}}{{/ifNotEquals}} {{user.selection.second.name}}<br>
-            {{#ifNotEquals user.selection.third.rarity 'common'}}{{user.selection.third.rarity}}{{/ifNotEquals}} {{user.selection.third.name}}<br>
-        </td>
-    </tr>
-  </tbody>
-</table>
-{{#if treasurer}}
-
-<p>
-  <label>Filter</label> 
-  <button value="all" class="btn btn-primary btn-xs filterts-btn">Clear</button> 
-  <br>
-  <div class="form-inline">
-      <div class="form-group">
-          <p class="form-control-static">Clan:</p>
-      </div>
-      <div class="form-group mx-sm-2">
-          <select name="clan" class="form-control" id="clan_filter">    
-              {{#each clans}}
-                  <option {{#ifEquals ../clanfilter _id }}selected="selected"{{/ifEquals}} name="clan" value="{{_id}}">{{name}}</option>
-              {{/each}}
-          </select>
-      </div>
-      <button type="button" class="btn btn-primary btn-xs filterclan-btn" data-title="Filter" title="Filter Clan" data-toggle="Filter Clan" data-target="#filterclan">Auswahl</button>
-  </div>
-  <br>
-  Thronsaal:
-  <button value="5" class="btn btn-primary btn-xs filterts-btn">5</button>
-  <button value="6" class="btn btn-primary btn-xs filterts-btn">6</button>
-  <button value="7" class="btn btn-primary btn-xs filterts-btn">7</button>
-  <button value="8" class="btn btn-primary btn-xs filterts-btn">8</button>
-  <button value="9" class="btn btn-primary btn-xs filterts-btn">9</button>
-  <button value="10" class="btn btn-primary btn-xs filterts-btn">10</button>
-  <br>
-  <br>
-  <div class="form-inline">
-    <div class="form-group">
-      <p class="form-control-static">Benutzername: </p>
-    </div>
-    <div class="form-group mx-sm-3">
-      <label for="usernamesearchinput" class="sr-only">Benutzername</label>
-      <input id="usernamesearchinput" type="text" class="form-control"  placeholder="Benutzername" >
-    </div>
-    <button value="" class="btn btn-primary btn-xs filterusername-btn"><span class="glyphicon glyphicon-search"></span></button>
-  </div> 
-</p>
-<p>
-  <button value="new" class="btn btn-primary btn-xs edituser-btn"><span class="fa fa-plus"></span></button>
-  <!--<button value="" class="btn btn-primary btn-xs editallglory-btn" type="button">Ruhm verteilen</button>-->
-</p>
-{{/if}}
-<table class="table">
-    <thead>
-      <tr>
-        <th>Name</th>
-        <th>Titel</th>
-        <th>Ruhm</th>
-        {{#if treasurer}}
-        <th>Thronsaal</th>
-        <th>Clan</th>
-        <th>Edit</th>
-        <th>Delete</th>
-        <th>Reset Passwort</th>
-        {{/if}}
-      </tr>
-    </thead>
+  <table class="table">
     <tbody>
-    {{#if data}}
-     {{#each data}}
-     {{#if username}}
-      <tr class="{{#unless registert}}warning{{/unless}}{{#ifEquals ../user.username username}}success{{/ifEquals}}">
-        <td>{{#if ../user.treasurer}}{{#if notAuthorized }}<span title="Erforderlichen Ruhm nicht erreicht!" class="glyphicon glyphicon-exclamation-sign"></span> {{/if}}{{/if}}{{username}}</td>
-        <td>{{rank}}</td>
-        <td>{{glory}}</td>
-        {{#if ../user.treasurer}}
-        <td>{{throneroom}}</td>
-        <td>{{clan.name}}</td>
-        <td><p data-placement="top" data-toggle="tooltip" title="Edit"><button value="{{_id}}" class="btn btn-primary btn-xs edituser-btn" data-title="Edit" data-toggle="modal" data-target="#edit" ><span class="glyphicon glyphicon-pencil"></span></button></p></td>
-        <td><p data-placement="top" data-toggle="tooltip" title="Delete"><button value="{{_id}}" class="btn btn-danger btn-xs deleteuser-btn" data-title="Delete" data-toggle="modal" data-target="#delete" {{#ifEquals ../user.username username}}style="display: none;"{{/ifEquals}} ><span class="glyphicon glyphicon-trash"></span></button></p></td>
-        <td><p data-placement="top" data-toggle="tooltip" title="Reset Passwort"><button value="{{_id}}" class="btn btn-primary btn-xs resetpasswortuser-btn" data-title="Reset Passwort" data-toggle="modal" data-target="#resetpasswort" ><span class="glyphicon glyphicon-repeat"></span></button></p></td>
-        {{/if}}
-      </tr>
-      <tr class="{{#unless registert}}warning{{/unless}} {{#ifEquals ../user.username username}}hidden{{/ifEquals}}">      
-        <td  colspan="8" style="border-top-style: none" >   
-          {{#if selection}}
-            <span {{#ifEquals selection.first._id ../user.selection.first._id }}style="font-weight: bold; color: red;"{{/ifEquals}}> {{#ifNotEquals selection.first.rarity 'common'}}{{selection.first.rarity}}{{/ifNotEquals}} {{selection.first.name}}</span><br>
-            <span {{#ifEquals selection.second._id ../user.selection.second._id }}style="font-weight: bold; color: red;"{{/ifEquals}}> {{#ifNotEquals selection.second.rarity 'common'}}{{selection.second.rarity}}{{/ifNotEquals}} {{selection.second.name}}</span><br>
-            <span {{#ifEquals selection.third._id ../user.selection.third._id }}style="font-weight: bold; color: red;"{{/ifEquals}}> {{#ifNotEquals selection.third.rarity 'common'}}{{selection.third.rarity}}{{/ifNotEquals}} {{selection.third.name}}</span><br>
+      <tr>
+        <td><label>Privilegien:</label></td>
+        <td>
+          <button value="{{user._id}}" title="Ruhm bearbeiten." class="btn btn-primary btn-xs edituser-btn" data-title="Ruhm bearbeiten" data-toggle="modal" data-target="#edit" ><span class="glyphicon glyphicon-flag"></span></span></button>
+          <!-- -->
+          {{#if user.seneschal}}
+          <button value="{{user._id}}" title="CK Teilnahme erfassen." class="btn btn-primary btn-xs addckparticipation-btn" data-title="CK Teilnahme erfassen." data-toggle="modal" data-target="#edit" ><span class="glyphicon glyphicon-check"></span></span></button>
           {{/if}}
+          <!-- -->
         </td>
+      </tr>  
+      <tr> 
+          <td><label>Ruhm:</label></td>
+          <td>{{user.glory}}</td>
       </tr>
-      {{/if}}
-      {{/each}}
-      {{/if}}
+      <tr>
+          <td><label>Rang:</label></td>
+          <td>{{user.rank}}</td>
+      </tr>
+      <tr>
+          <td><label>Thronsaal:</label></td>
+          <td>{{user.throneroom}}</td>
+      </tr>
+      <tr>
+          <td><label>Auswahl:</label></td>
+          <td>
+              {{#ifNotEquals user.selection.first.rarity 'common'}}{{user.selection.first.rarity}}{{/ifNotEquals}} {{user.selection.first.name}}<br>
+              {{#ifNotEquals user.selection.second.rarity 'common'}}{{user.selection.second.rarity}}{{/ifNotEquals}} {{user.selection.second.name}}<br>
+              {{#ifNotEquals user.selection.third.rarity 'common'}}{{user.selection.third.rarity}}{{/ifNotEquals}} {{user.selection.third.name}}<br>
+          </td>
+      </tr>
     </tbody>
   </table>
+  {{#if treasurer}}
+
+  <p>
+    <label>Filter</label> 
+    <button value="all" class="btn btn-primary btn-xs filterts-btn">Clear</button> 
+    <br>
+    <div class="form-inline">
+        <div class="form-group">
+            <p class="form-control-static">Clan:</p>
+        </div>
+        <div class="form-group mx-sm-2">
+            <select name="clan" class="form-control" id="clan_filter" onchange="changeClanForUsers()">    
+                {{#each clans}}
+                    <option {{#ifEquals ../clanfilter _id }}selected="selected"{{/ifEquals}} name="clan" value="{{_id}}">{{name}}</option>
+                {{/each}}
+            </select>
+        </div>
+        <!--<button type="button" class="btn btn-primary btn-xs filterclan-btn" data-title="Filter" title="Filter Clan" data-toggle="Filter Clan" data-target="#filterclan">Auswahl</button>-->
+    </div>
+    <br>
+    Thronsaal:
+    <button value="5" class="btn btn-primary btn-xs filterts-btn">5</button>
+    <button value="6" class="btn btn-primary btn-xs filterts-btn">6</button>
+    <button value="7" class="btn btn-primary btn-xs filterts-btn">7</button>
+    <button value="8" class="btn btn-primary btn-xs filterts-btn">8</button>
+    <button value="9" class="btn btn-primary btn-xs filterts-btn">9</button>
+    <button value="10" class="btn btn-primary btn-xs filterts-btn">10</button>
+    <br>
+    <br>
+    <div class="form-inline">
+      <div class="form-group">
+        <p class="form-control-static">Benutzername: </p>
+      </div>
+      <div class="form-group mx-sm-3">
+        <label for="usernamesearchinput" class="sr-only">Benutzername</label>
+        <input id="usernamesearchinput" type="text" class="form-control"  placeholder="Benutzername" >
+      </div>
+      <button value="" class="btn btn-primary btn-xs filterusername-btn"><span class="glyphicon glyphicon-search"></span></button>
+    </div> 
+  </p>
+  <p>
+    <button value="new" class="btn btn-primary btn-xs edituser-btn"><span class="fa fa-plus"></span></button>
+    <!--<button value="" class="btn btn-primary btn-xs editallglory-btn" type="button">Ruhm verteilen</button>-->
+  </p>
+  {{/if}}  
+</div>
+<table class="table">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <!--<th>Titel</th>-->
+      <th>Ruhm</th>
+      {{#if treasurer}}
+      <th>TS</th>
+      <th>Clan</th>
+      <th>Edit</th>
+      <th>Delete</th>
+      <!-- <th>Reset Passwort</th> -->
+      {{/if}}
+    </tr>
+  </thead>
+  <tbody>
+  {{#if data}}
+  {{#each data}}
+  {{#if username}}
+    <tr class="{{#unless registert}}warning{{/unless}}{{#ifEquals ../user.username username}}success{{/ifEquals}}">
+      <td>{{#if ../user.treasurer}}{{#if notAuthorized }}<span title="Erforderlichen Ruhm nicht erreicht!" class="glyphicon glyphicon-exclamation-sign"></span> {{/if}}{{/if}}{{username}}</td>
+      <!--<td>{{rank}}</td>-->
+      <td>{{glory}}</td>
+      {{#if ../user.treasurer}}
+      <td>{{throneroom}}</td>
+      <td>{{clan.name}}</td>
+      <td><p data-placement="top" data-toggle="tooltip" title="Edit"><button value="{{_id}}" class="btn btn-primary btn-xs edituser-btn" data-title="Edit" data-toggle="modal" data-target="#edit" ><span class="glyphicon glyphicon-pencil"></span></button></p></td>
+      <td><p data-placement="top" data-toggle="tooltip" title="Delete"><button value="{{_id}}" class="btn btn-danger btn-xs deleteuser-btn" data-title="Delete" data-toggle="modal" data-target="#delete" {{#ifEquals ../user.username username}}style="display: none;"{{/ifEquals}} ><span class="glyphicon glyphicon-trash"></span></button></p></td>
+      <!--<td><p data-placement="top" data-toggle="tooltip" title="Reset Passwort"><button value="{{_id}}" class="btn btn-primary btn-xs resetpasswortuser-btn" data-title="Reset Passwort" data-toggle="modal" data-target="#resetpasswort" ><span class="glyphicon glyphicon-repeat"></span></button></p></td>-->
+      {{/if}}
+    </tr>
+    <tr class="{{#unless registert}}warning{{/unless}} {{#ifEquals ../user.username username}}hidden{{/ifEquals}}">      
+      <td  colspan="6" style="border-top-style: none" >   
+        {{#if selection}}
+          <span {{#ifEquals selection.first._id ../user.selection.first._id }}style="font-weight: bold; color: red;"{{/ifEquals}}> {{#ifNotEquals selection.first.rarity 'common'}}{{selection.first.rarity}}{{/ifNotEquals}} {{selection.first.name}}</span><br>
+          <span {{#ifEquals selection.second._id ../user.selection.second._id }}style="font-weight: bold; color: red;"{{/ifEquals}}> {{#ifNotEquals selection.second.rarity 'common'}}{{selection.second.rarity}}{{/ifNotEquals}} {{selection.second.name}}</span><br>
+          <span {{#ifEquals selection.third._id ../user.selection.third._id }}style="font-weight: bold; color: red;"{{/ifEquals}}> {{#ifNotEquals selection.third.rarity 'common'}}{{selection.third.rarity}}{{/ifNotEquals}} {{selection.third.name}}</span><br>
+        {{/if}}
+      </td>
+    </tr>
+    {{/if}}
+    {{/each}}
+    {{/if}}
+  </tbody>
+</table>

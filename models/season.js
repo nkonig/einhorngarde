@@ -7,6 +7,7 @@ var SeasonSchema = new Schema({
     start: String,
     end: String,
     current: { type: Boolean, default: false },
+    next: { type: Boolean, default: false },
     chest: String,
     clan: { type: Schema.Types.ObjectId, ref: 'Clan'},
     participations: [{ type: Schema.Types.ObjectId, ref: 'Participation'}]

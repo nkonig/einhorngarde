@@ -17,13 +17,13 @@
             <p class="form-control-static">Clan:</p>
         </div>
         <div class="form-group mx-sm-2">
-            <select name="clan" class="form-control" id="clan_sel">    
+            <select name="clan" class="form-control" id="clan_sel" onchange="changeClanForSeason()">    
                 {{#each clans}}
                     <option {{#ifEquals ../data._id _id }}selected="selected"{{/ifEquals}} name="clan" value="{{_id}}">{{name}}</option>
                 {{/each}}
             </select>
         </div>
-        <button type="button" class="btn btn-primary btn-xs selectclan-btn" data-title="Select" title="Select Clan" data-toggle="Select Clan" data-target="#selectclan">Auswahl</button>
+        <!--<button type="button" class="btn btn-primary btn-xs selectclan-btn" data-title="Select" title="Select Clan" data-toggle="Select Clan" data-target="#selectclan">Auswahl</button>-->
     </div>
     <!--
     <p>
@@ -35,6 +35,7 @@
         <tr>
             <th>Aktiv</th>
             <th>Season</th>
+            <th>Truhe</th>
             <th>Edit</th>
             <th>Verteilen</th>
         </tr>
@@ -48,6 +49,7 @@
                 <input value="{{_id}}" {{#if current}}checked="checked"{{/if}} type="radio" name="seasonradio">
             </td>
             <td>{{start}} - {{end}}</td>
+            <td>{{chest}}</td>
             <td>
                 <p data-placement="top" data-toggle="tooltip"><button type="button" class="btn btn-primary btn-xs editseason-btn" data-title="Edit" title="Edit" data-toggle="tooltip" data-target="#edit" value="{{_id}}"><span class="glyphicon glyphicon-pencil"></span></button></p>
             </td>
@@ -60,7 +62,7 @@
         {{/each}}
         {{/if}}
         <tr>
-            <td colspan="4">
+            <td colspan="5">
                 <input type="submit" name="submit" value="Auswahl" id="submit" class="btn btn-primary btn-block btn-flat">
             </td>
         </tr>
