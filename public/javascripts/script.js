@@ -75,26 +75,6 @@ $(document).ready(function() {
 		$( location ).attr("href", target);
 	});
 
-	$('.selectclan-btn').on('click', function() {
-		var target = '/treasury';
-		var clan_id = document.getElementById("clan_sel").value;
-		if(clan_id) {
-			target = '/treasury/' + clan_id;
-		}
-		//console.log('Called: ' + target);
-		$( location ).attr("href", target);
-	});
-
-	$('.filterclan-btn').on('click', function() {
-		var target = '/users';
-		var clan_id = document.getElementById("clan_filter").value;
-		if(clan_id) {
-			target = '/users/clan=' + clan_id;
-		}
-		//console.log('Called: ' + target);
-		$( location ).attr("href", target);
-	});
-
 	$('.filterts-btn').on('click', function() {
 		var target = '/users';
 		//console.log('Value: ' + this.value);
@@ -140,8 +120,8 @@ $(document).ready(function() {
 	});
 
 	$('.searchable').multiSelect({
-		selectableHeader: "<input type='text' class='search-input' autocomplete='off' placeholder='try \"12\"'>",
-		selectionHeader: "<input type='text' class='search-input' autocomplete='off' placeholder='try \"4\"'>",
+		selectableHeader: "<input type='text' class='search-input' autocomplete='off' placeholder='Benutzername'>",
+		selectionHeader: "<input type='text' class='search-input' autocomplete='off' placeholder='Benutzername'>",
 		afterInit: function(ms){
 		  var that = this,
 			  $selectableSearch = that.$selectableUl.prev(),
@@ -151,7 +131,7 @@ $(document).ready(function() {
 	  
 		  that.qs1 = $selectableSearch.quicksearch(selectableSearchString)
 		  .on('keydown', function(e){
-			if (e.which === 40){
+			if (e.which === 100){
 			  that.$selectableUl.focus();
 			  return false;
 			}
@@ -159,7 +139,7 @@ $(document).ready(function() {
 	  
 		  that.qs2 = $selectionSearch.quicksearch(selectionSearchString)
 		  .on('keydown', function(e){
-			if (e.which == 40){
+			if (e.which == 100){
 			  that.$selectionUl.focus();
 			  return false;
 			}
@@ -176,6 +156,27 @@ $(document).ready(function() {
 	  });
 
 	/*
+
+	$('.filterclan-btn').on('click', function() {
+		var target = '/users';
+		var clan_id = document.getElementById("clan_filter").value;
+		if(clan_id) {
+			target = '/users/clan=' + clan_id;
+		}
+		//console.log('Called: ' + target);
+		$( location ).attr("href", target);
+	});
+
+	$('.selectclan-btn').on('click', function() {
+		var target = '/treasury';
+		var clan_id = document.getElementById("clan_sel").value;
+		if(clan_id) {
+			target = '/treasury/' + clan_id;
+		}
+		//console.log('Called: ' + target);
+		$( location ).attr("href", target);
+	});
+
 	editSeasonButton.addEventListener('click', function(e) {
 		console.log('button was clicked');
 	  
@@ -207,5 +208,17 @@ $(document).ready(function() {
 function changeClanForStats() {
 	var clanid = document.getElementById("clan_sel").value;
 	var target = "/warroom/" + clanid;
+	$( location ).attr("href", target);
+}
+
+function changeClanForUsers() {
+	var clan_id = document.getElementById("clan_filter").value;
+	var target = '/users/clan=' + clan_id;
+	$( location ).attr("href", target);
+}
+
+function changeClanForSeason() {
+	var clan_id = document.getElementById("clan_sel").value;
+	var target =  '/treasury/' + clan_id;
 	$( location ).attr("href", target);
 }
