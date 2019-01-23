@@ -1,0 +1,20 @@
+{
+    "development": {
+        "config_id": "development",
+        "app_name": "einhorngarde",
+        "server_port": 8080,
+        "server_ip" : "0.0.0.0",
+        "json_indentation": 4,
+        "database": "mongodb://root:einhorngarde123@ds115543.mlab.com:15543/einhorngarde_dev"
+    },
+    "test": {
+        "config_id": "test",
+        "database": "mongodb://root:einhorngarde123@ds245022.mlab.com:45022/einhorngarde"
+    },
+    "production": {
+        "config_id": "production",
+        "server_port": 3000,
+        "server_ip" : "188.138.127.45",
+        "database": "mongodb://root:einhorngarde123@ds245022.mlab.com:45022/einhorngarde"
+    }
+}

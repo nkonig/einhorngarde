@@ -1,10 +1,11 @@
 {
   "name": "einhorngarde",
-  "version": "1.4.0",
+  "version": "1.4.1",
   "private": true,
   "scripts": {
     "start": "node ./bin/www",
-    "devstart": "nodemon ./bin/www"
+    "teststart": "SET STAGE=test & nodemon ./bin/www",
+    "devstart" : "SET STAGE=development & nodemon ./bin/www"
   },
   "dependencies": {
     "bcrypt": "^3.0.0",
@@ -22,6 +23,7 @@
     "http-errors": "~1.6.2",
     "install": "^0.12.1",
     "is-mobile": "^1.0.0",
+    "lodash": "^4.17.11",
     "mongoose": "^5.2.13",
     "morgan": "~1.9.0",
     "npm": "^6.4.1",

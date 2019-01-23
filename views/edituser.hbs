@@ -12,7 +12,7 @@
         <tr>
             <td>Clan:</td>
             <td>
-                <select name="clan" class="form-control" id="clan_sel">    
+                <select name="clan" class="form-control" id="clan_sel" {{#unless treasurer}}disabled{{/unless}}>    
                     {{#each clans}}
                         <option {{#ifEquals ../user.clan _id }}selected="selected"{{/ifEquals}} name="clan" value="{{_id}}">{{name}}</option>
                     {{/each}}
@@ -30,6 +30,7 @@
                     <option {{#ifEquals user.rank 'Soldat' }}selected="selected"{{/ifEquals}} name="rank" value="Soldat">Soldat</option>
                     <option {{#ifEquals user.rank 'Offizier' }}selected="selected"{{/ifEquals}} name="rank" value="Offizier">Offizier</option>
                     <option {{#ifEquals user.rank 'Schatzmeister' }}selected="selected"{{/ifEquals}} name="rank" value="Schatzmeister">Schatzmeister</option>
+                    <option {{#ifEquals user.rank 'Truchsess' }}selected="selected"{{/ifEquals}} name="rank" value="Truchsess">Truchsess</option>
                     {{#ifEquals options.rank 'BigBoss'}}
                     <option {{#ifEquals user.rank 'Stellvertreter' }}selected="selected"{{/ifEquals}} name="rank" value="Stellvertreter">Stellvertreter</option>
                     <option {{#ifEquals user.rank 'BigBoss' }}selected="selected"{{/ifEquals}} name="rank" value="BigBoss">BigBoss</option>

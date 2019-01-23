@@ -11,7 +11,7 @@
       <tbody>
         {{#if treasurer}}
         <tr>
-          <td><label>Clan:</label></td>
+          <td><label>Clan: </label></td>
           <td>
             <select class="form-control" name="clan" id="clan_sel" onchange="changeClanForStats()">    
                 {{#each clans}}
@@ -22,17 +22,17 @@
         </tr>
         {{/if}}
         <tr>
-          <td><label>Tag:</label></td>
+          <td><label>Tag: </label></td>
           <td><input type="date" class="form-control" name="ckday" value="{{season.todayformated}}" min="{{season.startformated}}" max="{{season.endformated}}"></td>
         </tr>
         <tr>
-          <td><label>Stunde:</label></td>
+          <td><label>Zeit: </label></td>
           <td>
             <select class="form-control" name="ckhour" id="ckhour_sel">
-              <option value="04:00">04:00</option>
-              <option value="11:00">11:00</option>
-              <option value="16:00">16:00</option>
-              <option value="22:00">22:00</option>
+              <option value="04:00">Nacht</option>
+              <option value="10:00">Vormittag</option>
+              <option value="16:00">Nachmittag</option>
+              <option value="22:00">Abend</option>
             </select>
           </td>
         </tr>
@@ -57,16 +57,26 @@
     <thead>
       <tr>
         <th rowspan="2">Name</th>
-        <th rowspan="2" scope="col">TN</th>
+        {{#ifNotEquals season.start header.0.day}}
+        <form action="" method="get" accept-charset="utf-8">
+          <input type="hidden" id="daycount" name="daycount" value="{{daycount}}">
+          <th scope="col"><button type="submit" class="btn btn-primary btn-block btn-flat"><span class="glyphicon glyphicon-chevron-left"></span></span></button></th>
+        </form>
+        {{/ifNotEquals}}
+        {{#ifEquals season.start header.0.day}}
+        <th rowspan="2">TN</th>
+        {{/ifEquals}}
         {{#each header}}
           <th colspan="4" scope="colgroup" style="text-align: center;">{{day}}</th>
         {{/each}}
-        <!-- {{#ifNotEquals season.start day}}Button{{/ifNotEquals}}      {{#ifNotEquals season.end day}}Button{{/ifNotEquals}} -->
       </tr>
       <tr>
+        {{#ifNotEquals season.start header.0.day}}
+        <th>TN</th>
+        {{/ifNotEquals}}
         {{#each header}}
           <th scope="colgroup" style="text-align: center;">04:00</th>
-          <th scope="colgroup" style="text-align: center;">11:00</th>
+          <th scope="colgroup" style="text-align: center;">10:00</th>
           <th scope="colgroup" style="text-align: center;">16:00</th>
           <th scope="colgroup" style="text-align: center;">22:00</th>
         {{/each}}
@@ -75,14 +85,14 @@
     <tbody>
         {{#each data}}
             <tr>
-              <td>{{user.username}}</td>
+              <td>{{username}}</td>
               <td>{{sum}}</td>
-          {{#eachInMap participation}}
-              <td {{#if value.first}}class="success"{{/if}}{{#unless value.first}}class="danger"{{/unless}}></td>
-              <td {{#if value.second}}class="success"{{/if}}{{#unless value.second}}class="danger"{{/unless}}></td>
-              <td {{#if value.third}}class="success"{{/if}}{{#unless value.third}}class="danger"{{/unless}}></td>
-              <td {{#if value.fourth}}class="success"{{/if}}{{#unless value.fourth}}class="danger"{{/unless}}></td>
-          {{/eachInMap}}
+          {{#each days}}
+              <td {{#if first}}class="success"{{/if}}{{#unless first}}class="danger"{{/unless}}></td>
+              <td {{#if second}}class="success"{{/if}}{{#unless second}}class="danger"{{/unless}}></td>
+              <td {{#if third}}class="success"{{/if}}{{#unless third}}class="danger"{{/unless}}></td>
+              <td {{#if fourth}}class="success"{{/if}}{{#unless fourth}}class="danger"{{/unless}}></td>
+          {{/each}}
             </tr>
         {{/each}}
     </tbody>

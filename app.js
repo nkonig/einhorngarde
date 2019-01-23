@@ -8,6 +8,8 @@ var session = require('express-session');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 
+const config = require('./config/config.js');
+
 var indexRouter   = require('./routes/index');
 var usersRouter   = require('./routes/users');
 var selectRouter  = require('./routes/selection');
@@ -19,8 +21,13 @@ var app = express();
 //Set up mongoose connection
 var mongoose = require('mongoose');
 
+var mongoDB = global.gConfig.database;
+/*
 var mongoDB = 'mongodb://root:einhorngarde123@ds245022.mlab.com:45022/einhorngarde';
-//var mongoDB = 'mongodb://root:einhorngarde123@ds115543.mlab.com:15543/einhorngarde_dev';
+if(process.env.DEV) {
+  mongoDB = 'mongodb://root:einhorngarde123@ds115543.mlab.com:15543/einhorngarde_dev';
+}
+*/
 
 mongoose.connect(mongoDB, { useNewUrlParser: true });
 mongoose.Promise = global.Promise;
